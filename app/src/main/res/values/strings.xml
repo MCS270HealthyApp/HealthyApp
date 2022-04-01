@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">HealthyApp</string>
     <string name="home_button">Home</string>
+    <string name="weight_hint">Enter Today\'s Weight (In lbs)</string>
+    <string name="weight_date_hint">Enter Today\'s Date</string>
     <string name="homepage_greeting">Hello! Welcome to HealthyApp!</string>
     <string name="workout_page_button">Workout Tracker</string>
     <string name="food_page_button">Food Tracker</string>

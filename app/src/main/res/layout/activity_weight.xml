@@ -10,6 +10,20 @@
         android:layout_height="wrap_content"
         android:id="@+id/food_home_button"
         android:text="@string/home_button"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/weight_entry"
+        android:hint="@string/weight_hint"
+        android:inputType="numberDecimal"
+        android:autofillHints="0" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/weight_date_entry"
+        android:hint="@string/weight_date_hint"
+        android:inputType="date"
+        android:autofillHints="" />
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
