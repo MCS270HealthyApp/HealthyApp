@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">HealthyApp</string>
+    <string name="homepage_greeting">Hello! Welcome to HealthyApp!</string>
+    <string name="workout_page_button">Workout Tracker</string>
+    <string name="food_page_button">Food Tracker</string>
+    <string name="notes_page_button">Notes</string>
+    <string name="weight_page_button">Weight Tracker</string>
+    <string name="health_summary_button">Health Summary</string>
 </resources>
