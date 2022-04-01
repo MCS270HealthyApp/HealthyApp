@@ -6,4 +6,6 @@
     <string name="notes_page_button">Notes</string>
     <string name="weight_page_button">Weight Tracker</string>
     <string name="health_summary_button">Health Summary</string>
+    <string name="home_button">Return Home</string>
+    <string name="generic_food">Show Suggested Foods</string>
 </resources>
