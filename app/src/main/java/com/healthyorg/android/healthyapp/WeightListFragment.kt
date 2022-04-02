@@ -1,12 +1,14 @@
 package com.healthyorg.android.healthyapp
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -17,15 +19,10 @@ private const val TAG = "WeightListFragment"
 
 class WeightListFragment: Fragment() {
     private lateinit var weightRecyclerView: RecyclerView
-    private var adapter: WeightAdapter? = null
+    private var adapter: WeightAdapter? = WeightAdapter(emptyList())
 
     private val weightListViewModel: WeightListViewModel by lazy {
         ViewModelProviders.of(this).get(WeightListViewModel::class.java)
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?){
-        super.onCreate(savedInstanceState)
-        //Log.d(TAG, "Total crimes: ${crimeListViewModel.crimes.size}")
     }
 
     override fun onCreateView(
@@ -38,14 +35,25 @@ class WeightListFragment: Fragment() {
         weightRecyclerView =
             view.findViewById(R.id.weight_recycler_view) as RecyclerView
         weightRecyclerView.layoutManager = LinearLayoutManager(context)
-
-        updateUI()
+        weightRecyclerView.adapter = adapter
 
         return view
     }
 
-    private fun updateUI(){
-        val weights = weightListViewModel.weights
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        weightListViewModel.weightListLiveData.observe(
+            viewLifecycleOwner,
+            Observer { weights ->
+                weights?.let{
+                    Log.i(TAG, "Got weights ${weights.size}")
+                    updateUI(weights)
+                }
+            }
+        )
+    }
+
+    private fun updateUI(weights: List<Daily_Weight>){
         adapter = WeightAdapter(weights)
         weightRecyclerView.adapter = adapter
     }

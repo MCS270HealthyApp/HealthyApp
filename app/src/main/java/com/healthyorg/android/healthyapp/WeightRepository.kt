@@ -2,6 +2,7 @@ package com.healthyorg.android.healthyapp
 
 import com.healthyorg.android.healthyapp.database.WeightDatabase
 import android.content.Context
+import androidx.lifecycle.LiveData
 import androidx.room.Room
 import java.lang.IllegalStateException
 
@@ -17,7 +18,7 @@ class WeightRepository private constructor(context: Context) {
 
     private val weightDao = database.weightDao()
 
-    fun getAllWeights(): Array<Daily_Weight> = weightDao.getAllWeights()
+    fun getAllWeights(): LiveData<List<Daily_Weight>> = weightDao.getAllWeights()
 
     companion object {
         private var INSTANCE: WeightRepository? = null
