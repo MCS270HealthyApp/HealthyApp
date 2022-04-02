@@ -1,7 +1,9 @@
 package com.healthyorg.android.healthyapp
 
+import AppDatabase
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.room.Room
 
 class WeightActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,5 +16,9 @@ class WeightActivity : AppCompatActivity() {
             val fragment = WeightListFragment.newInstance()
             supportFragmentManager.beginTransaction().add(R.id.weight_fragment_container, fragment).commit()
         }
+        val db = Room.databaseBuilder(
+            applicationContext,
+            AppDatabase::class.java, "database-name"
+        ).build()
     }
 }

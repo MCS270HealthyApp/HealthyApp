@@ -1,5 +1,11 @@
 package com.healthyorg.android.healthyapp
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.util.*
 
-data class Daily_Weight(var input_weight: Double, var date: Date)
+@Entity
+data class Daily_Weight(
+    @ColumnInfo var input_weight: Double,
+    @PrimaryKey var date: Date)
