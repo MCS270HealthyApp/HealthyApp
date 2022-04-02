@@ -1,6 +1,7 @@
-package com.healthyorg.android.healthyapp
+package com.healthyorg.android.healthyapp.database
 
 import androidx.room.*
+import com.healthyorg.android.healthyapp.Daily_Weight
 
 @Dao
 interface WeightDao {
@@ -8,5 +9,5 @@ interface WeightDao {
     suspend fun insertWeight(vararg daily_weight: Daily_Weight)
 
     @Query("SELECT * FROM daily_weight")
-    fun loadAllWeights(): Array<Daily_Weight>
+    fun getAllWeights(): Array<Daily_Weight>
 }

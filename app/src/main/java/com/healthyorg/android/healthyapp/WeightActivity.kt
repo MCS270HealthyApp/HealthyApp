@@ -1,9 +1,10 @@
 package com.healthyorg.android.healthyapp
 
-import AppDatabase
+import com.healthyorg.android.healthyapp.database.WeightDatabase
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.room.Room
+import com.healthyorg.android.healthyapp.WeightListFragment
 
 class WeightActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,7 +19,7 @@ class WeightActivity : AppCompatActivity() {
         }
         val db = Room.databaseBuilder(
             applicationContext,
-            AppDatabase::class.java, "database-name"
+            WeightDatabase::class.java, "database-name"
         ).build()
     }
 }
