@@ -8,13 +8,13 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/food_home_button"
-        android:text="@string/home_button"/>
+        android:id="@+id/generics_list_button"
+        android:text="@string/generic_food" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/generics_list_button"
-        android:text="@string/generic_food" />
+        android:id="@+id/favorite_foods_list_button"
+        android:text="@string/food_favorites_list"/>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="fill_parent"

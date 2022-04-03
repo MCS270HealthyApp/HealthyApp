@@ -8,4 +8,5 @@
     <string name="health_summary_button">Health Summary</string>
     <string name="home_button">Return Home</string>
     <string name="generic_food">Show Suggested Foods</string>
+    <string name="food_favorites_list">Favorites List</string>
 </resources>
