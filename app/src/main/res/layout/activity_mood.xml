@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
@@ -10,25 +12,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="24dp"
+        android:text="@string/mood_title_text"
         android:textSize="24dp"
-        android:text="@string/mood_title_text"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="0dp" />
 
     <Button
         android:id="@+id/mood_happy_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/mood_happy"/>
+        android:text="@string/mood_happy"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mood_main_text" />
 
     <Button
         android:id="@+id/mood_meh_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/mood_meh"/>
+        android:text="@string/mood_meh"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-24dp" />
 
     <Button
         android:id="@+id/mood_bad_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/mood_bad"/>
+        android:text="@string/mood_bad"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </LinearLayout>

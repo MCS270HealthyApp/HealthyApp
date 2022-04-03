@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HealthyApp">
         <activity
+            android:name=".SleepActivity"
+            android:exported="false" />
+        <activity
             android:name=".QuotesActivity"
             android:exported="false" />
         <activity

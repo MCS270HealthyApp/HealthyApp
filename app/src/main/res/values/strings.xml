@@ -12,4 +12,6 @@
     <string name="mood_bad">Not great.</string>
     <string name="sample_quote">You can do this!</string>
     <string name="back_button_text">Return to homepage</string>
+    <string name="sleep_title_text">Sleep Tracker</string>
+    <string name="sleep_hint_text">Hours of sleep</string>
 </resources>
