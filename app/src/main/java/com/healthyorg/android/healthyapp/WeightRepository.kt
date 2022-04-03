@@ -5,6 +5,7 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.Room
 import java.lang.IllegalStateException
+import java.util.concurrent.Executors
 
 private const val DATABASE_NAME = "weight-database"
 
@@ -17,8 +18,14 @@ class WeightRepository private constructor(context: Context) {
     ).build()
 
     private val weightDao = database.weightDao()
+    private val executor = Executors.newSingleThreadExecutor()
 
     fun getAllWeights(): LiveData<List<Daily_Weight>> = weightDao.getAllWeights()
+    fun insertWeight(weight: Daily_Weight){
+        executor.execute{
+            weightDao.insertWeight(weight)
+        }
+    }
 
     companion object {
         private var INSTANCE: WeightRepository? = null

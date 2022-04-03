@@ -8,4 +8,4 @@ import java.util.*
 @Entity
 data class Daily_Weight(
     @ColumnInfo var input_weight: Double,
-    @PrimaryKey var date: Date)
+    @PrimaryKey var date: Date = Date())

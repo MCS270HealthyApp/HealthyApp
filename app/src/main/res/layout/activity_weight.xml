@@ -11,17 +11,10 @@
         android:hint="@string/weight_hint"
         android:inputType="numberDecimal"
         android:autofillHints="0" />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/weight_date_entry"
-        android:hint="@string/weight_date_hint"
-        android:inputType="date"
-        android:autofillHints="" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Submit Entry"
+        android:text="@string/submit_entry"
         android:id="@+id/weight_submit_button"/>
     <FrameLayout
         android:layout_width="match_parent"

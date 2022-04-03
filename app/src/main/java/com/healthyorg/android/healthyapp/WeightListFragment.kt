@@ -72,7 +72,7 @@ class WeightListFragment: Fragment() {
 
         fun bind(weight: Daily_Weight){
             this.weight = weight
-            weightTextView.text = this.weight.input_weight.toString()
+            weightTextView.text = "${this.weight.input_weight.toString()} lbs"
             dateTextView.text = this.weight.date.toString()
         }
 
