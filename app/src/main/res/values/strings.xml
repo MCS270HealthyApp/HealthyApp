@@ -6,4 +6,8 @@
     <string name="notes_page_button">Notes</string>
     <string name="weight_page_button">Weight Tracker</string>
     <string name="health_summary_button">Health Summary</string>
+    <string name="mood_title_text">How are you feeling today?</string>
+    <string name="mood_happy">Great!</string>
+    <string name="mood_meh">Fine.</string>
+    <string name="mood_bad">Not great.</string>
 </resources>
