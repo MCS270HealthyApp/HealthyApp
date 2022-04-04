@@ -1,5 +1,6 @@
 package com.healthyorg.android.healthyapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -35,7 +36,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         foodButton.setOnClickListener{
-            //TODO: goto food page
+            val intent = Intent(this, FoodActivity::class.java)
+            startActivity(intent)
         }
 
         notesButton.setOnClickListener{
