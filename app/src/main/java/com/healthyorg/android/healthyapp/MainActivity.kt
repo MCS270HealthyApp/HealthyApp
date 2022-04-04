@@ -11,6 +11,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var weightButton: Button
     private lateinit var foodButton: Button
     private lateinit var notesButton: Button
+    private lateinit var goalsButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         weightButton = findViewById(R.id.weight_page_button)
         foodButton = findViewById(R.id.food_page_button)
         notesButton = findViewById(R.id.notes_page_button)
+        goalsButton = findViewById(R.id.goals_button)
 
         summaryButton.setOnClickListener{
             //TODO: goto summary page
@@ -40,6 +42,10 @@ class MainActivity : AppCompatActivity() {
 
         notesButton.setOnClickListener{
             //TODO: goto notes page
+        }
+
+        goalsButton.setOnClickListener {
+            //TODO: goto goals page
         }
     }
 }
