@@ -1,11 +1,15 @@
 <resources>
     <string name="app_name">HealthyApp</string>
+    <string name="home_button">Home</string>
+    <string name="weight_hint">Enter Today\'s Weight (In lbs)</string>
+    <string name="weight_date_hint">Enter Today\'s Date</string>
     <string name="homepage_greeting">Hello! Welcome to HealthyApp!</string>
     <string name="workout_page_button">Workout Tracker</string>
     <string name="food_page_button">Food Tracker</string>
     <string name="notes_page_button">Notes</string>
     <string name="weight_page_button">Weight Tracker</string>
     <string name="health_summary_button">Health Summary</string>
+    <string name="submit_entry">Submit Entry</string>
     <string name="home_button">Return Home</string>
     <string name="generic_food">Show Suggested Foods</string>
     <string name="food_favorites_list">Favorites List</string>

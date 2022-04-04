@@ -32,7 +32,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         weightButton.setOnClickListener{
-            //TODO: goto weight page
+            val intent = Intent(this, WeightActivity::class.java)
+            startActivity(intent)
         }
 
         foodButton.setOnClickListener{
