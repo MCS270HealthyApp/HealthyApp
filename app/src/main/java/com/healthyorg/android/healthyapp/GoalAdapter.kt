@@ -13,16 +13,15 @@ class GoalAdapter(
     private val todos: MutableList<Goal>
 ) : RecyclerView.Adapter<GoalAdapter.TodoViewHolder>() {
 
-    private lateinit var goal: Goal
-
     class TodoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoViewHolder {
+        //oncreate makes connection between item todo xml and kotlin code
         return TodoViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.goal_todo,parent,false))
 
     }
 
-    // an extra function to add item
+    // an extra function to add item into your list
     fun addToDo(todo1:Goal){
         todos.add(todo1)
         notifyItemInserted(todos.size-1)
@@ -46,6 +45,7 @@ class GoalAdapter(
 
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
         // onBindViewholder now binds the ids from your xml file
+        // to specific functionality in your kotlin file.
         val curTodo = todos[position]
         holder.itemView.apply {
             goalTitle.text = curTodo.title
