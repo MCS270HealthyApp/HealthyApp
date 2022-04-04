@@ -20,6 +20,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".WeightActivity"/>
+        <activity android:name=".FoodActivity"/>
     </application>
 
 </manifest>

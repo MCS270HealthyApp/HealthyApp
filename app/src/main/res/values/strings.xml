@@ -10,4 +10,7 @@
     <string name="weight_page_button">Weight Tracker</string>
     <string name="health_summary_button">Health Summary</string>
     <string name="submit_entry">Submit Entry</string>
+    <string name="home_button">Return Home</string>
+    <string name="generic_food">Show Suggested Foods</string>
+    <string name="food_favorites_list">Favorites List</string>
 </resources>
