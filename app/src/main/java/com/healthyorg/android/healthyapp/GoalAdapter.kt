@@ -20,7 +20,7 @@ class GoalAdapter(
 
     }
 
-    // an extra function to add item into your list
+    // an extra function to add item
     fun addToDo(todo1:Goal){
         todos.add(todo1)
         notifyItemInserted(todos.size-1)
@@ -44,7 +44,6 @@ class GoalAdapter(
 
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
         // onBindViewholder now binds the ids from your xml file
-        // to specific functionality in your kotlin file.
         val curTodo = todos[position]
         holder.itemView.apply {
             goalTitle.text = curTodo.title
