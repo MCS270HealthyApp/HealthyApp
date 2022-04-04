@@ -91,7 +91,7 @@ class WeightListFragment: Fragment() {
         override fun getItemCount() = weights.size
 
         override fun onBindViewHolder(holder: WeightHolder, position: Int) {
-            val weight = weights[position]
+            val weight = weights[weights.size - position - 1]
             holder.bind(weight)
         }
     }
