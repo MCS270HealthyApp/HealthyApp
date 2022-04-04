@@ -37,7 +37,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         foodButton.setOnClickListener{
-            //TODO: goto food page
+            val intent = Intent(this, FoodActivity::class.java)
+            startActivity(intent)
         }
 
         notesButton.setOnClickListener{
