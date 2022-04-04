@@ -48,5 +48,11 @@
         android:layout_height="wrap_content"
         android:text ="@string/notes_page_button">
     </Button>
+    <Button
+        android:id="@+id/goals_button"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text ="@string/goals_button">
+    </Button>
 
 </LinearLayout>
