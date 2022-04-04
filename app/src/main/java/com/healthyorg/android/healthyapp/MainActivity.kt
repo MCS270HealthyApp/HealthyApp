@@ -1,5 +1,6 @@
 package com.healthyorg.android.healthyapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -27,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         workoutButton.setOnClickListener{
-            val intent = WorkoutActivity.newIntent(this@MainActivity)
+            val intent = Intent(this@MainActivity, WorkoutActivity::class.java)
             startActivity(intent)
         }
 

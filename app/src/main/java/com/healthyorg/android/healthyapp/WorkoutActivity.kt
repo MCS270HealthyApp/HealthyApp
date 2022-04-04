@@ -10,10 +10,4 @@ class WorkoutActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_workout)
     }
-
-    companion object {
-        fun newIntent(packageContext: Context): Intent {
-            return Intent(packageContext, WorkoutActivity::class.java)
-        }
-    }
 }
