@@ -16,7 +16,6 @@ class GoalAdapter(
     class TodoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoViewHolder {
-        //oncreate makes connection between item todo xml and kotlin code
         return TodoViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.goal_todo,parent,false))
 
     }
