@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         workoutButton.setOnClickListener{
-            val intent = Intent(this@MainActivity, WorkoutActivity::class.java)
+            val intent = Intent(this, WorkoutActivity::class.java)
             startActivity(intent)
         }
 
