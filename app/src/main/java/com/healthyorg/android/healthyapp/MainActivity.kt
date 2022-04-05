@@ -1,9 +1,9 @@
 package com.healthyorg.android.healthyapp
 
 import android.content.Intent
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -38,11 +38,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         weightButton.setOnClickListener{
-            //TODO: goto weight page
+            val intent = Intent(this, WeightActivity::class.java)
+            startActivity(intent)
         }
 
         foodButton.setOnClickListener{
-            //TODO: goto food page
+            val intent = Intent(this, FoodActivity::class.java)
+            startActivity(intent)
         }
 
         notesButton.setOnClickListener{
