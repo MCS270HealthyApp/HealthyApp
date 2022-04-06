@@ -20,6 +20,7 @@ class GoalsActivity: AppCompatActivity() {
         rvTodoItems.adapter = todoAdapter
         rvTodoItems.layoutManager = LinearLayoutManager(this)
 
+        //adds the goal to the list
         btnAddTodo.setOnClickListener {
             val todoTitle = etTodoTitle.text.toString()
             if(todoTitle.isNotEmpty()) {
@@ -28,6 +29,7 @@ class GoalsActivity: AppCompatActivity() {
                 etTodoTitle.text.clear()
             }
         }
+        //deletes checked goals after clicked again
         btnDeleteDoneTodos.setOnClickListener {
             todoAdapter.deleteToDo()
         }
