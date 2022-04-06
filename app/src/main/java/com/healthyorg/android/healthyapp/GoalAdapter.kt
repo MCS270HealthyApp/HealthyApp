@@ -13,6 +13,8 @@ class GoalAdapter(
     private val todos: MutableList<Goal>
 ) : RecyclerView.Adapter<GoalAdapter.TodoViewHolder>() {
 
+    private lateinit var goal: Goal
+
     class TodoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoViewHolder {
