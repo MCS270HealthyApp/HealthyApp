@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         foodButton.setOnClickListener{
-            val intent = Intent(this, FoodActivity::class.java)
+            val intent = Intent(this, GoalsActivity::class.java)
             startActivity(intent)
         }
 
@@ -49,7 +49,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         goalsButton.setOnClickListener {
-            //TODO: goto goals page
+            val intent = Intent(this, GoalsActivity::class.java)
+            startActivity(intent)
         }
     }
 }
