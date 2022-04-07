@@ -12,4 +12,6 @@
     <string name="submit_entry">Submit Entry</string>
     <string name="generic_food">Show Suggested Foods</string>
     <string name="food_favorites_list">Favorites List</string>
+    <string name="food_type_hint">Enter food type</string>
+    <string name="food_cals_hint">Enter amount of calories</string>
 </resources>
