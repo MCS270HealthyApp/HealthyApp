@@ -19,7 +19,7 @@
     <string name="sample_quote">You can do this!</string>
     <string name="back_button_text">Return to homepage</string>
     <string name="sleep_title_text">Sleep Tracker</string>
-    <string name="sleep_hint_text">Hours of sleep</string>
+    <string name="sleep_hint_text">Enter how many hours of sleep you got last night</string>
     <string name="sleep_tracker_button">Sleep Tracker</string>
     <string name="quotes_page_home_button">Motivational Quotes</string>
     <string name="mood_tracker_button">Mood Tracker</string>
