@@ -22,7 +22,7 @@
     <string name="sleep_hint_text">Enter how many hours of sleep you got last night</string>
     <string name="sleep_tracker_button">Sleep Tracker</string>
     <string name="quotes_page_home_button">Motivational Quotes</string>
-    <string name="mood_tracker_button">Mood Page</string>
+    <string name="mood_tracker_button">Mood Tracker</string>
     <string name="enter_button">Enter</string>
     <string name="new_quote">Display a new quote</string>
 </resources>

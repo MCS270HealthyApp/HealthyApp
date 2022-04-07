@@ -7,5 +7,6 @@ class HealthyAppApplication: Application() {
         super.onCreate()
         WeightRepository.initialize(this)
         SleepRepository.initialize(this)
+        MoodRepository.initialize(this)
     }
 }

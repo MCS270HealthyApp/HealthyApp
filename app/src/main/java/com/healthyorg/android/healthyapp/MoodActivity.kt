@@ -1,20 +1,21 @@
 package com.healthyorg.android.healthyapp
 
+import com.healthyorg.android.healthyapp.database.MoodDatabase
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.TextView
+import android.widget.*
+import androidx.lifecycle.ViewModelProvider
+import androidx.room.Room
+import com.healthyorg.android.healthyapp.MoodListFragment
 
 class MoodActivity : AppCompatActivity() {
-
     private lateinit var happyButton: Button
     private lateinit var mehButton: Button
     private lateinit var badButton: Button
-    private lateinit var reactionText: TextView
 
-    var reactionArray: Array<String> = arrayOf("That's great to hear! Keep it up!", "Understandable! Hang in there!",
-    "That's too bad. Things will get better soon! Maybe a motivational quote will help?")
-
+    private val moodListViewModel: MoodListViewModel by lazy {
+        ViewModelProvider(this).get(MoodListViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,18 +24,28 @@ class MoodActivity : AppCompatActivity() {
         happyButton = findViewById(R.id.mood_happy_button)
         mehButton = findViewById(R.id.mood_meh_button)
         badButton = findViewById(R.id.mood_bad_button)
-        reactionText = findViewById(R.id.mood_reaction_text)
 
-        happyButton.setOnClickListener {
-            reactionText.setText(reactionArray[0])
+        val currentFragment  = supportFragmentManager.findFragmentById(R.id.mood_fragment_container)
+
+        happyButton.setOnClickListener{
+            moodListViewModel.addMood(Daily_Mood(feelings = "Feeling good!"))
         }
 
-        mehButton.setOnClickListener {
-            reactionText.setText(reactionArray[1])
+        mehButton.setOnClickListener{
+            moodListViewModel.addMood(Daily_Mood(feelings = "Feeling okay."))
         }
 
-        badButton.setOnClickListener {
-            reactionText.setText(reactionArray[2])
+        badButton.setOnClickListener{
+            moodListViewModel.addMood(Daily_Mood(feelings = "Feeling bad."))
         }
+
+        if(currentFragment == null){
+            val fragment = MoodListFragment.newInstance()
+            supportFragmentManager.beginTransaction().add(R.id.mood_fragment_container, fragment).commit()
+        }
+        val db = Room.databaseBuilder(
+            applicationContext,
+            MoodDatabase::class.java, "database-name"
+        ).build()
     }
 }
