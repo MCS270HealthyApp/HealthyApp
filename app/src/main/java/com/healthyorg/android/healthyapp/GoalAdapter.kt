@@ -10,7 +10,7 @@ import kotlinx.android.synthetic.main.goal_todo.view.*
 import java.nio.file.Files.size
 
 class GoalAdapter(
-    private val todos: MutableList<Goal>
+    var todos: MutableList<Goal>
 ) : RecyclerView.Adapter<GoalAdapter.TodoViewHolder>() {
 
     class TodoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)

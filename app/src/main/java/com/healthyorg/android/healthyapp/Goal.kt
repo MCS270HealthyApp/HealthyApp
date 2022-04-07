@@ -6,6 +6,6 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Goal(
-    @ColumnInfo val title: String,
-    @PrimaryKey var isChecked: Boolean = false
+    @PrimaryKey val title: String,
+    @ColumnInfo var isChecked: Boolean = false
 )
