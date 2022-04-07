@@ -7,6 +7,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
 import com.healthyorg.android.healthyapp.database.GoalsDatabase
@@ -19,7 +20,12 @@ class GoalsActivity: AppCompatActivity() {
     private lateinit var todoAdapter: GoalAdapter
 
     private val goalsRepository = GoalsRepository.get()
+    val goalListLiveData = goalsRepository.getAllGoals()
 
+
+    private val goalListViewModel: GoalListViewModel by lazy {
+        ViewModelProviders.of(this).get(GoalListViewModel::class.java)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_goals)
@@ -27,6 +33,13 @@ class GoalsActivity: AppCompatActivity() {
 
         todoAdapter = GoalAdapter(mutableListOf())
 
+        val nameObserver = Observer<List<Goal>>{ goals ->
+                goals?.let {
+                    Log.i(TAG, "Got goals ${goals.size}")
+                    updateUI(goals)
+                }
+            }
+        goalListLiveData.observe(this, nameObserver)
 
         rvTodoItems.adapter = todoAdapter
         rvTodoItems.layoutManager = LinearLayoutManager(this)
@@ -37,9 +50,8 @@ class GoalsActivity: AppCompatActivity() {
             val todoTitle = etTodoTitle.text.toString()
             if (todoTitle.isNotEmpty()) {
                 val todo = Goal(todoTitle)
-                todoAdapter.addToDo(todo)
                 etTodoTitle.text.clear()
-                addGoal(todo)
+                goalListViewModel.addGoal(todo)
             }
         }
         //deletes checked goals after clicked again
@@ -48,13 +60,12 @@ class GoalsActivity: AppCompatActivity() {
         }
         val db = Room.databaseBuilder(
             applicationContext,
+
             GoalsDatabase::class.java, "database-name"
-        ).build()
+
+        ).fallbackToDestructiveMigration()
     }
-    private fun addGoal(goal: Goal){
-        goalsRepository.insertGoal(goal)
+    private fun updateUI(goals: List<Goal>){
+        todoAdapter.todos = goals as MutableList<Goal>
     }
-
-
-
-}
+    }

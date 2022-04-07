@@ -11,5 +11,5 @@ interface GoalDao {
 
 
     @Query("SELECT * FROM Goal")
-    fun getAllGoals(): List<Goal>
+    fun getAllGoals(): LiveData<List<Goal>>
 }

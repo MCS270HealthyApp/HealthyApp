@@ -15,12 +15,12 @@ class GoalsRepository private constructor(context: Context) {
         context.applicationContext,
         GoalsDatabase::class.java,
         DATABASE_NAME
-    ).build()
+    ).fallbackToDestructiveMigration().build()
 
     private val GoalDao = database.GoalDao()
     private val executor = Executors.newSingleThreadExecutor()
 
-    fun getAllGoals(): List<Goal> = GoalDao.getAllGoals()
+    fun getAllGoals(): LiveData<List<Goal>> = GoalDao.getAllGoals()
 
     fun insertGoal(goal: Goal){
         executor.execute{

@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         foodButton.setOnClickListener{
-            val intent = Intent(this, GoalsActivity::class.java)
+            val intent = Intent(this, FoodActivity::class.java)
             startActivity(intent)
         }
 

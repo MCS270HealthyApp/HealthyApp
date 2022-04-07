@@ -7,10 +7,9 @@ import com.healthyorg.android.healthyapp.Goal
 import com.healthyorg.android.healthyapp.database.WeightDao
 import com.healthyorg.android.healthyapp.database.WeightTypeConverters
 
-@Database(entities = [Goal::class], version = 1)
+@Database(entities = [Goal::class], version = 2)
 abstract class GoalsDatabase : RoomDatabase() {
     abstract fun GoalDao(): GoalDao
-
     companion object{
         @Volatile
         private var INSTANCE: GoalsDatabase? = null
