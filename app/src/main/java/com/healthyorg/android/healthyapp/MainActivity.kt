@@ -34,7 +34,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         workoutButton.setOnClickListener{
-            //TODO: goto workout page
+            val intent = Intent(this, WorkoutActivity::class.java)
+            startActivity(intent)
         }
 
         weightButton.setOnClickListener{
