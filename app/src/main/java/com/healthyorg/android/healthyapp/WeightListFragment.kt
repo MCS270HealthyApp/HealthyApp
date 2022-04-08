@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.healthyorg.android.healthyapp.R
 import com.healthyorg.android.healthyapp.Daily_Weight
 
-const val TAG = "WeightListFragment"
+private const val TAG = "WeightListFragment"
 
 class WeightListFragment: Fragment() {
     private lateinit var weightRecyclerView: RecyclerView

@@ -15,6 +15,8 @@ import com.healthyorg.android.healthyapp.database.WeightDatabase
 import kotlinx.android.synthetic.main.activity_goals.*
 import org.json.JSONObject.NULL
 
+private const val TAG = "GoalActivity"
+
 class GoalsActivity: AppCompatActivity() {
 
     private lateinit var todoAdapter: GoalAdapter
@@ -32,6 +34,7 @@ class GoalsActivity: AppCompatActivity() {
 
         val nameObserver = Observer<List<Goal>>{ goals ->
             goals?.let {
+                Log.i(TAG, "Got goals ${goals.size}")
                 updateUI(goals)
             }
         }
