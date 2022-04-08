@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import androidx.room.Room
 import com.healthyorg.android.healthyapp.database.FoodDatabase
-import com.healthyorg.android.healthyapp.database.WeightDatabase
 import com.healthyorg.android.healthyapp.foodactivityclasses.FoodListFragment
 import com.healthyorg.android.healthyapp.foodactivityclasses.FoodListViewModel
 import com.healthyorg.android.healthyapp.foodactivityclasses.Meal
@@ -34,9 +33,12 @@ class FoodActivity: AppCompatActivity() {
 
         genericFoodButton = findViewById(R.id.generics_list_button)
 
-        //TODO("Replace tempList with a list of food data class objects and generate list based off titles")
-        val tempList: Array<String> = arrayOf("chicken", "apples", "potatoes", "broccoli","chicken", "apples", "potatoes", "broccoli","chicken", "apples", "potatoes", "broccoli","chicken", "apples", "potatoes", "broccoli","chicken", "apples", "potatoes", "broccoli")
-        var boolArray = BooleanArray(tempList.size)
+        val suggestedFoodItems: List<Meal> = foodListViewModel.genericFoodSelectionList
+        var suggestedFoodsNameList: Array<String> = emptyArray()
+        for (item in suggestedFoodItems){
+            suggestedFoodsNameList += item.food_type
+        }
+        var boolArray = BooleanArray(suggestedFoodsNameList.size)
 
         genericFoodButton.setOnClickListener{
             val builder: AlertDialog.Builder = AlertDialog.Builder(this)
@@ -44,7 +46,7 @@ class FoodActivity: AppCompatActivity() {
                 .setCancelable(true)
                 .setNegativeButton("Close", null)
                 .setPositiveButton("Submit Choice", null)
-                .setMultiChoiceItems(tempList, BooleanArray(tempList.size)){ dialog, which, isChecked ->
+                .setMultiChoiceItems(suggestedFoodsNameList, BooleanArray(suggestedFoodsNameList.size)){ dialog, which, isChecked ->
                     boolArray[which] = isChecked
                 }
             val alertDialog = builder.create()
@@ -52,12 +54,20 @@ class FoodActivity: AppCompatActivity() {
             val posButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
             posButton.setOnClickListener{
                 Log.i(TAG, boolArray[0].toString())
-                alertDialog.dismiss()
-                //TODO("Implement addition of selected items to room database")
-                boolArray = BooleanArray(tempList.size)
+                var tempList: List<Meal> = emptyList()
+                for (item in suggestedFoodItems){
+                    if(boolArray[suggestedFoodItems.indexOf(item)]) {
+                        tempList += item
+                        Log.i(TAG, "Meal item ${item.food_type} added")
+                    }
+                }
+                foodListViewModel.addAllMeals(tempList)
+
+                boolArray = BooleanArray(suggestedFoodsNameList.size)
                 alertDialog.dismiss()
             }
         }
+
         foodCalsEditText = findViewById(R.id.food_cals_entry)
         foodTypeEditText = findViewById(R.id.food_type_entry)
         entryButton = findViewById(R.id.food_submit_button)
@@ -77,5 +87,4 @@ class FoodActivity: AppCompatActivity() {
             FoodDatabase::class.java, "food-database"
         ).build()
     }
-
 }
