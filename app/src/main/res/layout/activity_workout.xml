@@ -1,17 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WorkoutActivity">
-
-    <TextView
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/workout_name"
+        android:hint="enter workout"
+        android:autofillHints="0" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/workout_type"
+        android:hint="enter workout type"
+        android:autofillHints="0" />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/calorie_used"
+        android:hint="enter number calories burned"
+        android:inputType="numberDecimal"
+        android:autofillHints="0" />
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Example text. You are in the workout tracker page."
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="49dp"
-        tools:layout_editor_absoluteY="356dp" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:text="@string/submit_entry"
+        android:id="@+id/workout_submit_button"/>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/workout_fragment_container"/>
+</LinearLayout>

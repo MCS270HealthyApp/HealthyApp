@@ -11,5 +11,6 @@ class HealthyAppApplication: Application() {
         FoodRepository.initialize(this)
         SleepRepository.initialize(this)
         MoodRepository.initialize(this)
+        WorkoutRepository.initialize(this)
     }
 }
