@@ -12,6 +12,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var weightButton: Button
     private lateinit var foodButton: Button
     private lateinit var notesButton: Button
+    private lateinit var goalsButton: Button
+    private lateinit var sleepButton: Button
+    private lateinit var quotesButton: Button
+    private lateinit var moodButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,13 +26,18 @@ class MainActivity : AppCompatActivity() {
         weightButton = findViewById(R.id.weight_page_button)
         foodButton = findViewById(R.id.food_page_button)
         notesButton = findViewById(R.id.notes_page_button)
+        goalsButton = findViewById(R.id.goals_button)
+        sleepButton = findViewById(R.id.sleep_page_button)
+        quotesButton = findViewById(R.id.quotes_page_button)
+        moodButton = findViewById(R.id.mood_page_button)
 
         summaryButton.setOnClickListener{
             //TODO: goto summary page
         }
 
         workoutButton.setOnClickListener{
-            //TODO: goto workout page
+            val intent = Intent(this, WorkoutActivity::class.java)
+            startActivity(intent)
         }
 
         weightButton.setOnClickListener{
@@ -43,6 +52,26 @@ class MainActivity : AppCompatActivity() {
 
         notesButton.setOnClickListener{
             //TODO: goto notes page
+        }
+
+        goalsButton.setOnClickListener {
+            val intent = Intent(this, GoalsActivity::class.java)
+            startActivity(intent)
+        }
+
+        sleepButton.setOnClickListener {
+            val intent = Intent(this, SleepActivity::class.java)
+            startActivity(intent)
+        }
+
+        quotesButton.setOnClickListener {
+            val intent = Intent(this, QuotesActivity::class.java)
+            startActivity(intent)
+        }
+
+        moodButton.setOnClickListener {
+            val intent = Intent(this, MoodActivity::class.java)
+            startActivity(intent)
         }
     }
 }
