@@ -2,9 +2,11 @@ package com.healthyorg.android.healthyapp
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.EditText
 import android.widget.Button
 import androidx.appcompat.app.AlertDialog
+import android.os.PersistableBundle
+import android.view.View
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import androidx.room.Room
@@ -17,8 +19,6 @@ private const val TAG = "FoodActivity"
 
 class FoodActivity: AppCompatActivity() {
     private lateinit var genericFoodButton: Button
-
-
     private lateinit var foodTypeEditText: EditText
     private lateinit var foodCalsEditText: EditText
     private lateinit var entryButton: Button
@@ -33,7 +33,6 @@ class FoodActivity: AppCompatActivity() {
 
         genericFoodButton = findViewById(R.id.generics_list_button)
 
-        //TODO("Replace tempList with a list of food data class objects and generate list based off titles")
         val suggestedFoodItems: List<Meal> = foodListViewModel.genericFoodSelectionList
         var suggestedFoodsNameList: Array<String> = emptyArray()
         for (item in suggestedFoodItems){
@@ -55,8 +54,7 @@ class FoodActivity: AppCompatActivity() {
             val posButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
             posButton.setOnClickListener{
                 Log.i(TAG, boolArray[0].toString())
-                //TODO("Implement addition of selected items to room database")
-                val tempList: List<Meal> = emptyList<>()
+                var tempList: List<Meal> = emptyList()
                 for (item in suggestedFoodItems){
                     if(boolArray[suggestedFoodItems.indexOf(item)]) {
                         tempList += item
