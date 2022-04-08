@@ -7,6 +7,7 @@ import androidx.room.Room
 import com.healthyorg.android.healthyapp.Daily_Weight
 import com.healthyorg.android.healthyapp.database.FoodDatabase
 import java.lang.IllegalStateException
+import java.util.*
 import java.util.concurrent.Executors
 
 private const val DATABASE_NAME = "food-database"
@@ -26,6 +27,16 @@ class FoodRepository private constructor(context: Context) {
     fun insertFood(food: Meal){
         executor.execute{
             foodDao.insertFood(food)
+        }
+    }
+    fun insertAllFoods(food: List<Meal>){
+        executor.execute{
+            for (item in food){
+                item.date = Date()
+                foodDao.insertFood(item)
+                //The slight delay prevents the dates from being identical and overwriting other entries
+                Thread.sleep(50)
+            }
         }
     }
 

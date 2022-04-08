@@ -9,6 +9,7 @@ interface FoodDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertFood(vararg food: Meal)
 
+
     @Query("SELECT * FROM Meal")
     fun getAllMeals(): LiveData<List<Meal>>
 }
