@@ -20,12 +20,9 @@ class GoalsActivity: AppCompatActivity() {
     private lateinit var todoAdapter: GoalAdapter
 
     private val goalsRepository = GoalsRepository.get()
-    val goalListLiveData = goalsRepository.getAllGoals()
+    private val goalListLiveData = goalsRepository.getAllGoals()
 
 
-    private val goalListViewModel: GoalListViewModel by lazy {
-        ViewModelProviders.of(this).get(GoalListViewModel::class.java)
-    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_goals)
@@ -34,11 +31,10 @@ class GoalsActivity: AppCompatActivity() {
         todoAdapter = GoalAdapter(mutableListOf())
 
         val nameObserver = Observer<List<Goal>>{ goals ->
-                goals?.let {
-                    Log.i(TAG, "Got goals ${goals.size}")
-                    updateUI(goals)
-                }
+            goals?.let {
+                updateUI(goals)
             }
+        }
         goalListLiveData.observe(this, nameObserver)
 
         rvTodoItems.adapter = todoAdapter
@@ -51,7 +47,7 @@ class GoalsActivity: AppCompatActivity() {
             if (todoTitle.isNotEmpty()) {
                 val todo = Goal(todoTitle)
                 etTodoTitle.text.clear()
-                goalListViewModel.addGoal(todo)
+                addGoal(todo)
             }
         }
         //deletes checked goals after clicked again
@@ -68,4 +64,7 @@ class GoalsActivity: AppCompatActivity() {
     private fun updateUI(goals: List<Goal>){
         todoAdapter.todos = goals as MutableList<Goal>
     }
+    private fun addGoal(goal: Goal){
+        goalsRepository.insertGoal(goal)
     }
+}
