@@ -7,6 +7,7 @@ class HealthyAppApplication: Application() {
     override fun onCreate(){
         super.onCreate()
         WeightRepository.initialize(this)
+        GoalsRepository.initialize(this)
         FoodRepository.initialize(this)
         SleepRepository.initialize(this)
         MoodRepository.initialize(this)

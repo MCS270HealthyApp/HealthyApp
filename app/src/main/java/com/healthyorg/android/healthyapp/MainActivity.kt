@@ -12,6 +12,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var weightButton: Button
     private lateinit var foodButton: Button
     private lateinit var notesButton: Button
+    private lateinit var goalsButton: Button
     private lateinit var sleepButton: Button
     private lateinit var quotesButton: Button
     private lateinit var moodButton: Button
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         weightButton = findViewById(R.id.weight_page_button)
         foodButton = findViewById(R.id.food_page_button)
         notesButton = findViewById(R.id.notes_page_button)
+        goalsButton = findViewById(R.id.goals_button)
         sleepButton = findViewById(R.id.sleep_page_button)
         quotesButton = findViewById(R.id.quotes_page_button)
         moodButton = findViewById(R.id.mood_page_button)
@@ -50,6 +52,11 @@ class MainActivity : AppCompatActivity() {
 
         notesButton.setOnClickListener{
             //TODO: goto notes page
+        }
+
+        goalsButton.setOnClickListener {
+            val intent = Intent(this, GoalsActivity::class.java)
+            startActivity(intent)
         }
 
         sleepButton.setOnClickListener {
