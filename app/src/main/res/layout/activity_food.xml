@@ -15,8 +15,24 @@
         android:layout_height="wrap_content"
         android:id="@+id/favorite_foods_list_button"
         android:text="@string/food_favorites_list"/>
-        android:id="@+id/food_home_button"
-        android:text="@string/home_button"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/food_type_entry"
+        android:hint="@string/food_type_hint"
+        android:autofillHints="0"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/food_cals_entry"
+        android:hint="@string/food_cals_hint"
+        android:inputType="numberDecimal"
+        android:autofillHints="0"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/submit_entry"
+        android:id="@+id/food_submit_button"/>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
