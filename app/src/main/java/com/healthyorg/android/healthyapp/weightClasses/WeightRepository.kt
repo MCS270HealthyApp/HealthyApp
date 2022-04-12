@@ -1,10 +1,9 @@
-package com.healthyorg.android.healthyapp
+package com.healthyorg.android.healthyapp.weightClasses
 
-import com.healthyorg.android.healthyapp.database.WeightDatabase
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.Room
-import java.lang.IllegalStateException
+import com.healthyorg.android.healthyapp.database.WeightDatabase
 import java.util.concurrent.Executors
 
 private const val DATABASE_NAME = "weight-database"

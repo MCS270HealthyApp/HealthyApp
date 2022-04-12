@@ -1,10 +1,9 @@
-package com.healthyorg.android.healthyapp
+package com.healthyorg.android.healthyapp.MoodClasses
 
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.Room
 import com.healthyorg.android.healthyapp.database.MoodDatabase
-import java.lang.IllegalStateException
 import java.util.concurrent.Executors
 
 private const val DATABASE_NAME = "mood-database"

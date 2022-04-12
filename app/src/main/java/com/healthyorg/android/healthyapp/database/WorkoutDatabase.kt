@@ -2,8 +2,7 @@ package com.healthyorg.android.healthyapp.database
 
 import android.content.Context
 import androidx.room.*
-import com.healthyorg.android.healthyapp.Daily_Workout
-import com.healthyorg.android.healthyapp.database.WorkoutDao
+import com.healthyorg.android.healthyapp.workoutClasses.Daily_Workout
 
 @Database(entities = [Daily_Workout::class], version = 4)
 @TypeConverters(WorkoutTypeConverters::class)

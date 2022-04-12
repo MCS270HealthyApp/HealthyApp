@@ -1,4 +1,4 @@
-package com.healthyorg.android.healthyapp
+package com.healthyorg.android.healthyapp.workoutClasses
 
 import android.content.Context
 import androidx.lifecycle.LiveData

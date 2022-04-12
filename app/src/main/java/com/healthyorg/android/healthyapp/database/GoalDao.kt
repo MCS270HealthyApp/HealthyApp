@@ -2,7 +2,7 @@ package com.healthyorg.android.healthyapp.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.healthyorg.android.healthyapp.Goal
+import com.healthyorg.android.healthyapp.goalClasses.Goal
 
 @Dao
 interface GoalDao {

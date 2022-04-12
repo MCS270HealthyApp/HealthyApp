@@ -1,10 +1,11 @@
-package com.healthyorg.android.healthyapp
+package com.healthyorg.android.healthyapp.workoutClasses
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
 import androidx.lifecycle.ViewModelProviders
 import androidx.room.Room
+import com.healthyorg.android.healthyapp.R
 import com.healthyorg.android.healthyapp.database.WorkoutDatabase
 
 class WorkoutActivity : AppCompatActivity() {

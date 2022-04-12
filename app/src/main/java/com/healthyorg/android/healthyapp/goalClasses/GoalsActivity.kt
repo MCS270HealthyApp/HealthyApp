@@ -1,19 +1,14 @@
-package com.healthyorg.android.healthyapp
+package com.healthyorg.android.healthyapp.goalClasses
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
+import com.healthyorg.android.healthyapp.R
 import com.healthyorg.android.healthyapp.database.GoalsDatabase
-import com.healthyorg.android.healthyapp.database.WeightDatabase
 import kotlinx.android.synthetic.main.activity_goals.*
-import org.json.JSONObject.NULL
 
 private const val TAG = "GoalActivity"
 

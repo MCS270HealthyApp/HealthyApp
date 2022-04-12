@@ -2,7 +2,7 @@ package com.healthyorg.android.healthyapp.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.healthyorg.android.healthyapp.Daily_Weight
+import com.healthyorg.android.healthyapp.weightClasses.Daily_Weight
 
 @Dao
 interface WeightDao {
