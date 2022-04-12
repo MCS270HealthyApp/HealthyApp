@@ -11,16 +11,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HealthyApp">
         <activity
-            android:name=".SleepActivity"
+            android:name=".sleepClasses.SleepActivity"
             android:exported="false" />
         <activity
             android:name=".QuotesActivity"
             android:exported="false" />
         <activity
-            android:name=".MoodActivity"
+            android:name=".MoodClasses.MoodActivity"
             android:exported="false" />
         <activity
-            android:name=".WorkoutActivity"
+            android:name=".workoutClasses.WorkoutActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
@@ -31,9 +31,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".WeightActivity"/>
-        <activity android:name=".FoodActivity"/>
-        <activity android:name=".GoalsActivity"/>
+        <activity android:name=".weightClasses.WeightActivity"/>
+        <activity android:name=".foodactivityclasses.FoodActivity"/>
+        <activity android:name=".goalClasses.GoalsActivity"/>
     </application>
 
 </manifest>

@@ -2,7 +2,7 @@ package com.healthyorg.android.healthyapp.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.healthyorg.android.healthyapp.Daily_Workout
+import com.healthyorg.android.healthyapp.workoutClasses.Daily_Workout
 
 @Dao
 interface WorkoutDao {

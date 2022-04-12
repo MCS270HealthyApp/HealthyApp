@@ -2,9 +2,7 @@ package com.healthyorg.android.healthyapp.database
 
 import android.content.Context
 import androidx.room.*
-import com.healthyorg.android.healthyapp.DailySleepMood
-import com.healthyorg.android.healthyapp.database.SleepDao
-import com.healthyorg.android.healthyapp.database.SleepTypeConverters
+import com.healthyorg.android.healthyapp.sleepClasses.DailySleepMood
 
 @Database(entities = [DailySleepMood::class], version = 1)
 @TypeConverters(SleepTypeConverters::class)

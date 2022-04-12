@@ -1,4 +1,4 @@
-package com.healthyorg.android.healthyapp
+package com.healthyorg.android.healthyapp.goalClasses
 
 import android.graphics.Paint.STRIKE_THRU_TEXT_FLAG
 import android.view.LayoutInflater
@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.healthyorg.android.healthyapp.R
 import kotlinx.android.synthetic.main.goal_todo.view.*
-import java.nio.file.Files.size
 
 class GoalAdapter(
     var todos: MutableList<Goal>
@@ -21,7 +21,7 @@ class GoalAdapter(
     }
 
     // an extra function to add item
-    fun addToDo(todo1:Goal){
+    fun addToDo(todo1: Goal){
         todos.add(todo1)
         notifyItemInserted(todos.size-1)
     }

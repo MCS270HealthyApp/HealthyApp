@@ -1,4 +1,4 @@
-package com.healthyorg.android.healthyapp
+package com.healthyorg.android.healthyapp.weightClasses
 
 import com.healthyorg.android.healthyapp.database.WeightDatabase
 import androidx.appcompat.app.AppCompatActivity
@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.*
 import androidx.lifecycle.ViewModelProviders
 import androidx.room.Room
-import com.healthyorg.android.healthyapp.WeightListFragment
+import com.healthyorg.android.healthyapp.R
 
 class WeightActivity : AppCompatActivity() {
     private lateinit var weightEntryButton: Button

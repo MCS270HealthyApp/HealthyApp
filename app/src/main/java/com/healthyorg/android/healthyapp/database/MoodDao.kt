@@ -2,8 +2,7 @@ package com.healthyorg.android.healthyapp.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.healthyorg.android.healthyapp.Daily_Mood
-import com.healthyorg.android.healthyapp.Daily_Weight
+import com.healthyorg.android.healthyapp.MoodClasses.Daily_Mood
 
 @Dao
 interface MoodDao {

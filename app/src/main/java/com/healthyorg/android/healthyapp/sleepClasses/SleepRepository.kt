@@ -1,10 +1,9 @@
-package com.healthyorg.android.healthyapp
+package com.healthyorg.android.healthyapp.sleepClasses
 
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.Room
 import com.healthyorg.android.healthyapp.database.SleepDatabase
-import java.lang.IllegalStateException
 import java.util.concurrent.Executors
 
 private const val DATABASE_NAME = "sleep-database"

@@ -1,4 +1,4 @@
-package com.healthyorg.android.healthyapp
+package com.healthyorg.android.healthyapp.sleepClasses
 
 import androidx.lifecycle.ViewModel
 

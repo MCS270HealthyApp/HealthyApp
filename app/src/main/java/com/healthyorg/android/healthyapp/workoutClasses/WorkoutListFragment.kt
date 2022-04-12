@@ -1,4 +1,4 @@
-package com.healthyorg.android.healthyapp
+package com.healthyorg.android.healthyapp.workoutClasses
 
 import android.os.Bundle
 import android.util.Log

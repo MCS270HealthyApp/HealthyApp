@@ -1,4 +1,4 @@
-package com.healthyorg.android.healthyapp
+package com.healthyorg.android.healthyapp.sleepClasses
 
 import com.healthyorg.android.healthyapp.database.SleepDatabase
 import androidx.appcompat.app.AppCompatActivity
@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.widget.*
 import androidx.lifecycle.ViewModelProvider
 import androidx.room.Room
-import com.healthyorg.android.healthyapp.SleepListFragment
+import com.healthyorg.android.healthyapp.R
 
 class SleepActivity : AppCompatActivity() {
     private lateinit var sleepEntryButton: Button

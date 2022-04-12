@@ -1,6 +1,7 @@
-package com.healthyorg.android.healthyapp
+package com.healthyorg.android.healthyapp.MoodClasses
 
 import androidx.lifecycle.ViewModel
+import com.healthyorg.android.healthyapp.MoodClasses.MoodRepository
 
 class MoodListViewModel: ViewModel() {
     private val moodRepository = MoodRepository.get()

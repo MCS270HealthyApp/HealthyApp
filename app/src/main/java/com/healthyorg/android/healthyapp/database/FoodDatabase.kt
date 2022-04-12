@@ -2,9 +2,6 @@ package com.healthyorg.android.healthyapp.database
 
 import android.content.Context
 import androidx.room.*
-import com.healthyorg.android.healthyapp.Daily_Weight
-import com.healthyorg.android.healthyapp.database.WeightDao
-import com.healthyorg.android.healthyapp.database.WeightTypeConverters
 import com.healthyorg.android.healthyapp.foodactivityclasses.Meal
 
 @Database(entities = [Meal::class], version = 1)
