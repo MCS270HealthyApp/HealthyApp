@@ -2,6 +2,11 @@ package com.healthyorg.android.healthyapp
 
 import android.app.Application
 import com.healthyorg.android.healthyapp.foodactivityclasses.FoodRepository
+import com.healthyorg.android.healthyapp.MoodClasses.MoodRepository
+import com.healthyorg.android.healthyapp.goalClasses.GoalsRepository
+import com.healthyorg.android.healthyapp.sleepClasses.SleepRepository
+import com.healthyorg.android.healthyapp.weightClasses.WeightRepository
+import com.healthyorg.android.healthyapp.workoutClasses.WorkoutRepository
 
 class HealthyAppApplication: Application() {
     override fun onCreate(){

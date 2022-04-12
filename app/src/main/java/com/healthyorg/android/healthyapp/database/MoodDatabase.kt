@@ -2,9 +2,7 @@ package com.healthyorg.android.healthyapp.database
 
 import android.content.Context
 import androidx.room.*
-import com.healthyorg.android.healthyapp.Daily_Mood
-import com.healthyorg.android.healthyapp.database.MoodDao
-import com.healthyorg.android.healthyapp.database.MoodTypeConverters
+import com.healthyorg.android.healthyapp.MoodClasses.Daily_Mood
 
 @Database(entities = [Daily_Mood::class], version = 1)
 @TypeConverters(MoodTypeConverters::class)

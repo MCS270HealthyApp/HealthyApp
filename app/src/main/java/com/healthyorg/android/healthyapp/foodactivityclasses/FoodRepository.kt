@@ -1,10 +1,8 @@
 package com.healthyorg.android.healthyapp.foodactivityclasses
 
-import com.healthyorg.android.healthyapp.database.WeightDatabase
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.Room
-import com.healthyorg.android.healthyapp.Daily_Weight
 import com.healthyorg.android.healthyapp.database.FoodDatabase
 import java.lang.IllegalStateException
 import java.util.*

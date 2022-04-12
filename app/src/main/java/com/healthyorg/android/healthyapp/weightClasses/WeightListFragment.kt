@@ -1,4 +1,4 @@
-package com.healthyorg.android.healthyapp
+package com.healthyorg.android.healthyapp.weightClasses
 
 import android.os.Bundle
 import android.util.Log
@@ -13,7 +13,6 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.healthyorg.android.healthyapp.R
-import com.healthyorg.android.healthyapp.Daily_Weight
 
 private const val TAG = "WeightListFragment"
 

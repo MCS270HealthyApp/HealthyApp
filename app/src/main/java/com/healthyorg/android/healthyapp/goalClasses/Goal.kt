@@ -1,4 +1,4 @@
-package com.healthyorg.android.healthyapp
+package com.healthyorg.android.healthyapp.goalClasses
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

@@ -1,19 +1,15 @@
-package com.healthyorg.android.healthyapp
+package com.healthyorg.android.healthyapp.foodactivityclasses
 
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
-import androidx.appcompat.app.AlertDialog
-import android.os.PersistableBundle
-import android.view.View
 import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProviders
 import androidx.room.Room
+import com.healthyorg.android.healthyapp.R
 import com.healthyorg.android.healthyapp.database.FoodDatabase
-import com.healthyorg.android.healthyapp.foodactivityclasses.FoodListFragment
-import com.healthyorg.android.healthyapp.foodactivityclasses.FoodListViewModel
-import com.healthyorg.android.healthyapp.foodactivityclasses.Meal
 
 private const val TAG = "FoodActivity"
 
