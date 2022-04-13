@@ -10,6 +10,7 @@ import com.healthyorg.android.healthyapp.goalClasses.GoalsActivity
 import com.healthyorg.android.healthyapp.sleepClasses.SleepActivity
 import com.healthyorg.android.healthyapp.weightClasses.WeightActivity
 import com.healthyorg.android.healthyapp.workoutClasses.WorkoutActivity
+import notesClasses.NotesActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -57,7 +58,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         notesButton.setOnClickListener{
-            //TODO: goto notes page
+            val intent = Intent(this, NotesActivity::class.java)
+            startActivity(intent)
         }
 
         goalsButton.setOnClickListener {
