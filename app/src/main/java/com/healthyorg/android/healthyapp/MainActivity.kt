@@ -38,7 +38,8 @@ class MainActivity : AppCompatActivity() {
         moodButton = findViewById(R.id.mood_page_button)
 
         summaryButton.setOnClickListener{
-            //TODO: goto summary page
+            val intent = Intent(this, Summary::class.java)
+            startActivity(intent)
         }
 
         workoutButton.setOnClickListener{
