@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HealthyApp">
         <activity
+            android:name="notesClasses.AddEditNoteActivity"
+            android:exported="false" />
+        <activity
             android:name=".sleepClasses.SleepActivity"
             android:exported="false" />
         <activity
@@ -23,6 +26,9 @@
             android:name=".workoutClasses.WorkoutActivity"
             android:exported="false" />
         <activity
+            android:name="notesClasses.NotesActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -31,9 +37,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".weightClasses.WeightActivity"/>
-        <activity android:name=".foodactivityclasses.FoodActivity"/>
-        <activity android:name=".goalClasses.GoalsActivity"/>
+        <activity android:name=".weightClasses.WeightActivity" />
+        <activity android:name=".foodactivityclasses.FoodActivity" />
+        <activity android:name=".goalClasses.GoalsActivity" />
     </application>
 
 </manifest>
