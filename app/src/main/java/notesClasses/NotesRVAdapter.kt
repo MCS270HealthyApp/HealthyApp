@@ -26,7 +26,7 @@ class NoteRVAdapter(
         // variables which we have added in layout file.
         val noteTV = itemView.findViewById<TextView>(R.id.idTVNote)
         val dateTV = itemView.findViewById<TextView>(R.id.idTVDate)
-        val deleteIV = itemView.findViewById<ImageView>(R.id.idIVDelete)
+        val deleteIV = itemView.findViewById<TextView>(R.id.idIVDelete)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

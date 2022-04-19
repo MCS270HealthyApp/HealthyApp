@@ -11,4 +11,7 @@ interface SleepDao {
 
     @Query("SELECT * FROM dailysleepmood")
     fun getAllSleeps(): LiveData<List<DailySleepMood>>
+
+    @Delete
+    fun deleteSleep(vararg dailysleepmood: DailySleepMood)
 }

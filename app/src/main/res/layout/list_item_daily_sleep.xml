@@ -10,12 +10,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Hours of sleep"
-        android:paddingRight = "16dp"/>
+        android:paddingRight = "16dp" />
 
     <TextView
         android:id="@+id/sleep_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Current Date"/>
+        android:text="Current Date" />
+
+    <ImageButton
+        android:id="@+id/sleep_delete_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_delete_dark"/>
+
 
 </LinearLayout>
