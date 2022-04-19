@@ -10,6 +10,6 @@ interface FavoriteFoodDao {
     fun insertFavoriteFood(vararg food: FavoriteMeal)
 
 
-    @Query("SELECT * FROM Meal")
+    @Query("SELECT * FROM FavoriteMeal")
     fun getAllFavoriteMeals(): LiveData<List<FavoriteMeal>>
 }
