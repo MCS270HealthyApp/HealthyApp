@@ -26,6 +26,12 @@ class WeightRepository private constructor(context: Context) {
         }
     }
 
+    fun deleteWeight(weight: Daily_Weight){
+        executor.execute{
+            weightDao.deleteWeight(weight)
+        }
+    }
+
     companion object {
         private var INSTANCE: WeightRepository? = null
 

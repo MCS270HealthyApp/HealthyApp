@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.Room
 import com.healthyorg.android.healthyapp.database.MoodDatabase
+import com.healthyorg.android.healthyapp.sleepClasses.DailySleepMood
 import java.util.concurrent.Executors
 
 private const val DATABASE_NAME = "mood-database"
@@ -23,6 +24,12 @@ class MoodRepository private constructor(context: Context) {
     fun insertMood(mood: Daily_Mood){
         executor.execute{
             moodDao.insertMood(mood)
+        }
+    }
+
+    fun deleteMood(mood: Daily_Mood){
+        executor.execute {
+            moodDao.deleteMood(mood)
         }
     }
 

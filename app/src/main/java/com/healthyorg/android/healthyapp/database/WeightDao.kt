@@ -2,6 +2,7 @@ package com.healthyorg.android.healthyapp.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import com.healthyorg.android.healthyapp.sleepClasses.DailySleepMood
 import com.healthyorg.android.healthyapp.weightClasses.Daily_Weight
 
 @Dao
@@ -11,4 +12,7 @@ interface WeightDao {
 
     @Query("SELECT * FROM daily_weight")
     fun getAllWeights(): LiveData<List<Daily_Weight>>
+
+    @Delete
+    fun deleteWeight(vararg daily_weight: Daily_Weight)
 }

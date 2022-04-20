@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -64,19 +65,23 @@ class MoodListFragment: Fragment() {
 
         private val moodTextView: TextView = itemView.findViewById(R.id.mood_value)
         private val dateTextView: TextView = itemView.findViewById(R.id.mood_date)
+        private val moodDeleteButton: ImageButton = itemView.findViewById(R.id.mood_delete_button)
 
         init {
             itemView.setOnClickListener(this)
         }
 
         fun bind(mood: Daily_Mood){
+            moodDeleteButton.setOnClickListener {
+                deleteCurrentMood(mood)
+            }
             this.mood = mood
             moodTextView.text = "${this.mood.feelings.toString()}"
             dateTextView.text = this.mood.date.toString()
         }
 
         override fun onClick(v: View){
-            Toast.makeText(context, "Mood from ${mood.date} pressed!", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(context, "Mood from ${mood.date} pressed!", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -99,5 +104,9 @@ class MoodListFragment: Fragment() {
         fun newInstance(): MoodListFragment {
             return MoodListFragment()
         }
+    }
+
+    fun deleteCurrentMood(mood: Daily_Mood){
+        moodListViewModel.deleteMood(mood)
     }
 }
