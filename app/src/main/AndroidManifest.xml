@@ -40,6 +40,7 @@
         <activity android:name=".weightClasses.WeightActivity" />
         <activity android:name=".foodactivityclasses.FoodActivity" />
         <activity android:name=".goalClasses.GoalsActivity" />
+        <activity android:name=".focusTimer.FocusActivity" />
     </application>
 
 </manifest>
