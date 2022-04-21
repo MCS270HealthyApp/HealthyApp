@@ -6,9 +6,12 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.room.Room
 import com.healthyorg.android.healthyapp.R
+import com.healthyorg.android.healthyapp.database.FavoriteFoodDatabase
 import com.healthyorg.android.healthyapp.database.FoodDatabase
 
 private const val TAG = "FoodActivity"
@@ -18,6 +21,8 @@ class FoodActivity: AppCompatActivity() {
     private lateinit var foodTypeEditText: EditText
     private lateinit var foodCalsEditText: EditText
     private lateinit var entryButton: Button
+    private lateinit var favoriteEntryButton: Button
+    private lateinit var favoriteListButton: Button
 
     private val foodListViewModel: FoodListViewModel by lazy {
         ViewModelProviders.of(this).get(FoodListViewModel::class.java)
@@ -28,7 +33,9 @@ class FoodActivity: AppCompatActivity() {
         setContentView(R.layout.activity_food)
 
         genericFoodButton = findViewById(R.id.generics_list_button)
+        favoriteListButton = findViewById(R.id.favorite_foods_list_button)
 
+        val favoriteFoodListLiveData: LiveData<List<FavoriteMeal>> = foodListViewModel.favoriteFoodList
         val suggestedFoodItems: List<Meal> = foodListViewModel.genericFoodSelectionList
         var suggestedFoodsNameList: Array<String> = emptyArray()
         for (item in suggestedFoodItems){
@@ -36,12 +43,54 @@ class FoodActivity: AppCompatActivity() {
         }
         var boolArray = BooleanArray(suggestedFoodsNameList.size)
 
+        var favoriteFoodList: List<FavoriteMeal> = emptyList()
+        favoriteFoodListLiveData.observe(
+            this
+        ) { favoriteMeals ->
+            favoriteMeals?.let {
+                Log.i(TAG, "Got favorite meals ${favoriteMeals.size}")
+                favoriteFoodList = favoriteMeals
+            }
+        }
+
+       favoriteListButton.setOnClickListener{
+           Log.i(TAG, "favoriteFoodList size ${favoriteFoodList.size}")
+           var favoriteFoodsNameList: Array<String> = emptyArray()
+           for(item in favoriteFoodList) {
+               favoriteFoodsNameList += item.food_type + ", " + item.food_cals + " Calories"
+           }
+           var favBoolArray = BooleanArray(favoriteFoodsNameList.size)
+           val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+               .setTitle(getString(R.string.favorite_food_dialog_title))
+               .setCancelable(true)
+               .setNegativeButton("Close", null)
+               .setPositiveButton("Submit Choices", null)
+               .setMultiChoiceItems(favoriteFoodsNameList, BooleanArray(favoriteFoodsNameList.size)){ dialog, which, isChecked ->
+                   favBoolArray[which] = isChecked
+               }
+           val alertDialog = builder.create()
+           alertDialog.show()
+           val posButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+           posButton.setOnClickListener{
+               Log.i(TAG, boolArray[0].toString())
+               var tempList: List<Meal> = emptyList()
+               for (item in favoriteFoodList){
+                   if(favBoolArray[favoriteFoodList.indexOf(item)]) {
+                       tempList += Meal(item.food_type, item.food_cals)
+                       Log.i(TAG, "Favorite meal item ${item.food_type} added")
+                   }
+               }
+               foodListViewModel.addAllMeals(tempList)
+               alertDialog.dismiss()
+           }
+        }
+
         genericFoodButton.setOnClickListener{
             val builder: AlertDialog.Builder = AlertDialog.Builder(this)
                 .setTitle(getString(R.string.generic_food_dialog_title))
                 .setCancelable(true)
                 .setNegativeButton("Close", null)
-                .setPositiveButton("Submit Choice", null)
+                .setPositiveButton("Submit Choices", null)
                 .setMultiChoiceItems(suggestedFoodsNameList, BooleanArray(suggestedFoodsNameList.size)){ dialog, which, isChecked ->
                     boolArray[which] = isChecked
                 }
@@ -67,6 +116,7 @@ class FoodActivity: AppCompatActivity() {
         foodCalsEditText = findViewById(R.id.food_cals_entry)
         foodTypeEditText = findViewById(R.id.food_type_entry)
         entryButton = findViewById(R.id.food_submit_button)
+        favoriteEntryButton = findViewById(R.id.favorite_food_entry_button)
 
         val currentFragment  = supportFragmentManager.findFragmentById(R.id.food_fragment_container)
 
@@ -74,13 +124,21 @@ class FoodActivity: AppCompatActivity() {
             foodListViewModel.addMeal(Meal(food_type = foodTypeEditText.text.toString(), food_cals = foodCalsEditText.text.toString().toDouble()))
         }
 
+        favoriteEntryButton.setOnClickListener{
+            foodListViewModel.addFavoriteMeal(FavoriteMeal(food_type = foodTypeEditText.text.toString(), food_cals = foodCalsEditText.text.toString().toDouble()))
+        }
+
         if(currentFragment == null){
             val fragment = FoodListFragment.newInstance()
             supportFragmentManager.beginTransaction().add(R.id.food_fragment_container, fragment).commit()
         }
-        val db = Room.databaseBuilder(
+        /*val db = Room.databaseBuilder(
             applicationContext,
             FoodDatabase::class.java, "food-database"
         ).build()
+        val fdb = Room.databaseBuilder(
+            applicationContext,
+            FavoriteFoodDatabase::class.java, "favorite-food-database"
+        ).build()*/
     }
 }
