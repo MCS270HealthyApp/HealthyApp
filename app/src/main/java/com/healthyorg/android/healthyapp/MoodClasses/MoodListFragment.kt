@@ -109,4 +109,5 @@ class MoodListFragment: Fragment() {
     fun deleteCurrentMood(mood: Daily_Mood){
         moodListViewModel.deleteMood(mood)
     }
+
 }
