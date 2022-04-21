@@ -29,4 +29,8 @@
     <string name="mood_tracker_button">Mood Tracker</string>
     <string name="enter_button">Enter</string>
     <string name="new_quote">Display a new quote</string>
+    <string name="timer_button">Focus Timer</string>
+    <string name = "add_Time_Button">Enter Time</string>
+    <string name = "start_timer">Start Timer</string>
+    <string name = "restart_timer">Restart</string>
 </resources>
