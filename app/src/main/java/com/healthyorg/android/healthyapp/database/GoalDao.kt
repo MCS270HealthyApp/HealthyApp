@@ -3,6 +3,7 @@ package com.healthyorg.android.healthyapp.database
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.healthyorg.android.healthyapp.goalClasses.Goal
+import com.healthyorg.android.healthyapp.sleepClasses.DailySleepMood
 
 @Dao
 interface GoalDao {
@@ -12,4 +13,7 @@ interface GoalDao {
 
     @Query("SELECT * FROM Goal")
     fun getAllGoals(): LiveData<List<Goal>>
+
+    @Delete
+    fun deleteGoal(vararg goal: Goal)
 }

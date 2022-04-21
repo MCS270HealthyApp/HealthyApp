@@ -3,6 +3,7 @@ package com.healthyorg.android.healthyapp.database
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.healthyorg.android.healthyapp.foodactivityclasses.Meal
+import com.healthyorg.android.healthyapp.sleepClasses.DailySleepMood
 
 @Dao
 interface FoodDao {
@@ -12,4 +13,7 @@ interface FoodDao {
 
     @Query("SELECT * FROM Meal")
     fun getAllMeals(): LiveData<List<Meal>>
+
+    @Delete
+    fun deleteFood(vararg food: Meal)
 }

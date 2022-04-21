@@ -44,4 +44,8 @@ class FoodListViewModel: ViewModel() {
     fun addAllMeals(foods: List<Meal>){
         foodRepository.insertAllFoods(foods)
     }
+
+    fun deleteFood(food: Meal){
+        foodRepository.deleteFood(food)
+    }
 }

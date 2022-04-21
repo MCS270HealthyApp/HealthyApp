@@ -65,4 +65,8 @@ class GoalsActivity: AppCompatActivity() {
     private fun addGoal(goal: Goal){
         goalsRepository.insertGoal(goal)
     }
+
+    private fun deleteGoal(goal: Goal){
+        goalsRepository.deleteGoal(goal)
+    }
 }

@@ -9,4 +9,8 @@ class WorkoutListViewModel: ViewModel() {
     fun addWorkout(workout: Daily_Workout){
         workoutRepository.insertWorkout(workout)
     }
+
+    fun deleteWorkout(workout: Daily_Workout){
+        workoutRepository.deleteWorkout(workout)
+    }
 }

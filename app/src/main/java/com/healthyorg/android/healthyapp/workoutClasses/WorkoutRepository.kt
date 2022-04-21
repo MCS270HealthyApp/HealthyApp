@@ -27,6 +27,12 @@ class WorkoutRepository private constructor(context: Context) {
         }
     }
 
+    fun deleteWorkout(workout: Daily_Workout){
+        executor.execute{
+            workoutDao.deleteWorkout(workout)
+        }
+    }
+
     companion object {
         private var INSTANCE: WorkoutRepository? = null
 
