@@ -1,10 +1,13 @@
 package com.healthyorg.android.healthyapp.foodactivityclasses
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 
 class FoodListViewModel: ViewModel() {
     private val foodRepository = FoodRepository.get()
+    private val favoriteFoodRepository = FavoriteFoodRepository.get()
     val foodListLiveData = foodRepository.getAllMeals()
+    val favoriteFoodList = favoriteFoodRepository.getAllFavoriteMeals()
 
     val genericFoodSelectionList: List<Meal> = listOf(
         Meal("Apple", 95.0),
@@ -38,10 +41,18 @@ class FoodListViewModel: ViewModel() {
         Meal("Whole Wheat Bread", 114.0)
     )
 
+    fun addFavoriteMeal(food: FavoriteMeal){
+        favoriteFoodRepository.insertFavoriteFood(food)
+    }
+
     fun addMeal(food: Meal){
         foodRepository.insertFood(food)
     }
     fun addAllMeals(foods: List<Meal>){
         foodRepository.insertAllFoods(foods)
+    }
+
+    fun deleteFood(food: Meal){
+        foodRepository.deleteFood(food)
     }
 }

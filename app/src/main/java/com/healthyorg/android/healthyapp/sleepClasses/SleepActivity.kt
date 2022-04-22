@@ -29,6 +29,7 @@ class SleepActivity : AppCompatActivity() {
             sleepListViewModel.addSleep(DailySleepMood(hours = sleepEditText.text.toString().toDouble()))
         }
 
+
         if(currentFragment == null){
             val fragment = SleepListFragment.newInstance()
             supportFragmentManager.beginTransaction().add(R.id.sleep_fragment_container, fragment).commit()

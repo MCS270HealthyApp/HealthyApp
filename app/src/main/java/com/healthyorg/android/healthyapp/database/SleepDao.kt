@@ -3,7 +3,6 @@ package com.healthyorg.android.healthyapp.database
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.healthyorg.android.healthyapp.sleepClasses.DailySleepMood
-import com.healthyorg.android.healthyapp.workoutClasses.Daily_Workout
 
 @Dao
 interface SleepDao {
@@ -15,4 +14,7 @@ interface SleepDao {
 
     @Query("SELECT * FROM dailysleepmood WHERE date > :date")
     fun getAllSleepsAfter(date: Long?): List<DailySleepMood>
+
+    @Delete
+    fun deleteSleep(vararg dailysleepmood: DailySleepMood)
 }

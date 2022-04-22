@@ -9,4 +9,8 @@ class SleepListViewModel: ViewModel() {
     fun addSleep(sleep: DailySleepMood){
         sleepRepository.insertSleep(sleep)
     }
+
+    fun deleteSleep(sleep: DailySleepMood){
+        sleepRepository.deleteSleep(sleep)
+    }
 }

@@ -28,6 +28,12 @@ class MoodRepository private constructor(context: Context) {
         }
     }
 
+    fun deleteMood(mood: Daily_Mood){
+        executor.execute {
+            moodDao.deleteMood(mood)
+        }
+    }
+
     companion object {
         private var INSTANCE: MoodRepository? = null
 

@@ -28,11 +28,23 @@
         android:hint="@string/food_cals_hint"
         android:inputType="numberDecimal"
         android:autofillHints="0"/>
-    <Button
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/submit_entry"
-        android:id="@+id/food_submit_button"/>
+        android:gravity="center">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/submit_entry"
+            android:layout_margin="8dp"
+            android:id="@+id/food_submit_button"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add to Favorites"
+            android:id="@+id/favorite_food_entry_button"
+            android:layout_margin="8dp"/>
+    </LinearLayout>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="fill_parent"

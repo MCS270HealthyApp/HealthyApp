@@ -9,4 +9,8 @@ class GoalListViewModel: ViewModel() {
     fun addGoal(goal: Goal){
         goalsRepository.insertGoal(goal)
     }
+
+    fun deleteGoal(goal: Goal){
+        goalsRepository.deleteGoal(goal)
+    }
 }

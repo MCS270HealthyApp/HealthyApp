@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -13,6 +14,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.healthyorg.android.healthyapp.R
+import com.healthyorg.android.healthyapp.database.SleepDatabase
+import java.nio.file.Files.delete
 
 private const val TAG = "SleepListFragment"
 
@@ -64,20 +67,26 @@ class SleepListFragment: Fragment() {
 
         private val sleepTextView: TextView = itemView.findViewById(R.id.sleep_value)
         private val dateTextView: TextView = itemView.findViewById(R.id.sleep_date)
+        private val sleepDeleteButton: ImageButton = itemView.findViewById(R.id.sleep_delete_button)
 
         init {
             itemView.setOnClickListener(this)
         }
 
         fun bind(sleep: DailySleepMood){
+            sleepDeleteButton.setOnClickListener{
+                deleteCurrentSleep(sleep)
+            }
             this.sleep = sleep
             sleepTextView.text = "${this.sleep.hours.toString()} hours"
             dateTextView.text = this.sleep.date.toString()
         }
 
+
         override fun onClick(v: View){
-            Toast.makeText(context, "Sleep from ${sleep.date} pressed!", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(context, "Sleep from ${sleep.date} pressed!", Toast.LENGTH_SHORT).show()
         }
+
     }
 
     private inner class SleepAdapter(var sleeps: List<DailySleepMood>)
@@ -100,4 +109,10 @@ class SleepListFragment: Fragment() {
             return SleepListFragment()
         }
     }
+
+    fun deleteCurrentSleep(sleep: DailySleepMood){
+        sleepListViewModel.deleteSleep(sleep)
+    }
+
+
 }

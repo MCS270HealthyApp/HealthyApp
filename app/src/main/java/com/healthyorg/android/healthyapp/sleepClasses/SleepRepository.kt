@@ -27,6 +27,12 @@ class SleepRepository private constructor(context: Context) {
         }
     }
 
+    fun deleteSleep(sleep: DailySleepMood){
+        executor.execute {
+            sleepDao.deleteSleep(sleep)
+        }
+    }
+
     companion object {
         private var INSTANCE: SleepRepository? = null
 

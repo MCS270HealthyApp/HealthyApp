@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -12,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.healthyorg.android.healthyapp.MoodClasses.Daily_Mood
 import com.healthyorg.android.healthyapp.R
 
 private const val TAG = "WorkoutListFragment"
@@ -66,12 +68,16 @@ class WorkoutListFragment: Fragment() {
         private val workoutTypeTextView: TextView = itemView.findViewById(R.id.workout_type)
         private val workoutCalorieTextView: TextView = itemView.findViewById(R.id.workout_calorie)
         private val dateTextView: TextView = itemView.findViewById(R.id.workout_date)
+        private val workoutDeleteButton: ImageButton = itemView.findViewById(R.id.workout_delete_button)
 
         init {
             itemView.setOnClickListener(this)
         }
 
         fun bind(workout: Daily_Workout){
+            workoutDeleteButton.setOnClickListener {
+                deleteCurrentWorkout(workout)
+            }
             this.workout = workout
             workoutNameTextView.text = this.workout.workoutName
             workoutTypeTextView.text = this.workout.workoutType
@@ -80,7 +86,7 @@ class WorkoutListFragment: Fragment() {
         }
 
         override fun onClick(v: View){
-            Toast.makeText(context, "Workout from ${workout.date} pressed!", Toast.LENGTH_SHORT).show()
+            //Toast.makeText(context, "Workout from ${workout.date} pressed!", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -103,5 +109,9 @@ class WorkoutListFragment: Fragment() {
         fun newInstance(): WorkoutListFragment {
             return WorkoutListFragment()
         }
+    }
+
+    fun deleteCurrentWorkout(workout: Daily_Workout){
+        workoutListViewModel.deleteWorkout(workout)
     }
 }

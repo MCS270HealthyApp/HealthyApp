@@ -3,6 +3,7 @@ package com.healthyorg.android.healthyapp.goalClasses
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.Room
+import com.healthyorg.android.healthyapp.MoodClasses.Daily_Mood
 import com.healthyorg.android.healthyapp.database.GoalsDatabase
 import java.util.concurrent.Executors
 
@@ -24,6 +25,12 @@ class GoalsRepository private constructor(context: Context) {
     fun insertGoal(goal: Goal){
         executor.execute{
             GoalDao.insertGoal(goal)
+        }
+    }
+
+    fun deleteGoal(goal: Goal){
+        executor.execute {
+            GoalDao.deleteGoal(goal)
         }
     }
 

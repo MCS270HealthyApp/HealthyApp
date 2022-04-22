@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -12,6 +13,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.healthyorg.android.healthyapp.MoodClasses.Daily_Mood
 import com.healthyorg.android.healthyapp.R
 
 private const val TAG = "FoodListFragment"
@@ -65,12 +67,16 @@ class FoodListFragment: Fragment() {
         private val foodTypeTextView: TextView = itemView.findViewById(R.id.food_type_value)
         private val foodCalsTextView: TextView = itemView.findViewById(R.id.food_cals_value)
         private val dateTextView: TextView = itemView.findViewById(R.id.food_date)
+        private val foodDeleteButton: ImageButton = itemView.findViewById(R.id.food_delete_button)
 
         init {
             itemView.setOnClickListener(this)
         }
 
         fun bind(food: Meal){
+            foodDeleteButton.setOnClickListener {
+                deleteCurrentFood(food)
+            }
             this.food = food
             foodTypeTextView.text = this.food.food_type.toString()
             foodCalsTextView.text = "${this.food.food_cals.toString()} Calories"
@@ -101,5 +107,9 @@ class FoodListFragment: Fragment() {
         fun newInstance(): FoodListFragment {
             return FoodListFragment()
         }
+    }
+
+    fun deleteCurrentFood(food: Meal){
+        foodListViewModel.deleteFood(food)
     }
 }

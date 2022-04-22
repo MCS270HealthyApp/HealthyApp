@@ -1,31 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="8dp">
+
     <TextView
         android:id="@+id/workout_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingRight="16dp"
         android:text="name"
-        android:paddingRight="16dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/workout_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingRight="16dp"
         android:text="type"
-        android:paddingRight="16dp"/>
+        app:layout_constraintStart_toEndOf="@+id/workout_name"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/workout_calorie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingRight="16dp"
         android:text="calorie"
-        android:paddingRight="16dp"/>
+        app:layout_constraintStart_toEndOf="@+id/workout_type"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/workout_date"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Date"/>
+        android:text="Date"
+        app:layout_constraintStart_toEndOf="@+id/workout_calorie"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</LinearLayout>
+    <ImageButton
+        android:id="@+id/workout_delete_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_delete_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/workout_name" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,4 +9,8 @@ class WeightListViewModel: ViewModel() {
     fun addWeight(weight: Daily_Weight){
         weightRepository.insertWeight(weight)
     }
+
+    fun deleteWeight(weight: Daily_Weight){
+        weightRepository.deleteWeight(weight)
+    }
 }

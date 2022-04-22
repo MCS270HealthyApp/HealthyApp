@@ -5,7 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
+import com.healthyorg.android.healthyapp.MoodClasses.Daily_Mood
+import com.healthyorg.android.healthyapp.MoodClasses.MoodListViewModel
 import com.healthyorg.android.healthyapp.R
 import kotlinx.android.synthetic.main.goal_todo.view.*
 
@@ -13,12 +17,14 @@ class GoalAdapter(
     var todos: MutableList<Goal>
 ) : RecyclerView.Adapter<GoalAdapter.TodoViewHolder>() {
 
+
     class TodoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoViewHolder {
         return TodoViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.goal_todo,parent,false))
 
     }
+
 
     // an extra function to add item
     fun addToDo(todo1: Goal){
@@ -59,6 +65,9 @@ class GoalAdapter(
     override fun getItemCount(): Int {
         return todos.size
     }
+
+
+
 
 
 }

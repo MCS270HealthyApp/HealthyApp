@@ -3,6 +3,7 @@ package com.healthyorg.android.healthyapp.foodactivityclasses
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.Room
+import com.healthyorg.android.healthyapp.MoodClasses.Daily_Mood
 import com.healthyorg.android.healthyapp.database.FoodDatabase
 import java.lang.IllegalStateException
 import java.util.*
@@ -28,6 +29,12 @@ class FoodRepository private constructor(context: Context) {
             foodDao.insertFood(food)
         }
     }
+    fun deleteFood(food: Meal){
+        executor.execute {
+            foodDao.deleteFood(food)
+        }
+    }
+
     fun insertAllFoods(food: List<Meal>){
         executor.execute{
             for (item in food){
