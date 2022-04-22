@@ -64,6 +64,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/food_graph_layout"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
         android:visibility="gone">
         <Button
             android:layout_width="wrap_content"
@@ -73,7 +75,8 @@
         <com.jjoe64.graphview.GraphView
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
-            android:id="@+id/food_graph">
+            android:id="@+id/food_graph"
+            android:layout_margin="20dp">
         </com.jjoe64.graphview.GraphView>
     </LinearLayout>
 </LinearLayout>

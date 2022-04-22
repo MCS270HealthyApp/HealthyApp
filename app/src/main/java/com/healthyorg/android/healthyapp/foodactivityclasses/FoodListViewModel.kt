@@ -1,10 +1,9 @@
 package com.healthyorg.android.healthyapp.foodactivityclasses
 
 import android.util.Log
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
-import com.google.android.material.datepicker.DateValidatorPointForward
 import java.util.*
+import kotlin.collections.ArrayList
 
 private const val TAG = "FoodListViewModel"
 
@@ -47,26 +46,31 @@ class FoodListViewModel: ViewModel() {
     )
 
     fun calcDailyCals(meals: List<Meal>): List<Double>{
+        Log.i(TAG, "calcDailyCals called with input ${meals.toString()}")
+        var reverseMeals = meals.reversed()
         //List to be returned
-        var dailyCalsList: MutableList<Double> = Collections.nCopies(30, 0.0)
+        var dailyCalsList: ArrayList<Double> = ArrayList()
         //Instantiate dates the first being the one for comparison and the second being one to overwrite with a meal object's consumption date
         var mostRecentDate: Calendar = Calendar.getInstance()
         var mealDate: Calendar = Calendar.getInstance()
         var latestMeal = 0
-        for (i in 0 until 30) {
+        for (i in 0 until 7) {
+            dailyCalsList.add(0.0)
             mostRecentDate.add(Calendar.DATE, -1)
-            for (j in latestMeal until meals.size) {
-                mealDate.time = meals[j].date
+            Log.i(TAG, "LatestMeal: ${latestMeal} and meals: ${reverseMeals.size}")
+            for (j in latestMeal until reverseMeals.size) {
+                mealDate.time = reverseMeals[j].date
                 if(mealDate.after(mostRecentDate)){
                     latestMeal = j
-                    dailyCalsList[30-i] += meals[i].food_cals
+                    dailyCalsList[i] = dailyCalsList[i] + reverseMeals[i].food_cals
                 } else{
                     latestMeal++
                     break
                 }
             }
         }
-        return dailyCalsList
+        Log.i(TAG, "DailyCalsList = ${dailyCalsList.toString()}")
+        return dailyCalsList.reversed()
     }
 
     fun addFavoriteMeal(food: FavoriteMeal){

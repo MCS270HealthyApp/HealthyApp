@@ -16,6 +16,9 @@ import androidx.room.Room
 import com.healthyorg.android.healthyapp.R
 import com.healthyorg.android.healthyapp.database.FavoriteFoodDatabase
 import com.healthyorg.android.healthyapp.database.FoodDatabase
+import com.jjoe64.graphview.GraphView
+import com.jjoe64.graphview.series.BarGraphSeries
+import com.jjoe64.graphview.series.DataPoint
 
 private const val TAG = "FoodActivity"
 
@@ -30,6 +33,7 @@ class FoodActivity: AppCompatActivity() {
     private lateinit var foodGraphReturnButton: Button
     private lateinit var foodListLayout: LinearLayout
     private lateinit var foodGraphLayout: LinearLayout
+    private lateinit var foodGraph: GraphView
 
     private val foodListViewModel: FoodListViewModel by lazy {
         ViewModelProviders.of(this).get(FoodListViewModel::class.java)
@@ -43,6 +47,7 @@ class FoodActivity: AppCompatActivity() {
         foodListLayout = findViewById(R.id.food_list_layout)
         foodGraphButton = findViewById(R.id.food_graph_button)
         foodGraphReturnButton = findViewById(R.id.food_graph_return_button)
+        foodGraph = findViewById(R.id.food_graph)
         genericFoodButton = findViewById(R.id.generics_list_button)
         favoriteListButton = findViewById(R.id.favorite_foods_list_button)
 
@@ -74,11 +79,17 @@ class FoodActivity: AppCompatActivity() {
                     meals?.let{
                         Log.i(TAG, "Got meals ${meals.size}")
                         eatenMeals = meals
+                        var dailyCals: List<Double> = foodListViewModel.calcDailyCals(eatenMeals)
+                        var series: BarGraphSeries<DataPoint>
+                        var dataPointArr = emptyArray<DataPoint>()
+                        for (i in dailyCals.indices){
+                            dataPointArr += DataPoint(i.toDouble(), dailyCals[i])
+                        }
+                        series = BarGraphSeries(dataPointArr)
+                        foodGraph.addSeries(series)
                     }
                 }
             )
-            var dailyCals: List<Double> = foodListViewModel.calcDailyCals(eatenMeals)
-
         }
 
         foodGraphReturnButton.setOnClickListener {
