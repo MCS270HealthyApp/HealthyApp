@@ -1,9 +1,12 @@
 package com.healthyorg.android.healthyapp.foodactivityclasses
 
+import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
@@ -23,6 +26,10 @@ class FoodActivity: AppCompatActivity() {
     private lateinit var entryButton: Button
     private lateinit var favoriteEntryButton: Button
     private lateinit var favoriteListButton: Button
+    private lateinit var foodGraphButton: Button
+    private lateinit var foodGraphReturnButton: Button
+    private lateinit var foodListLayout: LinearLayout
+    private lateinit var foodGraphLayout: LinearLayout
 
     private val foodListViewModel: FoodListViewModel by lazy {
         ViewModelProviders.of(this).get(FoodListViewModel::class.java)
@@ -32,6 +39,10 @@ class FoodActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_food)
 
+        foodGraphLayout = findViewById(R.id.food_graph_layout)
+        foodListLayout = findViewById(R.id.food_list_layout)
+        foodGraphButton = findViewById(R.id.food_graph_button)
+        foodGraphReturnButton = findViewById(R.id.food_graph_return_button)
         genericFoodButton = findViewById(R.id.generics_list_button)
         favoriteListButton = findViewById(R.id.favorite_foods_list_button)
 
@@ -51,6 +62,28 @@ class FoodActivity: AppCompatActivity() {
                 Log.i(TAG, "Got favorite meals ${favoriteMeals.size}")
                 favoriteFoodList = favoriteMeals
             }
+        }
+
+        foodGraphButton.setOnClickListener {
+            foodListLayout.visibility = View.GONE
+            foodGraphLayout.visibility = View.VISIBLE
+            var eatenMeals: List<Meal> = emptyList()
+            foodListViewModel.foodListLiveData.observe(
+                this,
+                Observer { meals ->
+                    meals?.let{
+                        Log.i(TAG, "Got meals ${meals.size}")
+                        eatenMeals = meals
+                    }
+                }
+            )
+            var dailyCals: List<Double> = foodListViewModel.calcDailyCals(eatenMeals)
+
+        }
+
+        foodGraphReturnButton.setOnClickListener {
+            foodListLayout.visibility = View.VISIBLE
+            foodGraphLayout.visibility = View.GONE
         }
 
        favoriteListButton.setOnClickListener{
@@ -132,13 +165,5 @@ class FoodActivity: AppCompatActivity() {
             val fragment = FoodListFragment.newInstance()
             supportFragmentManager.beginTransaction().add(R.id.food_fragment_container, fragment).commit()
         }
-        /*val db = Room.databaseBuilder(
-            applicationContext,
-            FoodDatabase::class.java, "food-database"
-        ).build()
-        val fdb = Room.databaseBuilder(
-            applicationContext,
-            FavoriteFoodDatabase::class.java, "favorite-food-database"
-        ).build()*/
     }
 }

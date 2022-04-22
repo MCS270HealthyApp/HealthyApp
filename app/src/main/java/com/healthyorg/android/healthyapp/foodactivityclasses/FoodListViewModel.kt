@@ -1,7 +1,12 @@
 package com.healthyorg.android.healthyapp.foodactivityclasses
 
 import android.util.Log
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
+import com.google.android.material.datepicker.DateValidatorPointForward
+import java.util.*
+
+private const val TAG = "FoodListViewModel"
 
 class FoodListViewModel: ViewModel() {
     private val foodRepository = FoodRepository.get()
@@ -40,6 +45,29 @@ class FoodListViewModel: ViewModel() {
         Meal("White Bread", 67.0),
         Meal("Whole Wheat Bread", 114.0)
     )
+
+    fun calcDailyCals(meals: List<Meal>): List<Double>{
+        //List to be returned
+        var dailyCalsList: MutableList<Double> = Collections.nCopies(30, 0.0)
+        //Instantiate dates the first being the one for comparison and the second being one to overwrite with a meal object's consumption date
+        var mostRecentDate: Calendar = Calendar.getInstance()
+        var mealDate: Calendar = Calendar.getInstance()
+        var latestMeal = 0
+        for (i in 0 until 30) {
+            mostRecentDate.add(Calendar.DATE, -1)
+            for (j in latestMeal until meals.size) {
+                mealDate.time = meals[j].date
+                if(mealDate.after(mostRecentDate)){
+                    latestMeal = j
+                    dailyCalsList[30-i] += meals[i].food_cals
+                } else{
+                    latestMeal++
+                    break
+                }
+            }
+        }
+        return dailyCalsList
+    }
 
     fun addFavoriteMeal(food: FavoriteMeal){
         favoriteFoodRepository.insertFavoriteFood(food)

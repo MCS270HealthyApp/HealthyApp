@@ -2,55 +2,78 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
     android:orientation="vertical">
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/generics_list_button"
-        android:text="@string/generic_food" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/favorite_foods_list_button"
-        android:text="@string/food_favorites_list"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/food_type_entry"
-        android:hint="@string/food_type_hint"
-        android:autofillHints="0"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/food_cals_entry"
-        android:hint="@string/food_cals_hint"
-        android:inputType="numberDecimal"
-        android:autofillHints="0"/>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center">
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:id="@+id/food_list_layout">
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/submit_entry"
-            android:layout_margin="8dp"
-            android:id="@+id/food_submit_button"/>
+            android:id="@+id/generics_list_button"
+            android:text="@string/generic_food" />
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add to Favorites"
-            android:id="@+id/favorite_food_entry_button"
-            android:layout_margin="8dp"/>
+            android:id="@+id/favorite_foods_list_button"
+            android:text="@string/food_favorites_list"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/food_type_entry"
+            android:hint="@string/food_type_hint"
+            android:autofillHints="0"/>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/food_cals_entry"
+            android:hint="@string/food_cals_hint"
+            android:inputType="numberDecimal"
+            android:autofillHints="0"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/submit_entry"
+                android:layout_margin="8dp"
+                android:id="@+id/food_submit_button"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add to Favorites"
+                android:id="@+id/favorite_food_entry_button"
+                android:layout_margin="8dp"/>
+        </LinearLayout>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/food_graph_button"
+            android:id="@+id/food_graph_button"/>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/food_fragment_container"/>
     </LinearLayout>
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/food_fragment_container"/>
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:id="@+id/generic_food_fragment_container"/>
+        android:layout_height="match_parent"
+        android:id="@+id/food_graph_layout"
+        android:visibility="gone">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/food_graph_return_button"
+            android:id="@+id/food_graph_return_button"/>
+        <com.jjoe64.graphview.GraphView
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/food_graph">
+        </com.jjoe64.graphview.GraphView>
+    </LinearLayout>
 </LinearLayout>
