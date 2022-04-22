@@ -4,7 +4,9 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.Room
 import com.healthyorg.android.healthyapp.database.WorkoutDatabase
+import com.healthyorg.android.healthyapp.foodactivityclasses.Meal
 import java.lang.IllegalStateException
+import java.util.*
 import java.util.concurrent.Executors
 
 private const val DATABASE_NAME = "workout-database"
@@ -30,6 +32,16 @@ class WorkoutRepository private constructor(context: Context) {
     fun deleteWorkout(workout: Daily_Workout){
         executor.execute{
             workoutDao.deleteWorkout(workout)
+        }
+    }
+    fun insertAllWorkouts(workouts: List<Daily_Workout>){
+        executor.execute{
+            for (item in workouts){
+                item.date = Date()
+                workoutDao.insertWorkout(item)
+                //The slight delay prevents the dates from being identical and overwriting other entries
+                Thread.sleep(50)
+            }
         }
     }
 
