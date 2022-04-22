@@ -85,7 +85,6 @@ class FoodActivity: AppCompatActivity() {
                         var dataPointArr = emptyArray<DataPoint>()
                         for (i in dailyCals.indices){
                             dataPointArr += DataPoint(i.toDouble(), dailyCals[i])
-                            Log.i(TAG, "")
                         }
                         series = BarGraphSeries(dataPointArr)
                         series.spacing = 50
@@ -103,6 +102,7 @@ class FoodActivity: AppCompatActivity() {
         foodGraphReturnButton.setOnClickListener {
             foodListLayout.visibility = View.VISIBLE
             foodGraphLayout.visibility = View.GONE
+            foodGraph.removeAllSeries()
         }
 
        favoriteListButton.setOnClickListener{
