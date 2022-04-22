@@ -4,6 +4,11 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical">
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/favorite_workout_list_button"
+        android:text="favorites list"/>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,11 +28,22 @@
         android:hint="enter number calories burned"
         android:inputType="numberDecimal"
         android:autofillHints="0" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/submit_entry"
         android:id="@+id/workout_submit_button"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add to Favorites"
+        android:id="@+id/favorite_workout_entry_button"/>
+    </LinearLayout>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
