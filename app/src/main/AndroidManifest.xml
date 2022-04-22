@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HealthyApp">
         <activity
+            android:name=".Summary"
+            android:exported="false" />
+        <activity
             android:name="notesClasses.AddEditNoteActivity"
             android:exported="false" />
         <activity
@@ -40,6 +43,7 @@
         <activity android:name=".weightClasses.WeightActivity" />
         <activity android:name=".foodactivityclasses.FoodActivity" />
         <activity android:name=".goalClasses.GoalsActivity" />
+        <activity android:name=".focusTimer.FocusActivity" />
     </application>
 
 </manifest>

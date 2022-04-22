@@ -31,4 +31,12 @@
     <string name="new_quote">Display a new quote</string>
     <string name="food_graph_button">View Summary</string>
     <string name="food_graph_return_button">Return To Entry</string>
+    <string name="avg_burned_cals">Burned an average of %1$s cals per day</string>
+    <string name="avg_cals_eaten">Ate an average of %1$s calories per day</string>
+    <string name="avg_time_slept">Slept an average of %1$s hours each night</string>
+    <string name="avg_mood">Been %1$s</string>
+    <string name="timer_button">Focus Timer</string>
+    <string name = "add_Time_Button">Enter Time</string>
+    <string name = "start_timer">Start Timer</string>
+    <string name = "restart_timer">Restart</string>
 </resources>

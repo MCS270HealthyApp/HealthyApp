@@ -2,71 +2,47 @@ package com.healthyorg.android.healthyapp.goalClasses
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.room.Room
 import com.healthyorg.android.healthyapp.R
 import com.healthyorg.android.healthyapp.database.GoalsDatabase
 import kotlinx.android.synthetic.main.activity_goals.*
 
-private const val TAG = "GoalActivity"
 
-class GoalsActivity: AppCompatActivity() {
+class GoalsActivity : AppCompatActivity() {
+    private lateinit var goalEntryButton: Button
+    private lateinit var goalEditText: EditText
 
-    private lateinit var todoAdapter: GoalAdapter
-
-    private val goalsRepository = GoalsRepository.get()
-    private val goalListLiveData = goalsRepository.getAllGoals()
-
+    private val goalListViewModel: GoalListViewModel by lazy {
+        ViewModelProvider(this).get(GoalListViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_goals)
 
+        goalEntryButton = findViewById(R.id.btnAddTodo)
+        goalEditText = findViewById(R.id.etTodoTitle)
 
-        todoAdapter = GoalAdapter(mutableListOf())
+        val currentFragment  = supportFragmentManager.findFragmentById(R.id.goal_fragment_container)
 
-        val nameObserver = Observer<List<Goal>>{ goals ->
-            goals?.let {
-                Log.i(TAG, "Got goals ${goals.size}")
-                updateUI(goals)
-            }
+        goalEntryButton.setOnClickListener{
+            goalListViewModel.addGoal(Goal(title = goalEditText.text.toString()))
         }
-        goalListLiveData.observe(this, nameObserver)
 
-        rvTodoItems.adapter = todoAdapter
-        rvTodoItems.layoutManager = LinearLayoutManager(this)
 
-        //adds the goal to the list
-
-        btnAddTodo.setOnClickListener {
-            val todoTitle = etTodoTitle.text.toString()
-            if (todoTitle.isNotEmpty()) {
-                val todo = Goal(todoTitle)
-                etTodoTitle.text.clear()
-                addGoal(todo)
-            }
-        }
-        //deletes checked goals after clicked again
-        btnDeleteDoneTodos.setOnClickListener {
-            todoAdapter.deleteToDo()
+        if(currentFragment == null){
+            val fragment = GoalListFragment.newInstance()
+            supportFragmentManager.beginTransaction().add(R.id.goal_fragment_container, fragment).commit()
         }
         val db = Room.databaseBuilder(
             applicationContext,
-
             GoalsDatabase::class.java, "database-name"
-
-        ).fallbackToDestructiveMigration()
-    }
-    private fun updateUI(goals: List<Goal>){
-        todoAdapter.todos = goals as MutableList<Goal>
-    }
-    private fun addGoal(goal: Goal){
-        goalsRepository.insertGoal(goal)
-    }
-
-    private fun deleteGoal(goal: Goal){
-        goalsRepository.deleteGoal(goal)
+        ).build()
     }
 }

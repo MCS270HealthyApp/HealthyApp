@@ -2,7 +2,6 @@ package com.healthyorg.android.healthyapp.database
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
-import com.healthyorg.android.healthyapp.MoodClasses.Daily_Mood
 import com.healthyorg.android.healthyapp.workoutClasses.Daily_Workout
 
 @Dao
@@ -12,6 +11,9 @@ interface WorkoutDao {
 
     @Query("SELECT * FROM daily_workout")
     fun getAllWorkouts(): LiveData<List<Daily_Workout>>
+
+    @Query("SELECT * FROM daily_workout WHERE date > :date")
+    fun getAllWorkoutsAfter(date: Long?): List<Daily_Workout>
 
     @Delete
     fun deleteWorkout(vararg daily_workout: Daily_Workout)

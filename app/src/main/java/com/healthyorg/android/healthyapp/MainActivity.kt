@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import com.healthyorg.android.healthyapp.MoodClasses.MoodActivity
+import com.healthyorg.android.healthyapp.focusTimer.FocusActivity
 import com.healthyorg.android.healthyapp.foodactivityclasses.FoodActivity
 import com.healthyorg.android.healthyapp.goalClasses.GoalsActivity
 import com.healthyorg.android.healthyapp.sleepClasses.SleepActivity
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var sleepButton: Button
     private lateinit var quotesButton: Button
     private lateinit var moodButton: Button
+    private lateinit var focusButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,9 +39,11 @@ class MainActivity : AppCompatActivity() {
         sleepButton = findViewById(R.id.sleep_page_button)
         quotesButton = findViewById(R.id.quotes_page_button)
         moodButton = findViewById(R.id.mood_page_button)
+        focusButton = findViewById(R.id.timer_button)
 
         summaryButton.setOnClickListener{
-            //TODO: goto summary page
+            val intent = Intent(this, Summary::class.java)
+            startActivity(intent)
         }
 
         workoutButton.setOnClickListener{
@@ -79,6 +83,10 @@ class MainActivity : AppCompatActivity() {
 
         moodButton.setOnClickListener {
             val intent = Intent(this, MoodActivity::class.java)
+            startActivity(intent)
+        }
+        focusButton.setOnClickListener {
+            val intent = Intent(this, FocusActivity::class.java)
             startActivity(intent)
         }
     }

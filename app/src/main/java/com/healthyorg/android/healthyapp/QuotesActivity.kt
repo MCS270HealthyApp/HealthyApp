@@ -9,6 +9,7 @@ class QuotesActivity : AppCompatActivity() {
 
     private lateinit var newQuoteButton: Button
     private lateinit var quoteTextView: TextView
+    private lateinit var secretQuoteButton: Button
 
     var quotes: Array<String> = arrayOf("You can do this!", "Take a moment to relax", "Take a deep breath",
     "Everything is going to be fine", "You've got this!", "Nice work today!", "Don't stop until you're proud",
@@ -18,17 +19,27 @@ class QuotesActivity : AppCompatActivity() {
     "Start your day with positive thoughts!", "Don't settle for average!", "There's no need to hurry",
     "Hang in there!", "The greater the difficulty, the greater the glory in overcoming it")
 
+
+    var secretQuotes: Array<String> = arrayOf("Everything you're doing is pointless", "Life is meaningless")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quotes)
 
         newQuoteButton = findViewById(R.id.new_quote_button)
         quoteTextView = findViewById(R.id.quote_text_view)
+        secretQuoteButton = findViewById(R.id.secret_button)
 
         newQuoteButton.setOnClickListener {
             val rando = (0..16).random()
             val currentQuote = quotes[rando]
             quoteTextView.setText(currentQuote)
+        }
+
+        secretQuoteButton.setOnClickListener {
+            val rando = (0..1).random()
+            val currentSecretQuote = secretQuotes[rando]
+            quoteTextView.setText(currentSecretQuote)
         }
 
     }
