@@ -12,6 +12,9 @@ interface SleepDao {
     @Query("SELECT * FROM dailysleepmood")
     fun getAllSleeps(): LiveData<List<DailySleepMood>>
 
+    @Query("SELECT * FROM dailysleepmood WHERE date > :date")
+    fun getAllSleepsAfter(date: Long?): List<DailySleepMood>
+
     @Delete
     fun deleteSleep(vararg dailysleepmood: DailySleepMood)
 }

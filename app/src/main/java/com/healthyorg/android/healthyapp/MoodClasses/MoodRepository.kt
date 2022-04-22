@@ -20,6 +20,7 @@ class MoodRepository private constructor(context: Context) {
     private val moodDao = database.moodDao()
     private val executor = Executors.newSingleThreadExecutor()
 
+    fun getAllMoodsAfter(date: Long?): List<Daily_Mood> = moodDao.getAllMoodsAfter(date)
     fun getAllMoods(): LiveData<List<Daily_Mood>> = moodDao.getAllMoods()
     fun insertMood(mood: Daily_Mood){
         executor.execute{

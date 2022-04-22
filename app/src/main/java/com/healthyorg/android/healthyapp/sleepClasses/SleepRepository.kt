@@ -19,6 +19,7 @@ class SleepRepository private constructor(context: Context) {
     private val sleepDao = database.sleepDao()
     private val executor = Executors.newSingleThreadExecutor()
 
+    fun getAllSleepsAfter(date: Long?): List<DailySleepMood> = sleepDao.getAllSleepsAfter(date)
     fun getAllSleeps(): LiveData<List<DailySleepMood>> = sleepDao.getAllSleeps()
     fun insertSleep(sleep: DailySleepMood){
         executor.execute{
