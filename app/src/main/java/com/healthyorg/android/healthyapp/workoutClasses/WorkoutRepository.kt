@@ -21,6 +21,7 @@ class WorkoutRepository private constructor(context: Context) {
     private val executor = Executors.newSingleThreadExecutor()
 
     fun getAllWorkouts(): LiveData<List<Daily_Workout>> = workoutDao.getAllWorkouts()
+    fun getAllWorkoutsAfter(date: Long?): List<Daily_Workout> = workoutDao.getAllWorkoutsAfter(date)
     fun insertWorkout(workout: Daily_Workout){
         executor.execute{
             workoutDao.insertWorkout(workout)

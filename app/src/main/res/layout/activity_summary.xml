@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:padding = "5dp"
-        android:text = "Worked out for an average of xx mins per day"/>
+        android:text = "@string/avg_burned_cals"/>
 
     <TextView
         android:id = "@+id/avg_cals"
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:padding = "5dp"
-        android:text = "Ate an average of xx calories per day"/>
+        android:text = "@string/avg_cals_eaten"/>
 
     <TextView
         android:id = "@+id/avg_sleep"
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:padding = "5dp"
-        android:text = "Slept an average of xx hours each night"/>
+        android:text = "@string/avg_time_slept"/>
 
     <TextView
         android:id = "@+id/avg_mood"
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:padding = "5dp"
-        android:text = "Slept an average of xx hours each night"/>
+        android:text = "@string/avg_mood"/>
 
 
 </LinearLayout>

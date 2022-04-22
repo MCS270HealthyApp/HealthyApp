@@ -19,6 +19,7 @@ class WeightRepository private constructor(context: Context) {
     private val weightDao = database.weightDao()
     private val executor = Executors.newSingleThreadExecutor()
 
+    fun getAllWeightsAfter(date: Long?): List<Daily_Weight> = weightDao.getAllWeightsAfter(date)
     fun getAllWeights(): LiveData<List<Daily_Weight>> = weightDao.getAllWeights()
     fun insertWeight(weight: Daily_Weight){
         executor.execute{

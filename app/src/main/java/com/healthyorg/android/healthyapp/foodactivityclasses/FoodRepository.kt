@@ -21,6 +21,7 @@ class FoodRepository private constructor(context: Context) {
     private val foodDao = database.foodDao()
     private val executor = Executors.newSingleThreadExecutor()
 
+    fun getAllMealsAfter(date: Long?): List<Meal> = foodDao.getAllMealsAfter(date)
     fun getAllMeals(): LiveData<List<Meal>> = foodDao.getAllMeals()
     fun insertFood(food: Meal){
         executor.execute{

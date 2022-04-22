@@ -11,4 +11,7 @@ interface WorkoutDao {
 
     @Query("SELECT * FROM daily_workout")
     fun getAllWorkouts(): LiveData<List<Daily_Workout>>
+
+    @Query("SELECT * FROM daily_workout WHERE date > :date")
+    fun getAllWorkoutsAfter(date: Long?): List<Daily_Workout>
 }
