@@ -47,12 +47,12 @@ class FoodListViewModel: ViewModel() {
 
     fun calcDailyCals(meals: List<Meal>): List<Double>{
         Log.i(TAG, "calcDailyCals called with input ${meals.toString()}")
-        var reverseMeals = meals.reversed()
+        val reverseMeals = meals.reversed()
         //List to be returned
-        var dailyCalsList: ArrayList<Double> = ArrayList()
+        val dailyCalsList: ArrayList<Double> = ArrayList()
         //Instantiate dates the first being the one for comparison and the second being one to overwrite with a meal object's consumption date
-        var mostRecentDate: Calendar = Calendar.getInstance()
-        var mealDate: Calendar = Calendar.getInstance()
+        val mostRecentDate: Calendar = Calendar.getInstance()
+        val mealDate: Calendar = Calendar.getInstance()
         var latestMeal = 0
         for (i in 0 until 7) {
             dailyCalsList.add(0.0)
@@ -62,7 +62,7 @@ class FoodListViewModel: ViewModel() {
                 mealDate.time = reverseMeals[j].date
                 if(mealDate.after(mostRecentDate)){
                     latestMeal = j
-                    dailyCalsList[i] = dailyCalsList[i] + reverseMeals[i].food_cals
+                    dailyCalsList[i] = dailyCalsList[i] + reverseMeals[j].food_cals
                 } else{
                     latestMeal++
                     break

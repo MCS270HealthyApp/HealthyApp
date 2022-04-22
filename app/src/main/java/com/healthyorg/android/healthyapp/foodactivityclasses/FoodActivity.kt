@@ -1,5 +1,6 @@
 package com.healthyorg.android.healthyapp.foodactivityclasses
 
+import android.graphics.Color
 import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
@@ -72,20 +73,27 @@ class FoodActivity: AppCompatActivity() {
         foodGraphButton.setOnClickListener {
             foodListLayout.visibility = View.GONE
             foodGraphLayout.visibility = View.VISIBLE
-            var eatenMeals: List<Meal> = emptyList()
+            var eatenMeals: List<Meal>
             foodListViewModel.foodListLiveData.observe(
                 this,
                 Observer { meals ->
                     meals?.let{
                         Log.i(TAG, "Got meals ${meals.size}")
                         eatenMeals = meals
-                        var dailyCals: List<Double> = foodListViewModel.calcDailyCals(eatenMeals)
-                        var series: BarGraphSeries<DataPoint>
+                        val dailyCals: List<Double> = foodListViewModel.calcDailyCals(eatenMeals)
+                        val series: BarGraphSeries<DataPoint>
                         var dataPointArr = emptyArray<DataPoint>()
                         for (i in dailyCals.indices){
                             dataPointArr += DataPoint(i.toDouble(), dailyCals[i])
+                            Log.i(TAG, "")
                         }
                         series = BarGraphSeries(dataPointArr)
+                        series.spacing = 50
+                        series.isDrawValuesOnTop
+                        series.valuesOnTopColor = Color.RED
+                        series.color = Color.YELLOW
+                        foodGraph.gridLabelRenderer.verticalAxisTitle = "Calories"
+                        series.title= "Calories of Last 7 Days"
                         foodGraph.addSeries(series)
                     }
                 }
@@ -103,7 +111,7 @@ class FoodActivity: AppCompatActivity() {
            for(item in favoriteFoodList) {
                favoriteFoodsNameList += item.food_type + ", " + item.food_cals + " Calories"
            }
-           var favBoolArray = BooleanArray(favoriteFoodsNameList.size)
+           val favBoolArray = BooleanArray(favoriteFoodsNameList.size)
            val builder: AlertDialog.Builder = AlertDialog.Builder(this)
                .setTitle(getString(R.string.favorite_food_dialog_title))
                .setCancelable(true)
