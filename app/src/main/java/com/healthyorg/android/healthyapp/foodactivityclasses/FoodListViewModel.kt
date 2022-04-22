@@ -2,6 +2,10 @@ package com.healthyorg.android.healthyapp.foodactivityclasses
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import java.util.*
+import kotlin.collections.ArrayList
+
+private const val TAG = "FoodListViewModel"
 
 class FoodListViewModel: ViewModel() {
     private val foodRepository = FoodRepository.get()
@@ -40,6 +44,34 @@ class FoodListViewModel: ViewModel() {
         Meal("White Bread", 67.0),
         Meal("Whole Wheat Bread", 114.0)
     )
+
+    fun calcDailyCals(meals: List<Meal>): List<Double>{
+        Log.i(TAG, "calcDailyCals called with input ${meals.toString()}")
+        val reverseMeals = meals.reversed()
+        //List to be returned
+        val dailyCalsList: ArrayList<Double> = ArrayList()
+        //Instantiate dates the first being the one for comparison and the second being one to overwrite with a meal object's consumption date
+        val mostRecentDate: Calendar = Calendar.getInstance()
+        val mealDate: Calendar = Calendar.getInstance()
+        var latestMeal = 0
+        for (i in 0 until 7) {
+            dailyCalsList.add(0.0)
+            mostRecentDate.add(Calendar.DATE, -1)
+            Log.i(TAG, "LatestMeal: ${latestMeal} and meals: ${reverseMeals.size}")
+            for (j in latestMeal until reverseMeals.size) {
+                mealDate.time = reverseMeals[j].date
+                if(mealDate.after(mostRecentDate)){
+                    latestMeal = j
+                    dailyCalsList[i] = dailyCalsList[i] + reverseMeals[j].food_cals
+                } else{
+                    latestMeal++
+                    break
+                }
+            }
+        }
+        Log.i(TAG, "DailyCalsList = ${dailyCalsList.toString()}")
+        return dailyCalsList.reversed()
+    }
 
     fun addFavoriteMeal(food: FavoriteMeal){
         favoriteFoodRepository.insertFavoriteFood(food)

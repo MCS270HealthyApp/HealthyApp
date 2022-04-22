@@ -1,9 +1,13 @@
 package com.healthyorg.android.healthyapp.foodactivityclasses
 
+import android.graphics.Color
+import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
@@ -13,6 +17,9 @@ import androidx.room.Room
 import com.healthyorg.android.healthyapp.R
 import com.healthyorg.android.healthyapp.database.FavoriteFoodDatabase
 import com.healthyorg.android.healthyapp.database.FoodDatabase
+import com.jjoe64.graphview.GraphView
+import com.jjoe64.graphview.series.BarGraphSeries
+import com.jjoe64.graphview.series.DataPoint
 
 private const val TAG = "FoodActivity"
 
@@ -23,6 +30,11 @@ class FoodActivity: AppCompatActivity() {
     private lateinit var entryButton: Button
     private lateinit var favoriteEntryButton: Button
     private lateinit var favoriteListButton: Button
+    private lateinit var foodGraphButton: Button
+    private lateinit var foodGraphReturnButton: Button
+    private lateinit var foodListLayout: LinearLayout
+    private lateinit var foodGraphLayout: LinearLayout
+    private lateinit var foodGraph: GraphView
 
     private val foodListViewModel: FoodListViewModel by lazy {
         ViewModelProviders.of(this).get(FoodListViewModel::class.java)
@@ -32,6 +44,11 @@ class FoodActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_food)
 
+        foodGraphLayout = findViewById(R.id.food_graph_layout)
+        foodListLayout = findViewById(R.id.food_list_layout)
+        foodGraphButton = findViewById(R.id.food_graph_button)
+        foodGraphReturnButton = findViewById(R.id.food_graph_return_button)
+        foodGraph = findViewById(R.id.food_graph)
         genericFoodButton = findViewById(R.id.generics_list_button)
         favoriteListButton = findViewById(R.id.favorite_foods_list_button)
 
@@ -53,13 +70,48 @@ class FoodActivity: AppCompatActivity() {
             }
         }
 
+        foodGraphButton.setOnClickListener {
+            foodListLayout.visibility = View.GONE
+            foodGraphLayout.visibility = View.VISIBLE
+            var eatenMeals: List<Meal>
+            foodListViewModel.foodListLiveData.observe(
+                this,
+                Observer { meals ->
+                    meals?.let{
+                        Log.i(TAG, "Got meals ${meals.size}")
+                        eatenMeals = meals
+                        val dailyCals: List<Double> = foodListViewModel.calcDailyCals(eatenMeals)
+                        val series: BarGraphSeries<DataPoint>
+                        var dataPointArr = emptyArray<DataPoint>()
+                        for (i in dailyCals.indices){
+                            dataPointArr += DataPoint(i.toDouble(), dailyCals[i])
+                            Log.i(TAG, "")
+                        }
+                        series = BarGraphSeries(dataPointArr)
+                        series.spacing = 50
+                        series.isDrawValuesOnTop
+                        series.valuesOnTopColor = Color.RED
+                        series.color = Color.YELLOW
+                        foodGraph.gridLabelRenderer.verticalAxisTitle = "Calories"
+                        series.title= "Calories of Last 7 Days"
+                        foodGraph.addSeries(series)
+                    }
+                }
+            )
+        }
+
+        foodGraphReturnButton.setOnClickListener {
+            foodListLayout.visibility = View.VISIBLE
+            foodGraphLayout.visibility = View.GONE
+        }
+
        favoriteListButton.setOnClickListener{
            Log.i(TAG, "favoriteFoodList size ${favoriteFoodList.size}")
            var favoriteFoodsNameList: Array<String> = emptyArray()
            for(item in favoriteFoodList) {
                favoriteFoodsNameList += item.food_type + ", " + item.food_cals + " Calories"
            }
-           var favBoolArray = BooleanArray(favoriteFoodsNameList.size)
+           val favBoolArray = BooleanArray(favoriteFoodsNameList.size)
            val builder: AlertDialog.Builder = AlertDialog.Builder(this)
                .setTitle(getString(R.string.favorite_food_dialog_title))
                .setCancelable(true)
@@ -132,13 +184,5 @@ class FoodActivity: AppCompatActivity() {
             val fragment = FoodListFragment.newInstance()
             supportFragmentManager.beginTransaction().add(R.id.food_fragment_container, fragment).commit()
         }
-        /*val db = Room.databaseBuilder(
-            applicationContext,
-            FoodDatabase::class.java, "food-database"
-        ).build()
-        val fdb = Room.databaseBuilder(
-            applicationContext,
-            FavoriteFoodDatabase::class.java, "favorite-food-database"
-        ).build()*/
     }
 }
