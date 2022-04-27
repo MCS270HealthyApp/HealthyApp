@@ -39,4 +39,7 @@
     <string name="add_Time_Button">Enter Time</string>
     <string name="start_timer">Start Timer</string>
     <string name="restart_timer">Restart</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm_delete">Yes, delete my data.</string>
+    <string name="delete_date_dialog">Are you sure you want to delete all of your data?</string>
 </resources>

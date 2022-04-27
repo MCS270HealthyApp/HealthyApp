@@ -12,4 +12,11 @@
         android:text="Toggle night theme">
     </Button>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/reset_data_button"
+        android:text="Reset All Data">
+    </Button>
+
 </LinearLayout>
