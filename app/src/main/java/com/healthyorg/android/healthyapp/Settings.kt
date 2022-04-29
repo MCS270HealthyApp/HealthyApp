@@ -1,6 +1,5 @@
 package com.healthyorg.android.healthyapp
 
-import android.content.DialogInterface
 import android.content.res.Configuration
 import android.os.Bundle
 import android.widget.Button
@@ -40,14 +39,14 @@ class Settings : AppCompatActivity() {
                 val builder = AlertDialog.Builder(it)
                 builder.setMessage(R.string.delete_date_dialog)
                 builder.apply {
-                    setPositiveButton(R.string.confirm_delete,
-                        DialogInterface.OnClickListener { dialog, id ->
-                            deleteAllData()
-                        })
-                    setNegativeButton(R.string.cancel,
-                        DialogInterface.OnClickListener { dialog, id ->
-                            dialog.cancel();
-                        })
+                    setPositiveButton(R.string.confirm_delete
+                    ) { dialog, id ->
+                        deleteAllData()
+                    }
+                    setNegativeButton(R.string.cancel
+                    ) { dialog, id ->
+                        dialog.cancel();
+                    }
                 }
                 builder.create()
             }
@@ -55,7 +54,7 @@ class Settings : AppCompatActivity() {
         }
     }
 
-    fun deleteAllData() {
+    private fun deleteAllData() {
         Thread(Runnable {
             val workoutRep = WorkoutRepository.get()
             for (i in workoutRep.getAllWorkoutsAfter(0)) {
