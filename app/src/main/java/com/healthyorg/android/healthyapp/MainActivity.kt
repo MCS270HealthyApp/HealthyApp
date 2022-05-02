@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var quotesButton: Button
     private lateinit var moodButton: Button
     private lateinit var focusButton: Button
+    private lateinit var settingsButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,6 +41,7 @@ class MainActivity : AppCompatActivity() {
         quotesButton = findViewById(R.id.quotes_page_button)
         moodButton = findViewById(R.id.mood_page_button)
         focusButton = findViewById(R.id.timer_button)
+        settingsButton = findViewById(R.id.settings_button)
 
         summaryButton.setOnClickListener{
             val intent = Intent(this, Summary::class.java)
@@ -87,6 +89,10 @@ class MainActivity : AppCompatActivity() {
         }
         focusButton.setOnClickListener {
             val intent = Intent(this, FocusActivity::class.java)
+            startActivity(intent)
+        }
+        settingsButton.setOnClickListener {
+            val intent = Intent(this, Settings::class.java)
             startActivity(intent)
         }
     }
