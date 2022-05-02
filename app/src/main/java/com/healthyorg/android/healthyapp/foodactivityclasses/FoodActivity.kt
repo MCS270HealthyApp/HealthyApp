@@ -38,6 +38,7 @@ class FoodActivity: AppCompatActivity() {
     private lateinit var foodGraphLayout: LinearLayout
     private lateinit var foodGraph: GraphView
     private lateinit var gustieFoodLinks: Elements
+    private lateinit var gustieFoodsList: Array<Meal>
 
     private val foodListViewModel: FoodListViewModel by lazy {
         ViewModelProviders.of(this).get(FoodListViewModel::class.java)
@@ -55,6 +56,8 @@ class FoodActivity: AppCompatActivity() {
         genericFoodButton = findViewById(R.id.generics_list_button)
         favoriteListButton = findViewById(R.id.favorite_foods_list_button)
         gustieFoodsButton = findViewById(R.id.gustie_foods_button)
+
+        gustieFoodsList = emptyArray()
 
         val favoriteFoodListLiveData: LiveData<List<FavoriteMeal>> = foodListViewModel.favoriteFoodList
         val suggestedFoodItems: List<Meal> = foodListViewModel.genericFoodSelectionList
@@ -74,11 +77,11 @@ class FoodActivity: AppCompatActivity() {
             }
         }
 
-        gustieFoodsButton.setOnClickListener {
-            GustieFoodLinks().execute()
-            while (gustieFoodLinks == null){
+        GustieFoodLinks().execute()
+        GustieFoodItems().execute()
 
-            }
+        gustieFoodsButton.setOnClickListener {
+
         }
 
         foodGraphButton.setOnClickListener {
@@ -116,7 +119,7 @@ class FoodActivity: AppCompatActivity() {
             foodGraph.removeAllSeries()
         }
 
-       favoriteListButton.setOnClickListener{
+        favoriteListButton.setOnClickListener{
            Log.i(TAG, "favoriteFoodList size ${favoriteFoodList.size}")
            var favoriteFoodsNameList: Array<String> = emptyArray()
            for(item in favoriteFoodList) {
@@ -207,6 +210,29 @@ class FoodActivity: AppCompatActivity() {
                 Log.i(TAG, gustieFoodLinks.attr("href"))
             } catch (e: IOException) {
                 e.printStackTrace()
+            }
+            return null
+        }
+    }
+
+    inner class GustieFoodItems: AsyncTask<Void, Void, Void>(){
+        override fun doInBackground(vararg p0: Void?): Void? {
+            Log.i(TAG, "Started collecting food items")
+            var doc: Document
+            for (item in gustieFoodLinks) {
+                try {
+                    doc = Jsoup.connect("https://gustavus.edu${item.attr("href")}").get()
+                    var calories = doc.select("#nutritionalFactsTop dd").text()
+                    if(calories.isEmpty()){
+                        calories = "0.0"
+                    } else{
+                        calories = calories.split(" ")[0]
+                    }
+                    gustieFoodsList += Meal(doc.select("div h2:first-of-type").text(), calories.toDouble())
+                    Log.i(TAG, doc.select("div h2:first-of-type").text() + doc.select("#nutritionalFactsTop dd").text())
+                } catch (e: IOException) {
+                    e.printStackTrace()
+                }
             }
             return null
         }
