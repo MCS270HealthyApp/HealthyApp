@@ -10,6 +10,11 @@ class WorkoutListViewModel: ViewModel() {
     val workoutListLiveData = workoutRepository.getAllWorkouts()
     val favoriteWorkoutList = favoriteWorkoutRepository.getAllFavoriteWorkouts()
 
+    val suggestedWorkoutList: List<Daily_Workout> = listOf(
+        Daily_Workout("20 Situps", "Core", 20.0),
+        Daily_Workout("20 Pushups", "Upper Body", 20.0)
+    )
+
 
     fun addFavoriteWorkout(workout: Favorite_Workouts){
         favoriteWorkoutRepository.insertFavoriteWorkout(workout)

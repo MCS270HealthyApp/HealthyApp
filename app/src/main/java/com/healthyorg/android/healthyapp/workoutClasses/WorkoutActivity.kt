@@ -23,6 +23,7 @@ class WorkoutActivity : AppCompatActivity() {
     private lateinit var calorieEditText: EditText
     private lateinit var listButton: Button
     private lateinit var favoriteEntryButton: Button
+    private lateinit var suggestedWorkoutButton: Button
 
     private val workoutListViewModel: WorkoutListViewModel by lazy {
         ViewModelProviders.of(this).get(WorkoutListViewModel::class.java)
@@ -36,6 +37,7 @@ class WorkoutActivity : AppCompatActivity() {
         calorieEditText = findViewById(R.id.calorie_used)
         listButton = findViewById(R.id.favorite_workout_list_button)
         favoriteEntryButton = findViewById(R.id.favorite_workout_entry_button)
+        suggestedWorkoutButton = findViewById(R.id.suggested_workout_button)
 
         val favoriteWorkoutListLiveData: LiveData<List<Favorite_Workouts>> = workoutListViewModel.favoriteWorkoutList
 
@@ -76,7 +78,6 @@ class WorkoutActivity : AppCompatActivity() {
                 for (item in favoriteWorkoutList){
                     if(favBoolArray[favoriteWorkoutList.indexOf(item)]) {
                         tempList += Daily_Workout(item.workoutName, item.workoutType, item.calorieBurned)
-                        Log.i(com.healthyorg.android.healthyapp.workoutClasses.TAG, "Favorite meal item ${item.workoutName} added")
                     }
                 }
                 workoutListViewModel.addAllWorkouts(tempList)
@@ -90,6 +91,38 @@ class WorkoutActivity : AppCompatActivity() {
 
         workoutEntryButton.setOnClickListener{
             workoutListViewModel.addWorkout(Daily_Workout(workoutName = workoutEditText.text.toString(), workoutType = typeEditText.text.toString(), calorieBurned = calorieEditText.text.toString().toDouble()))
+        }
+
+        suggestedWorkoutButton.setOnClickListener{
+            var suggestedWorkoutsList: Array<String> = emptyArray()
+            for (item in workoutListViewModel.suggestedWorkoutList){
+                suggestedWorkoutsList += item.workoutName
+            }
+            var boolArray = BooleanArray(suggestedWorkoutsList.size)
+
+            val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+                .setTitle("Select Items")
+                .setCancelable(true)
+                .setNegativeButton("Close", null)
+                .setPositiveButton("Submit Choices", null)
+                .setMultiChoiceItems(suggestedWorkoutsList, BooleanArray(suggestedWorkoutsList.size)){ dialog, which, isChecked ->
+                    boolArray[which] = isChecked
+                }
+            val alertDialog = builder.create()
+            alertDialog.show()
+            val posButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+            posButton.setOnClickListener{
+                var tempList: List<Daily_Workout> = emptyList()
+                for ((i, item) in workoutListViewModel.suggestedWorkoutList.withIndex()){
+                    if (boolArray[i]) {
+                        tempList += item
+                    }
+                }
+                workoutListViewModel.addAllWorkouts(tempList)
+
+                boolArray = BooleanArray(suggestedWorkoutsList.size)
+                alertDialog.dismiss()
+            }
         }
 
         if(currentFragment == null){
