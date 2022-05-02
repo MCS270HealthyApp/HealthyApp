@@ -20,6 +20,7 @@ class GoalsRepository private constructor(context: Context) {
     private val GoalDao = database.GoalDao()
     private val executor = Executors.newSingleThreadExecutor()
 
+    fun getAllGoalsList(): List<Goal> = GoalDao.getAllGoalsList()
     fun getAllGoals(): LiveData<List<Goal>> = GoalDao.getAllGoals()
 
     fun insertGoal(goal: Goal){
