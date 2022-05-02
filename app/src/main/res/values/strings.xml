@@ -14,6 +14,7 @@
     <string name="food_favorites_list">Favorites List</string>
     <string name="generic_food_dialog_title">Select an Item</string>
     <string name="favorite_food_dialog_title">Select Your Favorites</string>
+    <string name="gustie_food_dialog_title">Select Your Caf Foods</string>
     <string name="food_type_hint">Enter food type</string>
     <string name="food_cals_hint">Enter amount of calories</string>
     <string name="mood_title_text">How are you feeling today?</string>

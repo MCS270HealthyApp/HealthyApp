@@ -4,10 +4,12 @@ import android.graphics.Color
 import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
@@ -37,7 +39,7 @@ class FoodActivity: AppCompatActivity() {
     private lateinit var foodListLayout: LinearLayout
     private lateinit var foodGraphLayout: LinearLayout
     private lateinit var foodGraph: GraphView
-    private lateinit var gustieFoodLinks: Elements
+    private lateinit var gustieFoodLinksElements: Elements
     private lateinit var gustieFoodsList: Array<Meal>
 
     private val foodListViewModel: FoodListViewModel by lazy {
@@ -77,11 +79,46 @@ class FoodActivity: AppCompatActivity() {
             }
         }
 
+        val gustieFoodItems = GustieFoodItems()
         GustieFoodLinks().execute()
-        GustieFoodItems().execute()
+        gustieFoodItems.execute()
 
         gustieFoodsButton.setOnClickListener {
-
+            if(gustieFoodItems.status != AsyncTask.Status.FINISHED){
+                val toast = Toast.makeText(this, "Still Collecting Foods, Try Again Soon!", Toast.LENGTH_LONG)
+                toast.setGravity(Gravity.TOP, 0, 0)
+                toast.show()
+            } else{
+                Log.i(TAG, "gustieFoodsList size ${gustieFoodsList.size}")
+                var gustieFoodsNameList: Array<String> = emptyArray()
+                for(item in gustieFoodsList) {
+                    gustieFoodsNameList += item.food_type + ", " + item.food_cals + " Calories"
+                }
+                val gusBoolArray = BooleanArray(gustieFoodsNameList.size)
+                val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+                    .setTitle(getString(R.string.gustie_food_dialog_title))
+                    .setCancelable(true)
+                    .setNegativeButton("Close", null)
+                    .setPositiveButton("Submit Choices", null)
+                    .setMultiChoiceItems(gustieFoodsNameList, BooleanArray(gustieFoodsNameList.size)){ dialog, which, isChecked ->
+                        gusBoolArray[which] = isChecked
+                    }
+                val alertDialog = builder.create()
+                alertDialog.show()
+                val posButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
+                posButton.setOnClickListener{
+                    Log.i(TAG, boolArray[0].toString())
+                    var tempList: List<Meal> = emptyList()
+                    for (item in gustieFoodsList){
+                        if(gusBoolArray[gustieFoodsList.indexOf(item)]) {
+                            tempList += Meal(item.food_type, item.food_cals)
+                            Log.i(TAG, "Favorite meal item ${item.food_type} added")
+                        }
+                    }
+                    foodListViewModel.addAllMeals(tempList)
+                    alertDialog.dismiss()
+                }
+            }
         }
 
         foodGraphButton.setOnClickListener {
@@ -206,8 +243,8 @@ class FoodActivity: AppCompatActivity() {
             var doc: Document
             try {
                 doc = Jsoup.connect("https://gustavus.edu/diningservices/menu/").get()
-                gustieFoodLinks = doc.select("a[href^='/diningservices/menu/item/']")
-                Log.i(TAG, gustieFoodLinks.attr("href"))
+                gustieFoodLinksElements = doc.select("a[href^='/diningservices/menu/item/']")
+                Log.i(TAG, "All links collected")
             } catch (e: IOException) {
                 e.printStackTrace()
             }
@@ -219,7 +256,7 @@ class FoodActivity: AppCompatActivity() {
         override fun doInBackground(vararg p0: Void?): Void? {
             Log.i(TAG, "Started collecting food items")
             var doc: Document
-            for (item in gustieFoodLinks) {
+            for (item in gustieFoodLinksElements) {
                 try {
                     doc = Jsoup.connect("https://gustavus.edu${item.attr("href")}").get()
                     var calories = doc.select("#nutritionalFactsTop dd").text()
