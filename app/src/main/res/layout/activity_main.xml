@@ -6,6 +6,11 @@
     android:gravity="center"
     android:orientation="vertical">
 
+    <ImageView
+        android:layout_width="165dp"
+        android:layout_height="154dp"
+        android:src="@drawable/gac_icon" />
+
     <TextView
         android:id = "@+id/greeting_text"
         android:layout_width="wrap_content"
