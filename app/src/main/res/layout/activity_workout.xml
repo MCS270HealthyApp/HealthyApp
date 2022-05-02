@@ -7,6 +7,11 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/suggested_workout_button"
+        android:text="Suggested Workouts"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/favorite_workout_list_button"
         android:text="favorites list"/>
     <EditText
