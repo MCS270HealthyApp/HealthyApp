@@ -4,6 +4,10 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import java.util.*
 import kotlin.collections.ArrayList
+import org.jsoup.Jsoup
+import org.jsoup.nodes.Document
+import org.jsoup.select.Elements
+import java.io.IOException
 
 private const val TAG = "FoodListViewModel"
 
@@ -30,11 +34,11 @@ class FoodListViewModel: ViewModel() {
         Meal("Chicken Drumstick", 131.0),
         Meal("Filet Mignon", 278.0),
         Meal("Ham", 236.0),
-        Meal("Prok Chop", 257.0),
+        Meal("Pork Chop", 257.0),
         Meal("T-Bone", 580.0),
         Meal("Bagel", 252.0),
         Meal("Banana Bread", 91.0),
-        Meal("Breadstick", 20.0),
+        Meal("Bread stick", 20.0),
         Meal("Brownie", 162.0),
         Meal("Croissant", 231.0),
         Meal("Cupcake", 131.0),
@@ -72,6 +76,7 @@ class FoodListViewModel: ViewModel() {
         Log.i(TAG, "DailyCalsList = ${dailyCalsList.toString()}")
         return dailyCalsList.reversed()
     }
+
 
     fun addFavoriteMeal(food: FavoriteMeal){
         favoriteFoodRepository.insertFavoriteFood(food)

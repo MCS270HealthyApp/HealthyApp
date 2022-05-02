@@ -1,7 +1,7 @@
 package com.healthyorg.android.healthyapp.foodactivityclasses
 
 import android.graphics.Color
-import android.opengl.Visibility
+import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -13,17 +13,19 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.room.Room
 import com.healthyorg.android.healthyapp.R
-import com.healthyorg.android.healthyapp.database.FavoriteFoodDatabase
-import com.healthyorg.android.healthyapp.database.FoodDatabase
 import com.jjoe64.graphview.GraphView
 import com.jjoe64.graphview.series.BarGraphSeries
 import com.jjoe64.graphview.series.DataPoint
+import org.jsoup.Jsoup
+import org.jsoup.nodes.Document
+import org.jsoup.select.Elements
+import java.io.IOException
 
 private const val TAG = "FoodActivity"
 
 class FoodActivity: AppCompatActivity() {
+    private lateinit var gustieFoodsButton: Button
     private lateinit var genericFoodButton: Button
     private lateinit var foodTypeEditText: EditText
     private lateinit var foodCalsEditText: EditText
@@ -35,6 +37,7 @@ class FoodActivity: AppCompatActivity() {
     private lateinit var foodListLayout: LinearLayout
     private lateinit var foodGraphLayout: LinearLayout
     private lateinit var foodGraph: GraphView
+    private lateinit var gustieFoodLinks: Elements
 
     private val foodListViewModel: FoodListViewModel by lazy {
         ViewModelProviders.of(this).get(FoodListViewModel::class.java)
@@ -51,6 +54,7 @@ class FoodActivity: AppCompatActivity() {
         foodGraph = findViewById(R.id.food_graph)
         genericFoodButton = findViewById(R.id.generics_list_button)
         favoriteListButton = findViewById(R.id.favorite_foods_list_button)
+        gustieFoodsButton = findViewById(R.id.gustie_foods_button)
 
         val favoriteFoodListLiveData: LiveData<List<FavoriteMeal>> = foodListViewModel.favoriteFoodList
         val suggestedFoodItems: List<Meal> = foodListViewModel.genericFoodSelectionList
@@ -67,6 +71,13 @@ class FoodActivity: AppCompatActivity() {
             favoriteMeals?.let {
                 Log.i(TAG, "Got favorite meals ${favoriteMeals.size}")
                 favoriteFoodList = favoriteMeals
+            }
+        }
+
+        gustieFoodsButton.setOnClickListener {
+            GustieFoodLinks().execute()
+            while (gustieFoodLinks == null){
+
             }
         }
 
@@ -183,6 +194,21 @@ class FoodActivity: AppCompatActivity() {
         if(currentFragment == null){
             val fragment = FoodListFragment.newInstance()
             supportFragmentManager.beginTransaction().add(R.id.food_fragment_container, fragment).commit()
+        }
+    }
+
+    inner class GustieFoodLinks: AsyncTask<Void, Void, Void>() {
+        override fun doInBackground(vararg p0: Void?): Void? {
+            Log.i(TAG, "Started collecting links")
+            var doc: Document
+            try {
+                doc = Jsoup.connect("https://gustavus.edu/diningservices/menu/").get()
+                gustieFoodLinks = doc.select("a[href^='/diningservices/menu/item/']")
+                Log.i(TAG, gustieFoodLinks.attr("href"))
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+            return null
         }
     }
 }

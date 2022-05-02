@@ -39,4 +39,5 @@
     <string name = "add_Time_Button">Enter Time</string>
     <string name = "start_timer">Start Timer</string>
     <string name = "restart_timer">Restart</string>
+    <string name="gustie_foods_button">Gustie Foods</string>
 </resources>
