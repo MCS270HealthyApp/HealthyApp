@@ -23,8 +23,12 @@
             style="@style/HomepageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/food_favorites_list" />
-
+            android:text="@string/food_favorites_list"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/gustie_foods_button"
+            android:text="@string/gustie_foods_button"/>
         <EditText
             android:id="@+id/food_type_entry"
             style="@style/gacEditText"
@@ -47,7 +51,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center">
-
             <Button
                 android:id="@+id/food_submit_button"
                 style="@style/HomepageButton"
@@ -64,7 +67,6 @@
                 android:layout_margin="8dp"
                 android:text="Add to Favorites" />
         </LinearLayout>
-
         <Button
             android:id="@+id/food_graph_button"
             style="@style/HomepageButton"
