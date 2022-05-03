@@ -28,6 +28,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/gustie_foods_button"
+            style="@style/HomepageButton"
+            android:layout_marginTop="6dp"
             android:text="@string/gustie_foods_button"/>
         <EditText
             android:id="@+id/food_type_entry"

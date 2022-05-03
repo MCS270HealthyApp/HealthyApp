@@ -6,10 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
@@ -94,7 +91,7 @@ class FoodActivity: AppCompatActivity() {
                     gustieFoodsNameList += item.food_type + ", " + item.food_cals + " Calories"
                 }
                 val gusBoolArray = BooleanArray(gustieFoodsNameList.size)
-                val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+                val builder: AlertDialog.Builder = AlertDialog.Builder(this, R.style.gacDialog)
                     .setTitle(getString(R.string.gustie_food_dialog_title))
                     .setCancelable(true)
                     .setNegativeButton("Close", null)
