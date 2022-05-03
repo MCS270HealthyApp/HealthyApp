@@ -60,7 +60,7 @@ class WorkoutActivity : AppCompatActivity() {
                 favoriteWorkoutsNameList += item.workoutName + ", " + item.workoutType +", "+item.calorieBurned + " Calories"
             }
             var favBoolArray = BooleanArray(favoriteWorkoutsNameList.size)
-            val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+            val builder: AlertDialog.Builder = AlertDialog.Builder(this, R.style.gacDialog)
                 .setTitle(getString(R.string.favorite_food_dialog_title))
                 .setCancelable(true)
                 .setNegativeButton("Close", null)

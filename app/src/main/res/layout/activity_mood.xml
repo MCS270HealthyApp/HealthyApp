@@ -20,23 +20,28 @@
 
     <Button
         android:id="@+id/mood_happy_button"
+        style="@style/HomepageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/mood_happy"
+        android:layout_marginBottom="6dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mood_main_text" />
 
     <Button
         android:id="@+id/mood_meh_button"
+        style="@style/HomepageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/mood_meh"
+        android:layout_marginBottom="6dp"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="-24dp" />
 
     <Button
         android:id="@+id/mood_bad_button"
+        style="@style/HomepageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/mood_bad"
