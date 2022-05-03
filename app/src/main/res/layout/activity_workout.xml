@@ -4,11 +4,14 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical">
+
     <Button
+        android:id="@+id/favorite_workout_list_button"
+        style="@style/HomepageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/favorite_workout_list_button"
-        android:text="favorites list"/>
+        android:layout_marginBottom="4dp"
+        android:text="favorites list" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -33,16 +36,21 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/submit_entry"
-        android:id="@+id/workout_submit_button"/>
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add to Favorites"
-        android:id="@+id/favorite_workout_entry_button"/>
+        <Button
+            android:id="@+id/workout_submit_button"
+            style="@style/HomepageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="3dp"
+            android:text="@string/submit_entry" />
+
+        <Button
+            android:id="@+id/favorite_workout_entry_button"
+            style="@style/HomepageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:text="Add to Favorites" />
     </LinearLayout>
     <FrameLayout
         android:layout_width="match_parent"

@@ -19,8 +19,10 @@
 
     <EditText
         android:id="@+id/etTodoTitle"
+        style="@style/gacEditText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:backgroundTint="#B6A7A7"
         android:hint="Enter Todo Title"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnAddTodo"
@@ -28,8 +30,10 @@
 
     <Button
         android:id="@+id/btnAddTodo"
+        style="@style/HomepageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginRight="4dp"
         android:text="Add Todo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

@@ -112,7 +112,7 @@ class FoodActivity: AppCompatActivity() {
                favoriteFoodsNameList += item.food_type + ", " + item.food_cals + " Calories"
            }
            val favBoolArray = BooleanArray(favoriteFoodsNameList.size)
-           val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+           val builder: AlertDialog.Builder = AlertDialog.Builder(this, R.style.gacDialog)
                .setTitle(getString(R.string.favorite_food_dialog_title))
                .setCancelable(true)
                .setNegativeButton("Close", null)
@@ -138,7 +138,7 @@ class FoodActivity: AppCompatActivity() {
         }
 
         genericFoodButton.setOnClickListener{
-            val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+            val builder: AlertDialog.Builder = AlertDialog.Builder(this, R.style.gacDialog)
                 .setTitle(getString(R.string.generic_food_dialog_title))
                 .setCancelable(true)
                 .setNegativeButton("Close", null)
