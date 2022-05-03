@@ -41,6 +41,7 @@ class FoodActivity: AppCompatActivity() {
     private lateinit var foodGraph: GraphView
     private lateinit var gustieFoodLinksElements: Elements
     private lateinit var gustieFoodsList: Array<Meal>
+    private var gustieFoodItems: GustieFoodItems = GustieFoodItems()
 
     private val foodListViewModel: FoodListViewModel by lazy {
         ViewModelProviders.of(this).get(FoodListViewModel::class.java)
@@ -79,9 +80,7 @@ class FoodActivity: AppCompatActivity() {
             }
         }
 
-        val gustieFoodItems = GustieFoodItems()
         GustieFoodLinks().execute()
-        gustieFoodItems.execute()
 
         gustieFoodsButton.setOnClickListener {
             if(gustieFoodItems.status != AsyncTask.Status.FINISHED){
@@ -249,6 +248,11 @@ class FoodActivity: AppCompatActivity() {
                 e.printStackTrace()
             }
             return null
+        }
+
+        override fun onPostExecute(result: Void?) {
+            gustieFoodItems.execute()
+            super.onPostExecute(result)
         }
     }
 
