@@ -1,20 +1,20 @@
 <resources xmlns:tools="http://schemas.android.com/tools" xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Base application theme. -->
     <style name="Theme.HealthyApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <item name="android:background">@color/black</item>
-        <item name="android:textColor">@color/white</item>
-        <item name="android:textColorPrimary">@color/white</item>
-        <item name="android:textColorHint">@color/light_gray</item>
+        <item name="android:background">@color/background_color</item>
+        <item name="android:textColor">@color/text_color</item>
+        <item name="android:textColorPrimary">@color/text_color</item>
+        <item name="android:textColorHint">@color/hint_text_color</item>
 
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/gold</item>
-        <item name="colorPrimaryVariant">@color/dark_gold</item>
-        <item name="colorOnPrimary">@color/black</item>
+        <item name="colorPrimary">@color/button_color</item>
+        <item name="colorPrimaryVariant">@color/header_color</item>
+        <item name="colorOnPrimary">@color/button_text_color</item>
 
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/gold</item>
-        <item name="colorSecondaryVariant">@color/gold</item>
-        <item name="colorOnSecondary">@color/gold</item>
+        <item name="colorSecondary">@color/button_color</item>
+        <item name="colorSecondaryVariant">@color/button_color</item>
+        <item name="colorOnSecondary">@color/button_color</item>
 
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
@@ -34,11 +34,11 @@
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/purple_500</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
-        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorOnPrimary">@color/text_color</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_700</item>
-        <item name="colorOnSecondary">@color/black</item>
+        <item name="colorOnSecondary">@color/background_color</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
@@ -47,16 +47,16 @@
 
     <style name="HomepageButton" parent ="Widget.AppCompat.Button">
         <item name="android:background">@drawable/main_menu_button</item>
-        <item name="android:color">@color/gold</item>
-        <item name="android:textColor">@color/black</item>
+        <item name="android:color">@color/button_color</item>
+        <item name="android:textColor">@color/button_text_color</item>
     </style>
 
     <style name="gacEditText" parent ="Widget.AppCompat.EditText">
-        <item name="backgroundTint">@color/white</item>
+        <item name="backgroundTint">@color/text_color</item>
     </style>
 
     <style name="gacDialog" parent ="Theme.AppCompat.Light.Dialog.Alert">
-        <item name="textColorAlertDialogListItem">@color/white</item>
+        <item name="textColorAlertDialogListItem">@color/text_color</item>
         <item name="android:listChoiceIndicatorMultiple">@drawable/activated_checkbox</item>
         <item name="buttonBarNegativeButtonStyle">@style/HomepageButton</item>
         <item name="buttonBarPositiveButtonStyle">@style/HomepageButton</item>
@@ -64,8 +64,8 @@
     </style>
 
     <style name="gacCheckBox">
-        <item name="colorAccent">@color/white</item>
-        <item name="android:textColorSecondary">@color/light_gray</item>
+        <item name="colorAccent">@color/text_color</item>
+        <item name="android:textColorSecondary">@color/hint_text_color</item>
     </style>
 
 </resources>

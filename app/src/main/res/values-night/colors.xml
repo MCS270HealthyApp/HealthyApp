@@ -9,9 +9,9 @@
     <color name="white">#FFFFFFFF</color>
 
 
-    <color name="background_color">#FF000000</color>
+    <color name="background_color">#FFFFFFFF</color>
     <color name="button_text_color">#191717</color>
-    <color name="text_color">#FFFFFFFF</color>
+    <color name="text_color">#FF000000</color>
     <color name="button_color">#EBB701</color>
     <color name="header_color">#B6B626</color>
     <color name="dark_gray">#50504C</color>
