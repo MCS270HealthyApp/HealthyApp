@@ -22,10 +22,16 @@ class FavoriteWorkoutRepository private constructor(context: Context) {
     private val favoriteWorkoutDao = database.favoriteWorkoutDao()
     private val executor = Executors.newSingleThreadExecutor()
 
+    fun getAllFavoriteWorkoutsList(): List<Favorite_Workouts> = favoriteWorkoutDao.getAllFavoriteWorkoutsList()
     fun getAllFavoriteWorkouts(): LiveData<List<Favorite_Workouts>> = favoriteWorkoutDao.getAllFavoriteWorkouts()
     fun insertFavoriteWorkout(workout: Favorite_Workouts){
         executor.execute{
             favoriteWorkoutDao.insertFavoriteWorkout(workout)
+        }
+    }
+    fun deleteFavoriteWorkout(workout: Favorite_Workouts){
+        executor.execute{
+            favoriteWorkoutDao.deleteFavoriteWorkout(workout)
         }
     }
     fun insertAllFavoriteWorkouts(workouts: List<Favorite_Workouts>){
