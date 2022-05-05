@@ -7,6 +7,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.healthyorg.android.healthyapp.MoodClasses.MoodRepository
+import com.healthyorg.android.healthyapp.foodactivityclasses.FavoriteFoodRepository
+import com.healthyorg.android.healthyapp.foodactivityclasses.FavoriteWorkoutRepository
 import com.healthyorg.android.healthyapp.foodactivityclasses.FoodRepository
 import com.healthyorg.android.healthyapp.goalClasses.GoalsRepository
 import com.healthyorg.android.healthyapp.sleepClasses.SleepRepository
@@ -84,6 +86,16 @@ class Settings : AppCompatActivity() {
             val foodRep = FoodRepository.get()
             for (i in foodRep.getAllMealsAfter(0)) {
                 foodRep.deleteFood(i)
+            }
+
+            val favFoodRep = FavoriteFoodRepository.get()
+            for (i in favFoodRep.getAllFavoriteMealsList()) {
+                favFoodRep.deleteFavoriteMeal(i)
+            }
+
+            val favWorkoutRep = FavoriteWorkoutRepository.get()
+            for (i in favWorkoutRep.getAllFavoriteWorkoutsList()) {
+                favWorkoutRep.deleteFavoriteWorkout(i)
             }
         }).start()
     }

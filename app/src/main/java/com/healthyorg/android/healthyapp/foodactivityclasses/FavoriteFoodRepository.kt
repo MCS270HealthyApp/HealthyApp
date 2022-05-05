@@ -20,10 +20,16 @@ class FavoriteFoodRepository private constructor(context: Context) {
     private val favoriteFoodDao = database.favoriteFoodDao()
     private val executor = Executors.newSingleThreadExecutor()
 
+    fun getAllFavoriteMealsList(): List<FavoriteMeal> = favoriteFoodDao.getAllFavoriteMealsList()
     fun getAllFavoriteMeals(): LiveData<List<FavoriteMeal>> = favoriteFoodDao.getAllFavoriteMeals()
     fun insertFavoriteFood(food: FavoriteMeal){
         executor.execute{
             favoriteFoodDao.insertFavoriteFood(food)
+        }
+    }
+    fun deleteFavoriteMeal(food: FavoriteMeal){
+        executor.execute{
+            favoriteFoodDao.deleteFavoriteMeal(food)
         }
     }
     fun insertAllFavoriteFoods(food: List<FavoriteMeal>){
