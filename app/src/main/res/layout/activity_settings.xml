@@ -1,22 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical">
 
     <Button
+        android:id="@+id/swap_themes_button"
+        style="@style/HomepageButton"
+        android:layout_marginBottom="4dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/swap_themes_button"
-        android:text="Toggle night theme">
-    </Button>
+        android:text="Toggle night theme"/>
 
     <Button
+        android:id="@+id/reset_data_button"
+        style="@style/HomepageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/reset_data_button"
-        android:text="Reset All Data">
-    </Button>
+        android:text="Reset All Data"/>
 
 </LinearLayout>

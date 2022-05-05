@@ -10,6 +10,7 @@
         android:layout_height="wrap_content"
         style="@style/HomepageButton"
         android:id="@+id/suggested_workout_button"
+        android:layout_marginBottom="4dp"
         android:text="Suggested Workouts"/>
     <Button
         android:id="@+id/favorite_workout_list_button"

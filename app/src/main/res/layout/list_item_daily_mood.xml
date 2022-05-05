@@ -11,6 +11,7 @@
         android:id="@+id/mood_value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
         android:paddingRight="16dp"
         android:text="Mood"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,6 +21,7 @@
         android:id="@+id/mood_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textSize="20sp"
         android:text="Current Date"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,9 +29,12 @@
 
     <ImageButton
         android:id="@+id/mood_delete_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_delete_dark"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        android:background="@color/background_color"
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_delete_gold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

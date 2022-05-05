@@ -81,9 +81,9 @@ class FoodActivity: AppCompatActivity() {
 
         gustieFoodsButton.setOnClickListener {
             if(gustieFoodItems.status != AsyncTask.Status.FINISHED){
-                val toast = Toast.makeText(this, "Still Collecting Foods, Try Again Soon!", Toast.LENGTH_LONG)
-                toast.setGravity(Gravity.TOP, 0, 0)
-                toast.show()
+                //val toast = Toast.makeText(this, "Still Collecting Foods, Try Again Soon!", Toast.LENGTH_LONG)
+                //toast.setGravity(Gravity.TOP, 0, 0)
+                //toast.show()
             } else{
                 Log.i(TAG, "gustieFoodsList size ${gustieFoodsList.size}")
                 var gustieFoodsNameList: Array<String> = emptyArray()

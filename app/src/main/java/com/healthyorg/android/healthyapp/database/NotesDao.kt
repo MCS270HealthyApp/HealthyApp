@@ -4,7 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import notesClasses.Note
 
-// annotation for dao class.
+//The dao class for our notes database. Below, we have functions to insert,
+//delete, search for, and update notes objects within our notes database.
 @Dao
 interface NotesDao {
 
