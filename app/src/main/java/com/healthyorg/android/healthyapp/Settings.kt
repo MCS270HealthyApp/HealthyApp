@@ -1,6 +1,5 @@
 package com.healthyorg.android.healthyapp
 
-import android.content.DialogInterface
 import android.content.res.Configuration
 import android.os.Bundle
 import android.widget.Button
@@ -8,6 +7,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import com.healthyorg.android.healthyapp.MoodClasses.MoodRepository
+import com.healthyorg.android.healthyapp.foodactivityclasses.FavoriteFoodRepository
+import com.healthyorg.android.healthyapp.foodactivityclasses.FavoriteWorkoutRepository
 import com.healthyorg.android.healthyapp.foodactivityclasses.FoodRepository
 import com.healthyorg.android.healthyapp.goalClasses.GoalsRepository
 import com.healthyorg.android.healthyapp.sleepClasses.SleepRepository
@@ -40,14 +41,14 @@ class Settings : AppCompatActivity() {
                 val builder = AlertDialog.Builder(it)
                 builder.setMessage(R.string.delete_date_dialog)
                 builder.apply {
-                    setPositiveButton(R.string.confirm_delete,
-                        DialogInterface.OnClickListener { dialog, id ->
-                            deleteAllData()
-                        })
-                    setNegativeButton(R.string.cancel,
-                        DialogInterface.OnClickListener { dialog, id ->
-                            dialog.cancel();
-                        })
+                    setPositiveButton(R.string.confirm_delete
+                    ) { dialog, id ->
+                        deleteAllData()
+                    }
+                    setNegativeButton(R.string.cancel
+                    ) { dialog, id ->
+                        dialog.cancel();
+                    }
                 }
                 builder.create()
             }
@@ -55,7 +56,7 @@ class Settings : AppCompatActivity() {
         }
     }
 
-    fun deleteAllData() {
+    private fun deleteAllData() {
         Thread(Runnable {
             val workoutRep = WorkoutRepository.get()
             for (i in workoutRep.getAllWorkoutsAfter(0)) {
@@ -85,6 +86,16 @@ class Settings : AppCompatActivity() {
             val foodRep = FoodRepository.get()
             for (i in foodRep.getAllMealsAfter(0)) {
                 foodRep.deleteFood(i)
+            }
+
+            val favFoodRep = FavoriteFoodRepository.get()
+            for (i in favFoodRep.getAllFavoriteMealsList()) {
+                favFoodRep.deleteFavoriteMeal(i)
+            }
+
+            val favWorkoutRep = FavoriteWorkoutRepository.get()
+            for (i in favWorkoutRep.getAllFavoriteWorkoutsList()) {
+                favWorkoutRep.deleteFavoriteWorkout(i)
             }
         }).start()
     }
