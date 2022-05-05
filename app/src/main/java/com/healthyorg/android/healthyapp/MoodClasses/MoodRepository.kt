@@ -9,8 +9,11 @@ import java.util.concurrent.Executors
 
 private const val DATABASE_NAME = "mood-database"
 
+//This repository class defines the pattern we use to fetch and store
+//data in our mood database
 class MoodRepository private constructor(context: Context) {
 
+    //Actually creating a concrete mood database
     private val database: MoodDatabase = Room.databaseBuilder(
         context.applicationContext,
         MoodDatabase::class.java,
@@ -20,6 +23,8 @@ class MoodRepository private constructor(context: Context) {
     private val moodDao = database.moodDao()
     private val executor = Executors.newSingleThreadExecutor()
 
+    //Functions that further implement the ability to find, insert, and delete mood objects
+    //from the database by actually calling our Dao class
     fun getAllMoodsAfter(date: Long?): List<Daily_Mood> = moodDao.getAllMoodsAfter(date)
     fun getAllMoods(): LiveData<List<Daily_Mood>> = moodDao.getAllMoods()
     fun insertMood(mood: Daily_Mood){
@@ -34,6 +39,7 @@ class MoodRepository private constructor(context: Context) {
         }
     }
 
+    //Actually initializing our repository. We should only ever have one at any given time.
     companion object {
         private var INSTANCE: MoodRepository? = null
 

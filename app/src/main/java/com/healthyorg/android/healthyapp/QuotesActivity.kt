@@ -9,7 +9,6 @@ class QuotesActivity : AppCompatActivity() {
 
     private lateinit var newQuoteButton: Button
     private lateinit var quoteTextView: TextView
-    private lateinit var secretQuoteButton: Button
 
     //An array to hold all of the quotes. It ain't pretty, but it works
     var quotes: Array<String> = arrayOf("You can do this!", "Take a moment to relax", "Take a deep breath",
@@ -21,28 +20,23 @@ class QuotesActivity : AppCompatActivity() {
     "Hang in there!", "The greater the difficulty, the greater the glory in overcoming it")
 
 
-    var secretQuotes: Array<String> = arrayOf("Everything you're doing is pointless", "Life is meaningless")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_quotes)
 
+        //Linking the textview that contains the quote text
+        //and the button that displays a new one with their xml counterparts
         newQuoteButton = findViewById(R.id.new_quote_button)
         quoteTextView = findViewById(R.id.quote_text_view)
-        secretQuoteButton = findViewById(R.id.secret_button)
 
-        //Randomly select and display a quote from the array
+        //Randomly select and display a quote from the array. Very complicated stuff here!
         newQuoteButton.setOnClickListener {
             val rando = (0..16).random()
             val currentQuote = quotes[rando]
             quoteTextView.setText(currentQuote)
         }
 
-        secretQuoteButton.setOnClickListener {
-            val rando = (0..1).random()
-            val currentSecretQuote = secretQuotes[rando]
-            quoteTextView.setText(currentSecretQuote)
-        }
 
     }
 }

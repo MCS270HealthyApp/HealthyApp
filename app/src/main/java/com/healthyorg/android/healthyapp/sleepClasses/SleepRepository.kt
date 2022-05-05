@@ -8,8 +8,11 @@ import java.util.concurrent.Executors
 
 private const val DATABASE_NAME = "sleep-database"
 
+//This repository class defines the pattern we use to fetch and store
+//data in our sleep database
 class SleepRepository private constructor(context: Context) {
 
+    //Actually creating a concrete sleep database
     private val database: SleepDatabase = Room.databaseBuilder(
         context.applicationContext,
         SleepDatabase::class.java,
@@ -19,6 +22,8 @@ class SleepRepository private constructor(context: Context) {
     private val sleepDao = database.sleepDao()
     private val executor = Executors.newSingleThreadExecutor()
 
+    //Four functions that further implement the ability to find, insert, and delete sleep objects
+    //from the database by actually calling our Dao class
     fun getAllSleepsAfter(date: Long?): List<DailySleepMood> = sleepDao.getAllSleepsAfter(date)
     fun getAllSleeps(): LiveData<List<DailySleepMood>> = sleepDao.getAllSleeps()
     fun insertSleep(sleep: DailySleepMood){
@@ -33,6 +38,7 @@ class SleepRepository private constructor(context: Context) {
         }
     }
 
+    //Actually initializing our repository. We should only ever have one at any given time.
     companion object {
         private var INSTANCE: SleepRepository? = null
 

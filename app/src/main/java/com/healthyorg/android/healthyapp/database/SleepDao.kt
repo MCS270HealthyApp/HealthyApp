@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.healthyorg.android.healthyapp.sleepClasses.DailySleepMood
 
+//The dao file for our sleep database. We initialize functions to
+//insert, find, and delete sleep objects from the database
 @Dao
 interface SleepDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)

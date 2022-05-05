@@ -14,8 +14,7 @@ import java.util.*
 
 class NotesActivity : AppCompatActivity(), NoteClickInterface, NoteClickDeleteInterface {
 
-    // below, we are creating variables
-    // for our recycler view, edit text, button, and viewmodel.
+    //Initializing our recycler view, edit text, button, and viewModel.
     lateinit var viewModal: NotesListViewModal
     lateinit var notesRV: RecyclerView
     lateinit var addFAB: FloatingActionButton
@@ -31,10 +30,13 @@ class NotesActivity : AppCompatActivity(), NoteClickInterface, NoteClickDeleteIn
 
         notesRV.layoutManager = LinearLayoutManager(this)
 
+        //Initializing our adapter
         val noteRVAdapter = NoteRVAdapter(this, this, this)
 
+        //Setting our adapter to the recyclerView
         notesRV.adapter = noteRVAdapter
 
+        //Initializing our ViewModel
         viewModal = ViewModelProvider(
             this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(application)
@@ -45,6 +47,7 @@ class NotesActivity : AppCompatActivity(), NoteClickInterface, NoteClickDeleteIn
                 noteRVAdapter.updateList(it)
             }
         })
+        //A listener to open a new page where someone can add a new note
         addFAB.setOnClickListener {
             val intent = Intent(this@NotesActivity, AddEditNoteActivity::class.java)
             startActivity(intent)
@@ -52,6 +55,7 @@ class NotesActivity : AppCompatActivity(), NoteClickInterface, NoteClickDeleteIn
         }
     }
 
+    //Opening a new intent and passing the necessary data to it from the database
     override fun onNoteClick(note: Note) {
         val intent = Intent(this@NotesActivity, AddEditNoteActivity::class.java)
         intent.putExtra("noteType", "Edit")
@@ -62,9 +66,8 @@ class NotesActivity : AppCompatActivity(), NoteClickInterface, NoteClickDeleteIn
         this.finish()
     }
 
+    //Deleting a note
     override fun onDeleteIconClick(note: Note) {
         viewModal.deleteNote(note)
-        // displaying a toast message
-        Toast.makeText(this, "${note.noteTitle} Deleted", Toast.LENGTH_LONG).show()
     }
 }

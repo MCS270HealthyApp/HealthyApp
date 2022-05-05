@@ -52,10 +52,12 @@
         <item name="android:textColor">@color/button_text_color</item>
     </style>
 
+    <!--Custom edit text design-->
     <style name="gacEditText" parent ="Widget.AppCompat.EditText">
         <item name="backgroundTint">@color/text_color</item>
     </style>
 
+    <!--Custom design for the alert dialog-->
     <style name="gacDialog" parent ="Theme.AppCompat.Light.Dialog.Alert">
         <item name="textColorAlertDialogListItem">@color/text_color</item>
         <item name="android:listChoiceIndicatorMultiple">@drawable/activated_checkbox</item>
