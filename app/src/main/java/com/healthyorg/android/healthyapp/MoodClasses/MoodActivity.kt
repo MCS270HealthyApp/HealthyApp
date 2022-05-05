@@ -27,17 +27,21 @@ class MoodActivity : AppCompatActivity() {
 
         val currentFragment  = supportFragmentManager.findFragmentById(R.id.mood_fragment_container)
 
+        //Listener for the happy button
         happyButton.setOnClickListener{
             moodListViewModel.addMood(Daily_Mood(feelings = "Feeling good!"))
         }
 
+        //Listener for the meh button
         mehButton.setOnClickListener{
             moodListViewModel.addMood(Daily_Mood(feelings = "Feeling okay."))
         }
 
+        //Listener for the bad button
         badButton.setOnClickListener{
             moodListViewModel.addMood(Daily_Mood(feelings = "Feeling bad."))
         }
+
 
         if(currentFragment == null){
             val fragment = MoodListFragment.newInstance()

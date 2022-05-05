@@ -11,6 +11,7 @@ class QuotesActivity : AppCompatActivity() {
     private lateinit var quoteTextView: TextView
     private lateinit var secretQuoteButton: Button
 
+    //An array to hold all of the quotes. It ain't pretty, but it works
     var quotes: Array<String> = arrayOf("You can do this!", "Take a moment to relax", "Take a deep breath",
     "Everything is going to be fine", "You've got this!", "Nice work today!", "Don't stop until you're proud",
     "Every day may not be good, but there is something good in every day", "You tried :)",
@@ -30,6 +31,7 @@ class QuotesActivity : AppCompatActivity() {
         quoteTextView = findViewById(R.id.quote_text_view)
         secretQuoteButton = findViewById(R.id.secret_button)
 
+        //Randomly select and display a quote from the array
         newQuoteButton.setOnClickListener {
             val rando = (0..16).random()
             val currentQuote = quotes[rando]

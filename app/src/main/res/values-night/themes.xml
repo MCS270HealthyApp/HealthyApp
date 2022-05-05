@@ -1,6 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.HealthyApp" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!--Setting the colors of the background, text, and hint text -->
         <item name="android:background">@color/background_color</item>
         <item name="android:textColor">@color/text_color</item>
         <item name="android:textColorPrimary">@color/text_color</item>
@@ -19,7 +20,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
 
-        <!-- Customize your theme here. -->
+        <!-- Changing the button style, edittext style, and alert dialog style -->
         <item name="buttonStyle">@style/HomepageButton</item>
         <item name="android:buttonStyle">@style/HomepageButton</item>
         <item name="editTextStyle">@style/gacEditText</item>
