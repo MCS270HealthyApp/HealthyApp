@@ -100,7 +100,7 @@ class WorkoutActivity : AppCompatActivity() {
             }
             var boolArray = BooleanArray(suggestedWorkoutsList.size)
 
-            val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+            val builder: AlertDialog.Builder = AlertDialog.Builder(this, R.style.gacDialog)
                 .setTitle("Select Items")
                 .setCancelable(true)
                 .setNegativeButton("Close", null)
