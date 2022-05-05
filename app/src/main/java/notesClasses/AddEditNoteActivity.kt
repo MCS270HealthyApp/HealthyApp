@@ -66,7 +66,7 @@ class AddEditNoteActivity : AppCompatActivity() {
                     val updatedNote = Note(noteTitle, noteDescription, currentDateAndTime)
                     updatedNote.id = noteID
                     viewModal.updateNote(updatedNote)
-                    Toast.makeText(this, "Note Updated..", Toast.LENGTH_LONG).show()
+                    //Toast.makeText(this, "Note Updated..", Toast.LENGTH_LONG).show()
                 }
             } else {
                 //If the note actually has stuff written in it, we add it to the database
@@ -75,7 +75,7 @@ class AddEditNoteActivity : AppCompatActivity() {
                     val currentDateAndTime: String = sdf.format(Date())
 
                     viewModal.addNote(Note(noteTitle, noteDescription, currentDateAndTime))
-                    Toast.makeText(this, "$noteTitle Added", Toast.LENGTH_LONG).show()
+                    //Toast.makeText(this, "$noteTitle Added", Toast.LENGTH_LONG).show()
                 }
             }
 
