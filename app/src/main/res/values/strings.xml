@@ -10,7 +10,7 @@
     <string name="submit_entry">Submit Entry</string>
     <string name="goals_button">Goals</string>
     <string name="home_button">Return Home</string>
-    <string name="generic_food">Show Suggested Foods</string>
+    <string name="generic_food">Common Food</string>
     <string name="food_favorites_list">Favorites List</string>
     <string name="generic_food_dialog_title">Select an Item</string>
     <string name="favorite_food_dialog_title">Select Your Favorites</string>
@@ -24,7 +24,7 @@
     <string name="sample_quote">You can do this!</string>
     <string name="back_button_text">Return to homepage</string>
     <string name="sleep_title_text">Sleep</string>
-    <string name="sleep_hint_text">Enter how many hours of sleep you got last night</string>
+    <string name="sleep_hint_text">Enter sleep in hours</string>
     <string name="sleep_tracker_button">Sleep Tracker</string>
     <string name="quotes_page_home_button">Quotes</string>
     <string name="mood_tracker_button">Mood</string>
