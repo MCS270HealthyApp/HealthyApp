@@ -9,28 +9,27 @@ import java.util.concurrent.Executors
 
 private const val DATABASE_NAME = "favorite-food-database"
 
+/*
+ * Repository class and constructor declaration for favorite foods
+ */
 class FavoriteFoodRepository private constructor(context: Context) {
 
+    //Database intialized and built
     private val database: FavoriteFoodDatabase = Room.databaseBuilder(
         context.applicationContext,
         FavoriteFoodDatabase::class.java,
         DATABASE_NAME
     ).build()
 
+    //Data access object and executor initialized
     private val favoriteFoodDao = database.favoriteFoodDao()
     private val executor = Executors.newSingleThreadExecutor()
 
+    //Data insert functions defined
     fun getAllFavoriteMeals(): LiveData<List<FavoriteMeal>> = favoriteFoodDao.getAllFavoriteMeals()
     fun insertFavoriteFood(food: FavoriteMeal){
         executor.execute{
             favoriteFoodDao.insertFavoriteFood(food)
-        }
-    }
-    fun insertAllFavoriteFoods(food: List<FavoriteMeal>){
-        executor.execute{
-            for (item in food){
-                favoriteFoodDao.insertFavoriteFood(item)
-            }
         }
     }
 

@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.*
 import com.healthyorg.android.healthyapp.foodactivityclasses.FavoriteMeal
 
+//Room annotations automatically implement certain functionality with specified constraints
 @Database(entities = [FavoriteMeal::class], version = 1)
 @TypeConverters(WeightTypeConverters::class)
 abstract class FavoriteFoodDatabase : RoomDatabase() {
@@ -13,6 +14,7 @@ abstract class FavoriteFoodDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: FavoriteFoodDatabase? = null
 
+        //Obtains and builds database
         fun getDatabase(
             context: Context
         ): FavoriteFoodDatabase{
