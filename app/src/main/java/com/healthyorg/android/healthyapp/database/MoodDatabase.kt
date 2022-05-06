@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.*
 import com.healthyorg.android.healthyapp.MoodClasses.Daily_Mood
 
+//Creates the database to hold our mood objects
 @Database(entities = [Daily_Mood::class], version = 1)
 @TypeConverters(MoodTypeConverters::class)
 abstract class MoodDatabase : RoomDatabase() {

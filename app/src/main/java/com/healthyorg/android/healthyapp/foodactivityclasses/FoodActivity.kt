@@ -90,9 +90,9 @@ class FoodActivity: AppCompatActivity() {
         gustieFoodsButton.setOnClickListener {
             //If the food items havent been fully parsed, the user is not allowed to view dialog
             if(gustieFoodItems.status != AsyncTask.Status.FINISHED){
-                val toast = Toast.makeText(this, "Still Collecting Foods, Try Again Soon!", Toast.LENGTH_LONG)
+                /*val toast = Toast.makeText(this, "Still Collecting Foods, Try Again Soon!", Toast.LENGTH_LONG)
                 toast.setGravity(Gravity.TOP, 0, 0)
-                toast.show()
+                toast.show()*/
             } else{ //If all items are pulled the user can view the dialog
                 Log.i(TAG, "gustieFoodsList size ${gustieFoodsList.size}")
                 //Array created using food names to fill multiChoice
@@ -213,7 +213,6 @@ class FoodActivity: AppCompatActivity() {
            }
         }
 
-        //Pulls up the suggested foods list in the form of a dialog
         genericFoodButton.setOnClickListener{
             //Builder defines appropriate pieces of the dialog creating a multichoice dialog
             var boolArray = BooleanArray(suggestedFoodsNameList.size)
@@ -240,6 +239,8 @@ class FoodActivity: AppCompatActivity() {
                     }
                 }
                 foodListViewModel.addAllMeals(tempList)
+
+                boolArray = BooleanArray(suggestedFoodsNameList.size)
                 alertDialog.dismiss()
             }
         }

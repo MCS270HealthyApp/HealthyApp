@@ -11,7 +11,11 @@ import androidx.lifecycle.ViewModelProvider
 import java.text.SimpleDateFormat
 import java.util.*
 
+//This class handles all of the stuff for the page where users add, edit, or
+//update notes
 class AddEditNoteActivity : AppCompatActivity() {
+    //Initializing the edit text for the title and for the content of the note,
+    //as well as the button to save the note
     lateinit var noteTitleEdt: EditText
     lateinit var noteEdt: EditText
     lateinit var saveBtn: Button
@@ -23,15 +27,18 @@ class AddEditNoteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_edit_note)
 
+        //Initializing our viewModel
         viewModal = ViewModelProvider(
             this,
             ViewModelProvider.AndroidViewModelFactory.getInstance(application)
         ).get(NotesListViewModal::class.java)
 
+        //Linking up the variables to their xml counterparts
         noteTitleEdt = findViewById(R.id.idEdtNoteName)
         noteEdt = findViewById(R.id.idEdtNoteDesc)
         saveBtn = findViewById(R.id.idBtn)
 
+        //Getting data that was passed via an intent
         val noteType = intent.getStringExtra("noteType")
         if (noteType.equals("Edit")) {
             val noteTitle = intent.getStringExtra("noteTitle")
@@ -44,10 +51,14 @@ class AddEditNoteActivity : AppCompatActivity() {
             saveBtn.setText("Save Note")
         }
 
+        //The listener for our save button, which either adds a new note object to the database
+        //using the title, content and current date, or else updates and existing note
         saveBtn.setOnClickListener {
             val noteTitle = noteTitleEdt.text.toString()
             val noteDescription = noteEdt.text.toString()
 
+            //If the note already existed, we just update that note on the database when the user
+            //clicks the save button
             if (noteType.equals("Edit")) {
                 if (noteTitle.isNotEmpty() && noteDescription.isNotEmpty()) {
                     val sdf = SimpleDateFormat("dd MMM, yyyy - HH:mm")
@@ -55,15 +66,16 @@ class AddEditNoteActivity : AppCompatActivity() {
                     val updatedNote = Note(noteTitle, noteDescription, currentDateAndTime)
                     updatedNote.id = noteID
                     viewModal.updateNote(updatedNote)
-                    Toast.makeText(this, "Note Updated..", Toast.LENGTH_LONG).show()
+                    //Toast.makeText(this, "Note Updated..", Toast.LENGTH_LONG).show()
                 }
             } else {
+                //If the note actually has stuff written in it, we add it to the database
                 if (noteTitle.isNotEmpty() && noteDescription.isNotEmpty()) {
                     val sdf = SimpleDateFormat("dd MMM, yyyy - HH:mm")
                     val currentDateAndTime: String = sdf.format(Date())
 
                     viewModal.addNote(Note(noteTitle, noteDescription, currentDateAndTime))
-                    Toast.makeText(this, "$noteTitle Added", Toast.LENGTH_LONG).show()
+                    //Toast.makeText(this, "$noteTitle Added", Toast.LENGTH_LONG).show()
                 }
             }
 

@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.*
 import com.healthyorg.android.healthyapp.sleepClasses.DailySleepMood
 
+//Creates the database to hold our sleep objects, based on our dao
 @Database(entities = [DailySleepMood::class], version = 1)
 @TypeConverters(SleepTypeConverters::class)
 abstract class SleepDatabase : RoomDatabase() {

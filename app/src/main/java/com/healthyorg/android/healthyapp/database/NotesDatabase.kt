@@ -6,15 +6,18 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import notesClasses.Note
 
+//Creating the abstract database to actually hold all of our notes objects
 @Database(entities = arrayOf(Note::class), version = 1, exportSchema = false)
 abstract class NoteDatabase : RoomDatabase() {
 
     abstract fun getNotesDao(): NotesDao
 
     companion object {
+        //Prevent multiple databases from being open at the same time
         @Volatile
         private var INSTANCE: NoteDatabase? = null
 
+        //Actually constructing the database
         fun getDatabase(context: Context): NoteDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(

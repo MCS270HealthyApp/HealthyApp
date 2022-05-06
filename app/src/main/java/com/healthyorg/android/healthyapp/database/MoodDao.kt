@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.healthyorg.android.healthyapp.MoodClasses.Daily_Mood
 
+//The dao file for our mood database. We initialize functions to
+//insert, find, and delete mood objects from the database
 @Dao
 interface MoodDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
