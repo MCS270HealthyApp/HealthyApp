@@ -9,13 +9,17 @@
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:id="@+id/food_list_layout">
-
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
         <Button
             android:id="@+id/generics_list_button"
             style="@style/HomepageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="6dp"
+            android:layout_marginTop="6dp"
             android:text="@string/generic_food" />
 
         <Button
@@ -23,6 +27,7 @@
             style="@style/HomepageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
             android:text="@string/food_favorites_list"/>
         <Button
             android:layout_width="wrap_content"
@@ -31,6 +36,7 @@
             style="@style/HomepageButton"
             android:layout_marginTop="6dp"
             android:text="@string/gustie_foods_button"/>
+        </LinearLayout>
         <EditText
             android:id="@+id/food_type_entry"
             style="@style/gacEditText"
@@ -61,20 +67,23 @@
                 android:layout_margin="8dp"
                 android:text="@string/submit_entry" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/favorite_food_entry_button"
                 style="@style/HomepageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:text="Add to Favorites" />
-        </LinearLayout>
-        <Button
+                android:background="@null"
+                android:src="@drawable/fav_heart" />
+        <ImageButton
             android:id="@+id/food_graph_button"
             style="@style/HomepageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/food_graph_button" />
+            android:text="@string/food_graph_button"
+            android:src="@drawable/graph"
+            android:background="@null"/>
+        </LinearLayout>
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="fill_parent"

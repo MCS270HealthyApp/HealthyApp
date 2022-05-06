@@ -4,14 +4,17 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical">
-
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="@style/HomepageButton"
         android:id="@+id/suggested_workout_button"
         android:layout_marginBottom="4dp"
-        android:text="Suggested Workouts"/>
+        android:text="Common Workouts"/>
     <Button
         android:id="@+id/favorite_workout_list_button"
         style="@style/HomepageButton"
@@ -19,6 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
         android:text="favorites list" />
+</LinearLayout>
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,13 +55,15 @@
             android:layout_marginRight="3dp"
             android:text="@string/submit_entry" />
 
-        <Button
+        <ImageButton
             android:id="@+id/favorite_workout_entry_button"
             style="@style/HomepageButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="3dp"
-            android:text="Add to Favorites" />
+            android:text="Add to Favorites"
+            android:background="@null"
+            android:src="@drawable/fav_heart"/>
     </LinearLayout>
     <FrameLayout
         android:layout_width="match_parent"

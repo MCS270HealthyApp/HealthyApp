@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:orientation="vertical">
-
+    tools:context=".MainActivity">
+    <FrameLayout
+        android:id="@+id/sleep_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        app:layout_constraintBottom_toTopOf="@+id/sleep_edit_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />/>
     <EditText
         android:id="@+id/sleep_edit_text"
         style="@style/gacEditText"
@@ -13,7 +23,10 @@
         android:backgroundTint="#AE8787"
         android:ems="10"
         android:hint="@string/sleep_hint_text"
-        android:inputType="numberDecimal" />
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/sleep_enter_button"
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <Button
         android:id="@+id/sleep_enter_button"
@@ -21,12 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:text="@string/enter_button" />
-
-    <FrameLayout
-        android:id="@+id/sleep_fragment_container"
-        android:layout_width="match_parent"
-        android:layout_height="fill_parent"/>
-
-
-</LinearLayout>
+        android:text="@string/enter_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

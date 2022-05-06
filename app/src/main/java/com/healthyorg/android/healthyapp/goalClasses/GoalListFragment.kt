@@ -15,7 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.healthyorg.android.healthyapp.R
-import kotlinx.android.synthetic.main.goal_todo.view.*
+
 
 private const val TAG = "GoalListFragment"
 
@@ -48,7 +48,7 @@ class GoalListFragment: Fragment() {
             viewLifecycleOwner,
             Observer { goals ->
                 goals?.let{
-                    Log.i(TAG, "Got sleeps ${goals.size}")
+                    Log.i(TAG, "Got goals ${goals.size}")
                     updateUI(goals)
                 }
             }
@@ -78,20 +78,18 @@ class GoalListFragment: Fragment() {
                 deleteCurrentGoal(goal)
             }
             goalCheckBox.setOnClickListener {
-                this.goal.isChecked = goalCheckBox.isChecked()
+                goal.isChecked = goalCheckBox.isChecked()
                 toggleStrikeThrough(goalTextView, this.goal.isChecked)
             }
             this.goal = goal
             goalTextView.text = "${this.goal.title.toString()}"
             this.goal.isChecked = goalCheckBox.isChecked()
-            //dateTextView.text = this.sleep.date.toString()
+            Log.i(TAG, "goal is checked ${this.goal.isChecked}")
         }
 
 
         override fun onClick(v: View){
-            //Toast.makeText(context, "Sleep from ${sleep.date} pressed!", Toast.LENGTH_SHORT).show()
         }
-
     }
 
     private inner class GoalAdapter(var goals: List<Goal>)
@@ -127,6 +125,4 @@ class GoalListFragment: Fragment() {
             theTextView.setPaintFlags(theTextView.getPaintFlags() and Paint.STRIKE_THRU_TEXT_FLAG.inv())
         }
     }
-
-
 }

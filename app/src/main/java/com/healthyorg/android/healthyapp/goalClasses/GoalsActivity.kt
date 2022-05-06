@@ -12,6 +12,7 @@ import androidx.room.Room
 import com.healthyorg.android.healthyapp.R
 import com.healthyorg.android.healthyapp.database.GoalsDatabase
 import kotlinx.android.synthetic.main.activity_goals.*
+import kotlinx.android.synthetic.main.goal_todo.*
 
 
 class GoalsActivity : AppCompatActivity() {
@@ -34,7 +35,6 @@ class GoalsActivity : AppCompatActivity() {
         goalEntryButton.setOnClickListener{
             goalListViewModel.addGoal(Goal(title = goalEditText.text.toString()))
         }
-
 
         if(currentFragment == null){
             val fragment = GoalListFragment.newInstance()

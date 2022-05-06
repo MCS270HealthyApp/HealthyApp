@@ -22,7 +22,7 @@ class WorkoutActivity : AppCompatActivity() {
     private lateinit var typeEditText: EditText
     private lateinit var calorieEditText: EditText
     private lateinit var listButton: Button
-    private lateinit var favoriteEntryButton: Button
+    private lateinit var favoriteEntryButton: ImageButton
     private lateinit var suggestedWorkoutButton: Button
 
     private val workoutListViewModel: WorkoutListViewModel by lazy {

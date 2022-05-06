@@ -86,7 +86,6 @@ class WorkoutListFragment: Fragment() {
         }
 
         override fun onClick(v: View){
-            //Toast.makeText(context, "Workout from ${workout.date} pressed!", Toast.LENGTH_SHORT).show()
         }
     }
 
