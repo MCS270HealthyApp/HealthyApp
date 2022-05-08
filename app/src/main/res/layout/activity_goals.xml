@@ -24,6 +24,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#B6A7A7"
         android:hint="Enter Goal"
+        android:textSize="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnAddTodo"
         app:layout_constraintStart_toStartOf="parent" />
@@ -31,10 +32,11 @@
     <Button
         android:id="@+id/btnAddTodo"
         style="@style/HomepageButton"
+        android:textSize="24dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="4dp"
-        android:text="Add Todo"
+        android:text="Enter"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 

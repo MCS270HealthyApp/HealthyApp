@@ -80,11 +80,11 @@ class GoalListFragment: Fragment() {
             goalCheckBox.setOnClickListener {
                 goal.isChecked = goalCheckBox.isChecked()
                 toggleStrikeThrough(goalTextView, this.goal.isChecked)
+                Log.i(TAG, "goal is checked ${this.goal.isChecked}")
             }
             this.goal = goal
             goalTextView.text = "${this.goal.title.toString()}"
             this.goal.isChecked = goalCheckBox.isChecked()
-            Log.i(TAG, "goal is checked ${this.goal.isChecked}")
         }
 
 

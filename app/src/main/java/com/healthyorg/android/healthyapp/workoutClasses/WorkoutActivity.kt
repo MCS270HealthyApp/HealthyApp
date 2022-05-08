@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.list_item_daily_workout.*
 private const val TAG = "WorkoutActivity"
 
 class WorkoutActivity : AppCompatActivity() {
-    private lateinit var workoutEntryButton: Button
+    private lateinit var workoutEntryButton: ImageButton
     private lateinit var workoutEditText: EditText
     private lateinit var typeEditText: EditText
     private lateinit var calorieEditText: EditText

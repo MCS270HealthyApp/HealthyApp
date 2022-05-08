@@ -59,13 +59,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center">
-            <Button
+            <ImageButton
                 android:id="@+id/food_submit_button"
                 style="@style/HomepageButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:text="@string/submit_entry" />
+                android:text="@string/submit_entry"
+                android:background="@null"
+                android:src="@drawable/enter_button"/>
 
             <ImageButton
                 android:id="@+id/favorite_food_entry_button"
