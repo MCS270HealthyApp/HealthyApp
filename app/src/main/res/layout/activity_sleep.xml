@@ -18,11 +18,12 @@
     <EditText
         android:id="@+id/sleep_edit_text"
         style="@style/gacEditText"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="#AE8787"
         android:ems="10"
         android:hint="@string/sleep_hint_text"
+        android:textSize="24dp"
         android:inputType="numberDecimal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/sleep_enter_button"
@@ -34,6 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
+        android:textSize="24dp"
         android:text="@string/enter_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

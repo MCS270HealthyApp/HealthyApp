@@ -28,7 +28,7 @@ class FoodActivity: AppCompatActivity() {
     private lateinit var genericFoodButton: Button
     private lateinit var foodTypeEditText: EditText
     private lateinit var foodCalsEditText: EditText
-    private lateinit var entryButton: Button
+    private lateinit var entryButton: ImageButton
     private lateinit var favoriteEntryButton: ImageButton
     private lateinit var favoriteListButton: Button
     private lateinit var foodGraphButton: ImageButton
