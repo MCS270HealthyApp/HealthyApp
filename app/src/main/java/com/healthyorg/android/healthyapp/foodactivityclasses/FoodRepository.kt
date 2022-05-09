@@ -11,21 +11,23 @@ import java.util.concurrent.Executors
 
 private const val DATABASE_NAME = "food-database"
 
-//class that creates instance of database and has functions to access it
+/**
+ * Repository constructor
+ */
 class FoodRepository private constructor(context: Context) {
 
-    //builds database
+    //Builds a database of type FoodDatabase
     private val database: FoodDatabase = Room.databaseBuilder(
         context.applicationContext,
         FoodDatabase::class.java,
         DATABASE_NAME
     ).build()
 
-    //gets DAO for database and executor for database commands
+    //Initializes a data access object for interacting with the database
     private val foodDao = database.foodDao()
     private val executor = Executors.newSingleThreadExecutor()
 
-    //functions to access DAO functions
+    /*Functions for database additions an removals declared and defined*/
     fun getAllMealsAfter(date: Long?): List<Meal> = foodDao.getAllMealsAfter(date)
     fun getAllMeals(): LiveData<List<Meal>> = foodDao.getAllMeals()
     fun insertFood(food: Meal){
@@ -50,7 +52,6 @@ class FoodRepository private constructor(context: Context) {
         }
     }
 
-    //companion object to give classes access to repository
     companion object {
         private var INSTANCE: FoodRepository? = null
 

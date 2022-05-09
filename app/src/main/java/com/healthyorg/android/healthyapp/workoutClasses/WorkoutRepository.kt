@@ -11,17 +11,23 @@ import java.util.concurrent.Executors
 
 private const val DATABASE_NAME = "workout-database"
 
+/**
+ * Repository constructor
+ */
 class WorkoutRepository private constructor(context: Context) {
 
+    //Builds a workoutdatabase of type Database
     private val database: WorkoutDatabase = Room.databaseBuilder(
         context.applicationContext,
         WorkoutDatabase::class.java,
         DATABASE_NAME
     ).fallbackToDestructiveMigration().build()
 
+    //Initializes a data access object for interacting with the database
     private val workoutDao = database.workoutDao()
     private val executor = Executors.newSingleThreadExecutor()
 
+    /*Functions for database additions an removals declared and defined*/
     fun getAllWorkouts(): LiveData<List<Daily_Workout>> = workoutDao.getAllWorkouts()
     fun getAllWorkoutsAfter(date: Long?): List<Daily_Workout> = workoutDao.getAllWorkoutsAfter(date)
     fun insertWorkout(workout: Daily_Workout){

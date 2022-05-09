@@ -4,22 +4,22 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.healthyorg.android.healthyapp.foodactivityclasses.Meal
 
-//class for accessing database
+//Room automatically implements functions based on annotations
 @Dao
 interface FoodDao {
-    //inserts items into database
+    //Insert a meal object into the database
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertFood(vararg food: Meal)
 
-    //gets all items in database as livedata list
+    //Select all meals from the database
     @Query("SELECT * FROM Meal")
     fun getAllMeals(): LiveData<List<Meal>>
 
-    //gets all objects in database after data as a regular list
+    //Select a specific set of meals after the input date
     @Query("SELECT * FROM Meal WHERE date > :date")
     fun getAllMealsAfter(date: Long?): List<Meal>
 
-    //deletes entry from database
+    //Delete a specific meal
     @Delete
     fun deleteFood(vararg food: Meal)
 }

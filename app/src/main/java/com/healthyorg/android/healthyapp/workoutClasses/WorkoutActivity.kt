@@ -17,7 +17,9 @@ import kotlinx.android.synthetic.main.list_item_daily_workout.*
 private const val TAG = "WorkoutActivity"
 
 class WorkoutActivity : AppCompatActivity() {
-    private lateinit var workoutEntryButton: Button
+    /*Various buttons, layouts, views, and certain variables declared
+    * for global access*/
+    private lateinit var workoutEntryButton: ImageButton
     private lateinit var workoutEditText: EditText
     private lateinit var typeEditText: EditText
     private lateinit var calorieEditText: EditText
@@ -31,6 +33,7 @@ class WorkoutActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_workout)
+        //Layouts and buttons initialized
         workoutEntryButton = findViewById(R.id.workout_submit_button)
         workoutEditText = findViewById(R.id.workout_name)
         typeEditText = findViewById(R.id.workout_type)
@@ -38,9 +41,11 @@ class WorkoutActivity : AppCompatActivity() {
         listButton = findViewById(R.id.favorite_workout_list_button)
         favoriteEntryButton = findViewById(R.id.favorite_workout_entry_button)
         suggestedWorkoutButton = findViewById(R.id.suggested_workout_button)
-
+        //Data queried from the foodListViewModel
         val favoriteWorkoutListLiveData: LiveData<List<Favorite_Workouts>> = workoutListViewModel.favoriteWorkoutList
 
+        //favoriteFoodList initialized and translated from LiveData format
+        //using an observer
         var favoriteWorkoutList: List<Favorite_Workouts> = emptyList()
         favoriteWorkoutListLiveData.observe(
             this
@@ -55,12 +60,15 @@ class WorkoutActivity : AppCompatActivity() {
 
         val currentFragment  = supportFragmentManager.findFragmentById(R.id.workout_fragment_container)
 
+        //On button click presents a user with a multiChoice dialog of their favorite foods
         listButton.setOnClickListener{
             Log.i(com.healthyorg.android.healthyapp.workoutClasses.TAG, "favoriteWorkoutList size ${favoriteWorkoutList.size}")
+            //Multichoice dialogs use an array of strings to give list items text
             var favoriteWorkoutsNameList: Array<String> = emptyArray()
             for(item in favoriteWorkoutList) {
                 favoriteWorkoutsNameList += item.workoutName + ", " + item.workoutType +", "+item.calorieBurned + " Calories"
             }
+            //Boolean array facilitates checking selected items
             var favBoolArray = BooleanArray(favoriteWorkoutsNameList.size)
             val builder: AlertDialog.Builder = AlertDialog.Builder(this, R.style.gacDialog)
                 .setTitle(getString(R.string.favorite_food_dialog_title))
@@ -70,8 +78,11 @@ class WorkoutActivity : AppCompatActivity() {
                 .setMultiChoiceItems(favoriteWorkoutsNameList, BooleanArray(favoriteWorkoutsNameList.size)){ dialog, which, isChecked ->
                     favBoolArray[which] = isChecked
                 }
+            //Dialog built and presented
             val alertDialog = builder.create()
             alertDialog.show()
+            //If a user clicks submit their responses are checked and the appropriate food items are added
+            //to the eaten foods database
             val posButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
             posButton.setOnClickListener{
                 var tempList: List<Daily_Workout> = emptyList()
@@ -84,11 +95,11 @@ class WorkoutActivity : AppCompatActivity() {
                 alertDialog.dismiss()
             }
         }
-
+    //Data in editText fields stored into the favorite foods database
         favoriteEntryButton.setOnClickListener{
             workoutListViewModel.addFavoriteWorkout(Favorite_Workouts(workoutName = workoutEditText.text.toString(), workoutType = typeEditText.text.toString(), calorieBurned = calorieEditText.text.toString().toDouble()))
         }
-
+    //Data in editText fields entered into the database on button click
         workoutEntryButton.setOnClickListener{
             workoutListViewModel.addWorkout(Daily_Workout(workoutName = workoutEditText.text.toString(), workoutType = typeEditText.text.toString(), calorieBurned = calorieEditText.text.toString().toDouble()))
         }
@@ -98,6 +109,7 @@ class WorkoutActivity : AppCompatActivity() {
             for (item in workoutListViewModel.suggestedWorkoutList){
                 suggestedWorkoutsList += item.workoutName
             }
+            //Builder defines appropriate pieces of the dialog creating a multichoice dialog
             var boolArray = BooleanArray(suggestedWorkoutsList.size)
 
             val builder: AlertDialog.Builder = AlertDialog.Builder(this, R.style.gacDialog)
@@ -108,8 +120,10 @@ class WorkoutActivity : AppCompatActivity() {
                 .setMultiChoiceItems(suggestedWorkoutsList, BooleanArray(suggestedWorkoutsList.size)){ dialog, which, isChecked ->
                     boolArray[which] = isChecked
                 }
+            //Dialog built and presented
             val alertDialog = builder.create()
             alertDialog.show()
+            //Positive response button adds items
             val posButton = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
             posButton.setOnClickListener{
                 var tempList: List<Daily_Workout> = emptyList()
@@ -129,9 +143,5 @@ class WorkoutActivity : AppCompatActivity() {
             val fragment = WorkoutListFragment.newInstance()
             supportFragmentManager.beginTransaction().add(R.id.workout_fragment_container, fragment).commit()
         }
-        val db = Room.databaseBuilder(
-            applicationContext,
-            WorkoutDatabase::class.java, "database-name"
-        ).build()
     }
 }

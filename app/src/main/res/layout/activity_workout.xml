@@ -47,7 +47,9 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <Button
+        <ImageButton
+            android:background="@null"
+            android:src="@drawable/enter_button"
             android:id="@+id/workout_submit_button"
             style="@style/HomepageButton"
             android:layout_width="wrap_content"

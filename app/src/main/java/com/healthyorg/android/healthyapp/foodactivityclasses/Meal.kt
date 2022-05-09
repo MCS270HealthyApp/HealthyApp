@@ -4,8 +4,10 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.util.*
-
-//data class that represents a meal for food database
+/**
+ * Data class storing relevant information for a food item/meal.
+ * Treated as an Entity for use with Room preservation
+ */
 @Entity
 data class Meal(
     @ColumnInfo var food_type: String,

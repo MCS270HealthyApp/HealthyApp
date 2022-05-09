@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.*
 import com.healthyorg.android.healthyapp.foodactivityclasses.Meal
 
+//Functions automatically implemented by Room using specified constraints
 @Database(entities = [Meal::class], version = 1)
 @TypeConverters(WeightTypeConverters::class)
 abstract class FoodDatabase : RoomDatabase() {
@@ -13,6 +14,7 @@ abstract class FoodDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: FoodDatabase? = null
 
+        //Fun to obtain and build database defined
         fun getDatabase(
             context: Context
         ): FoodDatabase{
