@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 /**
- * Data class storing relevant information for a food item/meal.
+ * Data class storing relevant information for a favorite food item/meal.
  * Treated as an Entity for use with Room preservation
  */
 @Entity

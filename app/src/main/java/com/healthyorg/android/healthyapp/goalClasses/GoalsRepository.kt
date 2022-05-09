@@ -9,8 +9,12 @@ import java.util.concurrent.Executors
 
 private const val DATABASE_NAME = "goals-database"
 
+/**
+ * Repository constructor
+ */
 class GoalsRepository private constructor(context: Context) {
 
+    //Builds a database of type GoalsDatabase
     private val database: GoalsDatabase = Room.databaseBuilder(
         context.applicationContext,
         GoalsDatabase::class.java,
@@ -20,6 +24,7 @@ class GoalsRepository private constructor(context: Context) {
     private val GoalDao = database.GoalDao()
     private val executor = Executors.newSingleThreadExecutor()
 
+    //Initializes a data access object for interacting with the databade
     fun getAllGoalsList(): List<Goal> = GoalDao.getAllGoalsList()
     fun getAllGoals(): LiveData<List<Goal>> = GoalDao.getAllGoals()
 

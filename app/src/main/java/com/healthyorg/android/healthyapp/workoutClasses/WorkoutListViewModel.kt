@@ -26,16 +26,21 @@ class WorkoutListViewModel: ViewModel() {
         Daily_Workout("3x8 (per leg) Bulgarian Squats", "Legs", 30.0)
     )
 
-
+    /**
+     * Adds a single favoriteWorkout to the favoriteWorkoutRepository
+     */
     fun addFavoriteWorkout(workout: Favorite_Workouts){
         favoriteWorkoutRepository.insertFavoriteWorkout(workout)
     }
+    //add workout to workout repository
     fun addWorkout(workout: Daily_Workout){
         workoutRepository.insertWorkout(workout)
     }
+    //add all workouts selected to workout repository
     fun addAllWorkouts(workouts: List<Daily_Workout>){
         workoutRepository.insertAllWorkouts(workouts)
     }
+    //delete workout from workout repository
     fun deleteWorkout(workout: Daily_Workout){
         workoutRepository.deleteWorkout(workout)
     }
