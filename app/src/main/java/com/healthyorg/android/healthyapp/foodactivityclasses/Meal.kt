@@ -5,6 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.util.*
 
+//data class that represents a meal for food database
 @Entity
 data class Meal(
     @ColumnInfo var food_type: String,

@@ -18,7 +18,9 @@ import com.healthyorg.android.healthyapp.R
 
 private const val TAG = "FoodListFragment"
 
+//fragment for food activity
 class FoodListFragment: Fragment() {
+    //getting various classes for food activity
     private lateinit var foodRecyclerView: RecyclerView
     private var adapter: FoodAdapter? = FoodAdapter(emptyList())
 
@@ -26,6 +28,7 @@ class FoodListFragment: Fragment() {
         ViewModelProviders.of(this).get(FoodListViewModel::class.java)
     }
 
+    //view initialization
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -41,6 +44,7 @@ class FoodListFragment: Fragment() {
         return view
     }
 
+    //gets all meals from database and updates ui with info
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         foodListViewModel.foodListLiveData.observe(
@@ -54,10 +58,12 @@ class FoodListFragment: Fragment() {
         )
     }
 
+    //updates UI with list of meals from database
     private fun updateUI(meals: List<Meal>){
         adapter = FoodAdapter(meals)
         foodRecyclerView.adapter = adapter
     }
+
 
     private inner class FoodHolder(view: View)
         : RecyclerView.ViewHolder(view), View.OnClickListener{

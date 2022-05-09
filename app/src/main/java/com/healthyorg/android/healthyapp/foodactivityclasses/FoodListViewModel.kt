@@ -11,12 +11,15 @@ import java.io.IOException
 
 private const val TAG = "FoodListViewModel"
 
+//viewmodel for food list
 class FoodListViewModel: ViewModel() {
+    //gets copy of repositories and livedata lists of data
     private val foodRepository = FoodRepository.get()
     private val favoriteFoodRepository = FavoriteFoodRepository.get()
     val foodListLiveData = foodRepository.getAllMeals()
     val favoriteFoodList = favoriteFoodRepository.getAllFavoriteMeals()
 
+    //list of suggested foods for food tracker
     val genericFoodSelectionList: List<Meal> = listOf(
         Meal("Apple", 95.0),
         Meal("Banana", 111.0),
@@ -49,6 +52,7 @@ class FoodListViewModel: ViewModel() {
         Meal("Whole Wheat Bread", 114.0)
     )
 
+    //function to calculate daily cals for food summary graph
     fun calcDailyCals(meals: List<Meal>): List<Double>{
         Log.i(TAG, "calcDailyCals called with input ${meals.toString()}")
         val reverseMeals = meals.reversed()
@@ -77,6 +81,8 @@ class FoodListViewModel: ViewModel() {
         return dailyCalsList.reversed()
     }
 
+
+    //functions to interact with database
 
     fun addFavoriteMeal(food: FavoriteMeal){
         favoriteFoodRepository.insertFavoriteFood(food)
