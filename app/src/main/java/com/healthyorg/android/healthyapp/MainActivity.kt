@@ -14,6 +14,9 @@ import com.healthyorg.android.healthyapp.weightClasses.WeightActivity
 import com.healthyorg.android.healthyapp.workoutClasses.WorkoutActivity
 import notesClasses.NotesActivity
 
+/*
+Main page that links to all other pages
+ */
 class MainActivity : AppCompatActivity() {
 
     private lateinit var summaryButton: Button

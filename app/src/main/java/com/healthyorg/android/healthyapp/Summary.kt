@@ -21,6 +21,9 @@ import kotlin.math.roundToInt
 
 private const val TAG = "SummaryActivity"
 
+/*
+shows basic summary of stored information from last week
+ */
 class Summary : AppCompatActivity() {
     private lateinit var avg_burned_txt: TextView
     private lateinit var avg_cals_txt: TextView
@@ -41,6 +44,7 @@ class Summary : AppCompatActivity() {
         avg_sleep_txt = findViewById(R.id.avg_sleep)
         avg_mood_txt = findViewById(R.id.avg_mood)
 
+        //gets all entries in databases within 7 days
         Thread(Runnable {
             workoutData = WorkoutRepository.get().getAllWorkoutsAfter(Date().time - 604800000)
             moodData = MoodRepository.get().getAllMoodsAfter(Date().time - 604800000)
@@ -54,6 +58,7 @@ class Summary : AppCompatActivity() {
 
     }
 
+    //calculates avg of each value per day and updates ui
     private fun updateValues() {
         var avgCalsBurned = 0.0
         for (workout in workoutData) {

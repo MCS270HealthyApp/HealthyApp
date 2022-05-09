@@ -15,7 +15,9 @@ import com.healthyorg.android.healthyapp.sleepClasses.SleepRepository
 import com.healthyorg.android.healthyapp.weightClasses.WeightRepository
 import com.healthyorg.android.healthyapp.workoutClasses.WorkoutRepository
 
-
+/*
+Activity to change different settings
+ */
 class Settings : AppCompatActivity() {
     private lateinit var toggleNight: Button
     private lateinit var resetData: Button
@@ -27,6 +29,7 @@ class Settings : AppCompatActivity() {
         toggleNight = findViewById(R.id.swap_themes_button)
         resetData = findViewById(R.id.reset_data_button)
 
+        //swaps app between night mode and light mode
         toggleNight.setOnClickListener {
             when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
                 Configuration.UI_MODE_NIGHT_YES ->
@@ -36,6 +39,7 @@ class Settings : AppCompatActivity() {
             }
         }
 
+        //button to delete all data stored in app
         resetData.setOnClickListener {
             val alertDialog: AlertDialog? = this.let {
                 val builder = AlertDialog.Builder(it)
@@ -56,6 +60,7 @@ class Settings : AppCompatActivity() {
         }
     }
 
+    //goes through each database and deletes all entries
     private fun deleteAllData() {
         Thread(Runnable {
             val workoutRep = WorkoutRepository.get()
