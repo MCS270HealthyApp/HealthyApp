@@ -20,6 +20,7 @@ import com.healthyorg.android.healthyapp.R
 private const val TAG = "GoalListFragment"
 
 class GoalListFragment: Fragment() {
+    //declare recyclerview
     private lateinit var goalRecyclerView: RecyclerView
     private var adapter: GoalAdapter? = GoalAdapter(emptyList())
 
@@ -44,6 +45,7 @@ class GoalListFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //Observe the relevant date from the view model and update the ui as the data set changes
         goalListViewModel.goalListLiveData.observe(
             viewLifecycleOwner,
             Observer { goals ->
@@ -54,7 +56,9 @@ class GoalListFragment: Fragment() {
             }
         )
     }
-
+    /**
+     * Updates the UI so that the recycler view presents a current set of items
+     */
     private fun updateUI(goals: List<Goal>){
         adapter = GoalAdapter(goals)
         goalRecyclerView.adapter = adapter
@@ -64,19 +68,21 @@ class GoalListFragment: Fragment() {
         : RecyclerView.ViewHolder(view), View.OnClickListener{
 
         private lateinit var goal: Goal
-
+        //Relevant data and interactive fields initialized
         private val goalTextView: TextView = itemView.findViewById(R.id.goalTitle)
         private val goalCheckBox: CheckBox = itemView.findViewById(R.id.cbDone)
         private val goalDeleteButton: ImageButton = itemView.findViewById(R.id.goal_delete_button)
 
-        init {
-            itemView.setOnClickListener(this)
-        }
 
+        /**
+         * Bind a fragment and set its info based off Meal data
+         */
         fun bind(goal: Goal){
+            //onclick to delete from database
             goalDeleteButton.setOnClickListener{
                 deleteCurrentGoal(goal)
             }
+            //checks and strike through goal
             goalCheckBox.setOnClickListener {
                 goal.isChecked = goalCheckBox.isChecked()
                 toggleStrikeThrough(goalTextView, this.goal.isChecked)
@@ -92,6 +98,9 @@ class GoalListFragment: Fragment() {
         }
     }
 
+    /**
+     * An adapter for intra class use and controlling some data
+     */
     private inner class GoalAdapter(var goals: List<Goal>)
         :RecyclerView.Adapter<GoalHolder>(){
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GoalHolder {

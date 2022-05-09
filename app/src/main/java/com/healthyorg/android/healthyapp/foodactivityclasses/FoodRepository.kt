@@ -23,7 +23,7 @@ class FoodRepository private constructor(context: Context) {
         DATABASE_NAME
     ).build()
 
-    //Initializes a data access object for interacting with the databade
+    //Initializes a data access object for interacting with the database
     private val foodDao = database.foodDao()
     private val executor = Executors.newSingleThreadExecutor()
 
