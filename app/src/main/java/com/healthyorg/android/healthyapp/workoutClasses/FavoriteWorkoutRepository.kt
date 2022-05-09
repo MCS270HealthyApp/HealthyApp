@@ -12,13 +12,13 @@ import java.util.concurrent.Executors
 private const val DATABASE_NAME = "favorite-workout-database"
 
 class FavoriteWorkoutRepository private constructor(context: Context) {
-
+    //favorite workout Database intialized and built
     private val database: FavoriteWorkoutDatabase = Room.databaseBuilder(
         context.applicationContext,
         FavoriteWorkoutDatabase::class.java,
         DATABASE_NAME
     ).build()
-
+    //Data access object and executor initialized
     private val favoriteWorkoutDao = database.favoriteWorkoutDao()
     private val executor = Executors.newSingleThreadExecutor()
 
